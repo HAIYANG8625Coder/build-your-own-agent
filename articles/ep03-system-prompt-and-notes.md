@@ -1,6 +1,6 @@
 # Episode 3 · The system prompt and the notes file
 
-*Part A · Core. Video: "从零做 Agent · 第 3 集：笔记" (Chinese). Code: [`ep03/`](../ep03/).*
+*Part A · Core. Video: "Build your own agent · 03: system prompt". Code: [`ep03/`](../ep03/).*
 
 This article is the whole of episode 3 in writing, so you can follow it without the video. Every claim about Claude Code is taken from the official pages linked inline. Where the docs are silent, I say "our version does it this way".
 
