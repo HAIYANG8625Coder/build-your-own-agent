@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d4600b"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a8a49c"/></marker></defs>
+  <rect width="1200" height="600" fill="#ffffff"/>
+  <text x="40" y="52" font-size="21" font-weight="700" fill="#1f1f1f">Order: deny, then ask, then allow. The first match wins.</text>
+  <rect x="60" y="100" width="340" height="120" rx="9" fill="#ffffff" stroke="#a8a49c" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="230" y="154.1" font-size="26" font-weight="700" fill="#6b6b6b" text-anchor="middle">1 deny</text>
+  <text x="230" y="191.9" font-size="18" font-weight="400" fill="#6b6b6b" text-anchor="middle">run_bash(git push *)</text>
+  <path d="M404,160 L434,160" fill="none" stroke="#a8a49c" stroke-width="2.5" marker-end="url(#agrey)"/>
+  <rect x="440" y="100" width="340" height="120" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="610" y="154.1" font-size="26" font-weight="700" fill="#d4600b" text-anchor="middle">2 ask</text>
+  <text x="610" y="191.9" font-size="18" font-weight="400" fill="#6b6b6b" text-anchor="middle">run_bash(git commit *)</text>
+  <path d="M784,160 L814,160" fill="none" stroke="#a8a49c" stroke-width="2.5" marker-end="url(#agrey)"/>
+  <rect x="814" y="94" width="352" height="132" rx="12" fill="#e9c9ae"/>
+  <rect x="820" y="100" width="340" height="120" rx="9" fill="#fcefe5" stroke="#d4600b" stroke-width="2.5"/>
+  <text x="990" y="154.1" font-size="26" font-weight="700" fill="#d4600b" text-anchor="middle">3 allow</text>
+  <text x="990" y="191.9" font-size="18" font-weight="400" fill="#6b6b6b" text-anchor="middle">run_bash(git *)</text>
+  <rect x="60" y="290" width="1080" height="250" rx="14" fill="#f0ede6"/>
+  <text x="600" y="328" font-size="17" font-weight="700" fill="#1f1f1f" text-anchor="middle">Example: git push origin main</text>
+  <text x="100" y="380" font-size="24" font-weight="700" fill="#c23b22">Matches the deny rule (git push *): the first match, so the answer is deny</text>
+  <text x="100" y="426" font-size="21" font-weight="600" fill="#1f1f1f">Even though a wider allow rule (git *) also matches: a deny beats it</text>
+  <text x="100" y="470" font-size="21" font-weight="400" fill="#6b6b6b">An ask rule works the same way: it asks even if a narrower allow matches</text>
+</svg>

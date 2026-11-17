@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="1200" height="520" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d4600b"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a8a49c"/></marker></defs>
+  <rect width="1200" height="520" fill="#ffffff"/>
+  <text x="40" y="52" font-size="21" font-weight="700" fill="#1f1f1f">Questions asked in the same bug-fix task (3 runs each)</text>
+  <text x="40" y="140" font-size="22" font-weight="700" fill="#1f1f1f">Default mode, no rules</text>
+  <rect x="400" y="112" width="480" height="38" rx="4" fill="#8a8a8a"/>
+  <text x="894" y="142" font-size="22" font-weight="700" fill="#6b6b6b">4</text>
+  <rect x="400" y="164" width="480" height="38" rx="4" fill="#8a8a8a"/>
+  <text x="894" y="194" font-size="22" font-weight="700" fill="#6b6b6b">4</text>
+  <rect x="400" y="216" width="480" height="38" rx="4" fill="#8a8a8a"/>
+  <text x="894" y="246" font-size="22" font-weight="700" fill="#6b6b6b">4</text>
+  <text x="40" y="340" font-size="22" font-weight="700" fill="#1f1f1f">accept-edits + one allow rule</text>
+  <rect x="400" y="312" width="120" height="38" rx="4" fill="#d4600b"/>
+  <text x="534" y="342" font-size="22" font-weight="700" fill="#d4600b">1 (a find command)</text>
+  <rect x="400" y="364" width="120" height="38" rx="4" fill="#d4600b"/>
+  <text x="534" y="394" font-size="22" font-weight="700" fill="#d4600b">1 (a find command)</text>
+  <rect x="400" y="416" width="120" height="38" rx="4" fill="#d4600b"/>
+  <text x="534" y="446" font-size="22" font-weight="700" fill="#d4600b">1 (a find command)</text>
+</svg>

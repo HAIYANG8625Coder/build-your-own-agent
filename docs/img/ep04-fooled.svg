@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d4600b"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a8a49c"/></marker></defs>
+  <rect width="1200" height="640" fill="#ffffff"/>
+  <text x="40" y="52" font-size="21" font-weight="700" fill="#1f1f1f">A scripted model that obeys: echo hacked &gt; pwned.txt</text>
+  <text x="40" y="84" font-size="18" font-weight="400" fill="#8a8a8a">A scripted stand-in, not a real model.</text>
+  <rect x="40" y="120" width="300" height="110" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="190" y="167.9" font-size="22" font-weight="700" fill="#d4600b" text-anchor="middle">Gate off</text>
+  <text x="190" y="200.5" font-size="18" font-weight="400" fill="#6b6b6b" text-anchor="middle">everything allowed</text>
+  <path d="M346,175 L426,175" fill="none" stroke="#a8a49c" stroke-width="2" marker-end="url(#agrey)"/>
+  <text x="440" y="186" font-size="24" font-weight="700" fill="#c23b22">pwned.txt is created</text>
+  <rect x="34" y="274" width="312" height="122" rx="12" fill="#e9c9ae"/>
+  <rect x="40" y="280" width="300" height="110" rx="9" fill="#fcefe5" stroke="#d4600b" stroke-width="2.5"/>
+  <text x="190" y="327.9" font-size="22" font-weight="700" fill="#d4600b" text-anchor="middle">Gate on, user says no</text>
+  <text x="190" y="360.5" font-size="18" font-weight="400" fill="#6b6b6b" text-anchor="middle">ask → user: n</text>
+  <path d="M346,335 L426,335" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <text x="440" y="346" font-size="24" font-weight="700" fill="#1e7a3c">not created. Model sees: permission denied</text>
+  <rect x="34" y="434" width="312" height="122" rx="12" fill="#e9c9ae"/>
+  <rect x="40" y="440" width="300" height="110" rx="9" fill="#fcefe5" stroke="#d4600b" stroke-width="2.5"/>
+  <text x="190" y="487.9" font-size="22" font-weight="700" fill="#d4600b" text-anchor="middle">A deny rule</text>
+  <text x="190" y="520.5" font-size="18" font-weight="400" fill="#6b6b6b" text-anchor="middle">run_bash(echo *)</text>
+  <path d="M346,495 L426,495" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <text x="440" y="506" font-size="24" font-weight="700" fill="#1e7a3c">not created, nobody is even asked</text>
+</svg>

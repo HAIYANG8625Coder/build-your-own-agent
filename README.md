@@ -73,6 +73,7 @@ Each episode also has a full written article, so you can learn everything in it 
 | 1 · The loop | [articles/ep01-the-loop.md](articles/ep01-the-loop.md) |
 | 2 · Tools | [articles/ep02-tools.md](articles/ep02-tools.md) |
 | 3 · The system prompt and the notes file | [articles/ep03-system-prompt-and-notes.md](articles/ep03-system-prompt-and-notes.md) |
+| 4 · Permissions | [articles/ep04-permissions.md](articles/ep04-permissions.md) |
 
 ## Progress
 
@@ -80,8 +81,9 @@ Each episode also has a full written article, so you can learn everything in it 
 |---|---|---|---|
 | 1 | The loop | published | [ep01](ep01/) |
 | 2 | Tools | published | [ep02](ep02/) |
-| 3 | The system prompt and the notes file | in production | [ep03](ep03/) |
-| 4 to 13 | see the syllabus | planned | added with each episode |
+| 3 | The system prompt and the notes file | scheduled | [ep03](ep03/) |
+| 4 | Permissions | in production | [ep04](ep04/) |
+| 5 to 13 | see the syllabus | planned | added with each episode |
 
 ## Ground rules
 
