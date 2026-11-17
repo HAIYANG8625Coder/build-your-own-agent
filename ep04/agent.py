@@ -197,7 +197,9 @@ READ_ONLY_BASH = {"ls", "cat", "pwd", "cd", "echo", "head", "tail", "wc", "grep"
 
 
 def subcommands(command):
-    return [p.strip() for p in SPLIT.split(command) if p.strip()]
+    keep = command.replace(">&", ">\0")           # 2>&1 is not a new command
+    return [p.replace("\0", "&").strip()
+            for p in SPLIT.split(keep) if p.strip()]
 
 
 def subject(tool, args):

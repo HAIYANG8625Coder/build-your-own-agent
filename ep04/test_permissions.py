@@ -26,6 +26,7 @@ assert v(p, "run_bash", command="echo $(whoami)") == "ask"           # cannot an
 assert v(p, "run_bash", command="cd sub && echo hi") == "allow"      # cd and echo only look
 assert v(p, "run_bash", command="echo hi > out.txt") == "ask"        # but a redirect writes
 assert v(p, "run_bash", command="cat x.txt 2>/dev/null | head -5") == "allow"   # errors to /dev/null are fine
+assert v(p, "run_bash", command="cat x.txt 2>&1 | head -5") == "allow"          # 2>&1 does not split the command
 
 # --- order: deny, then ask, then allow; the first match decides
 p = P(allow=["run_bash(git *)"], deny=["run_bash(git push *)"])
