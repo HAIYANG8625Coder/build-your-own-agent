@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'PingFang SC', 'Noto Sans CJK SC'">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d4600b"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a8a49c"/></marker></defs>
+  <rect width="1200" height="560" fill="#ffffff"/>
+  <text x="40" y="44" font-size="21" font-weight="700" fill="#1f1f1f">C 规模化 · 计划、子 Agent、Hooks（第 6 到 8 集）</text>
+  <rect x="40" y="80" width="360" height="420" rx="14" fill="#f0ede6"/>
+  <text x="220" y="118" font-size="17" font-weight="700" fill="#1f1f1f" text-anchor="middle">第 6 集 · 计划</text>
+  <rect x="70" y="150" width="300" height="80" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="220" y="183.95" font-size="19" font-weight="700" fill="#d4600b" text-anchor="middle">计划模式</text>
+  <text x="220" y="212.65" font-size="15" font-weight="400" fill="#6b6b6b" text-anchor="middle">只开只读工具</text>
+  <path d="M220,234 L220,286" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <rect x="64" y="286" width="312" height="92" rx="12" fill="#e9c9ae"/>
+  <rect x="70" y="292" width="300" height="80" rx="9" fill="#fcefe5" stroke="#d4600b" stroke-width="2.5"/>
+  <text x="220" y="325.95" font-size="19" font-weight="700" fill="#d4600b" text-anchor="middle">任务清单</text>
+  <text x="220" y="354.65" font-size="15" font-weight="400" fill="#6b6b6b" text-anchor="middle">模型一条条勾掉</text>
+  <rect x="420" y="80" width="360" height="420" rx="14" fill="#f0ede6"/>
+  <text x="600" y="118" font-size="17" font-weight="700" fill="#1f1f1f" text-anchor="middle">第 7 集 · 子 Agent</text>
+  <rect x="450" y="150" width="300" height="80" rx="10" fill="#ffffff" stroke="#1f1f1f" stroke-width="2.5"/>
+  <text x="600" y="183.95" font-size="19" font-weight="700" fill="#1f1f1f" text-anchor="middle">主循环</text>
+  <text x="600" y="212.65" font-size="15" font-weight="400" fill="#6b6b6b" text-anchor="middle">大任务</text>
+  <path d="M600,234 L600,286" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <text x="612" y="265" font-size="14" font-weight="400" fill="#6b6b6b">一个清楚的任务</text>
+  <rect x="450" y="292" width="300" height="80" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="600" y="325.95" font-size="19" font-weight="700" fill="#d4600b" text-anchor="middle">子循环</text>
+  <text x="600" y="354.65" font-size="15" font-weight="400" fill="#6b6b6b" text-anchor="middle">新的上下文 · 少量工具</text>
+  <path d="M760,332 L700,332" fill="none" stroke="#a8a49c" stroke-width="2" marker-end="url(#agrey)"/>
+  <text x="450" y="410" font-size="17" font-weight="700" fill="#d4600b">只带回一个短结果</text>
+  <rect x="800" y="80" width="360" height="420" rx="14" fill="#f0ede6"/>
+  <text x="980" y="118" font-size="17" font-weight="700" fill="#1f1f1f" text-anchor="middle">第 8 集 · Hooks</text>
+  <rect x="830" y="150" width="300" height="70" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="980" y="179.3" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">工具调用之前</text>
+  <text x="980" y="206.7" font-size="14" font-weight="400" fill="#6b6b6b" text-anchor="middle">可放行 · 拦下 · 记录</text>
+  <path d="M980,224 L980,262" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <rect x="830" y="266" width="300" height="70" rx="10" fill="#ffffff" stroke="#1f1f1f" stroke-width="2.5"/>
+  <text x="980" y="306.7" font-size="19" font-weight="700" fill="#1f1f1f" text-anchor="middle">执行工具</text>
+  <path d="M980,340 L980,378" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <rect x="830" y="382" width="300" height="70" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="980" y="411.3" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">工具调用之后</text>
+  <text x="980" y="438.7" font-size="14" font-weight="400" fill="#6b6b6b" text-anchor="middle">记录 · 检查</text>
+</svg>

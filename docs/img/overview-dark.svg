@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'PingFang SC', 'Noto Sans CJK SC'">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ece8e1"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f0883e"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6f6a63"/></marker></defs>
+  <rect width="1200" height="800" fill="#0d1117"/>
+  <text x="40" y="44" font-size="21" font-weight="700" fill="#ece8e1">架构总览 · 做完以后的这个 Agent（第 13 集）</text>
+  <text x="40" y="70" font-size="16" font-weight="400" fill="#8f8a82">橙色：核心循环。每个框标出它在哪一集做。虚线：可选或旁路。</text>
+  <rect x="40" y="100" width="150" height="70" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="115" y="141.6" font-size="22" font-weight="700" fill="#f0883e" text-anchor="middle">你</text>
+  <path d="M194,135 L496,135" fill="none" stroke="#ece8e1" stroke-width="2" marker-end="url(#aink)"/>
+  <rect x="500" y="100" width="340" height="70" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
+  <text x="670" y="129.2" font-size="22" font-weight="700" fill="#ece8e1" text-anchor="middle">命令行 REPL</text>
+  <text x="670" y="161.8" font-size="16" font-weight="400" fill="#aca69d" text-anchor="middle">第 13 集</text>
+  <path d="M670,174 L670,232" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <rect x="494" y="232" width="352" height="162" rx="12" fill="#6b4024"/>
+  <rect x="500" y="238" width="340" height="150" rx="9" fill="#3d2616" stroke="#f0883e" stroke-width="2.5"/>
+  <text x="670" y="285.65" font-size="26" font-weight="700" fill="#f0883e" text-anchor="middle">Agent 循环</text>
+  <text x="670" y="323.45" font-size="17" font-weight="400" fill="#aca69d" text-anchor="middle">调用模型 → 看 stop_reason</text>
+  <text x="670" y="345.55" font-size="17" font-weight="400" fill="#aca69d" text-anchor="middle">执行工具 → 追加结果</text>
+  <text x="670" y="367.65" font-size="17" font-weight="400" fill="#aca69d" text-anchor="middle">第 1 集</text>
+  <rect x="940" y="263" width="220" height="100" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
+  <text x="1050" y="307.2" font-size="22" font-weight="700" fill="#ece8e1" text-anchor="middle">模型 API</text>
+  <text x="1050" y="339.8" font-size="16" font-weight="400" fill="#aca69d" text-anchor="middle">Claude / DeepSeek</text>
+  <path d="M846,313 L934,313" fill="none" stroke="#ece8e1" stroke-width="2" marker-end="url(#aink)" marker-start="url(#aink)"/>
+  <rect x="40" y="212" width="300" height="80" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="190" y="245.95" font-size="19" font-weight="700" fill="#f0883e" text-anchor="middle">系统提示 + 笔记文件</text>
+  <text x="190" y="274.65" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">第 3 集</text>
+  <path d="M344,252 L494,285" fill="none" stroke="#6f6a63" stroke-width="2" marker-end="url(#agrey)"/>
+  <rect x="40" y="330" width="300" height="80" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="190" y="363.95" font-size="19" font-weight="700" fill="#f0883e" text-anchor="middle">上下文管理</text>
+  <text x="190" y="392.65" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">第 5 集 · 快满时压缩</text>
+  <path d="M344,370 L494,350" fill="none" stroke="#6f6a63" stroke-width="2" marker-end="url(#agrey)"/>
+  <path d="M670,392 L670,458" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <text x="682" y="430" font-size="15" font-weight="400" fill="#aca69d">模型要用工具</text>
+  <rect x="500" y="464" width="340" height="90" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
+  <text x="670" y="503.2" font-size="22" font-weight="700" fill="#ece8e1" text-anchor="middle">权限闸门</text>
+  <text x="670" y="535.8" font-size="16" font-weight="400" fill="#aca69d" text-anchor="middle">第 4 集 · 允许 · 询问 · 拒绝</text>
+  <path d="M670,558 L670,628" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <text x="682" y="598" font-size="15" font-weight="400" fill="#aca69d">放行的才执行</text>
+  <rect x="500" y="634" width="340" height="90" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="670" y="673.2" font-size="22" font-weight="700" fill="#f0883e" text-anchor="middle">工具</text>
+  <text x="670" y="705.8" font-size="16" font-weight="400" fill="#aca69d" text-anchor="middle">第 2 集 · read · grep · edit · bash</text>
+  <rect x="940" y="464" width="220" height="90" rx="9" fill="#2a2723" stroke="#6f6a63" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="1050" y="503.25" font-size="20" font-weight="700" fill="#aca69d" text-anchor="middle">Hooks</text>
+  <text x="1050" y="533.25" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">第 8 集</text>
+  <path d="M936,509 L846,509" fill="none" stroke="#6f6a63" stroke-width="2" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <rect x="940" y="634" width="220" height="90" rx="9" fill="#2a2723" stroke="#6f6a63" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="1050" y="673.25" font-size="20" font-weight="700" fill="#aca69d" text-anchor="middle">子 Agent</text>
+  <text x="1050" y="703.25" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">第 7 集 · 新的循环</text>
+  <path d="M846,679 L934,679" fill="none" stroke="#6f6a63" stroke-width="2" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <rect x="40" y="464" width="300" height="90" rx="9" fill="#2a2723" stroke="#6f6a63" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="190" y="502.95" font-size="19" font-weight="700" fill="#aca69d" text-anchor="middle">MCP 与 skills</text>
+  <text x="190" y="531.65" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">第 11 集 · 别人写好的工具</text>
+  <path d="M344,509 L494,509" fill="none" stroke="#6f6a63" stroke-width="2" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <rect x="40" y="634" width="300" height="90" rx="9" fill="#2a2723" stroke="#6f6a63" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="190" y="673.25" font-size="20" font-weight="700" fill="#aca69d" text-anchor="middle">记忆</text>
+  <text x="190" y="703.25" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">第 9 集 · 笔记文件夹</text>
+  <path d="M344,679 L494,679" fill="none" stroke="#6f6a63" stroke-width="2" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <text x="40" y="776" font-size="16" font-weight="400" fill="#8f8a82">第 10 集（一直在线）：收件箱和定时器把事件送进同一个循环，结果从发件箱发出去。第 6、12 集：计划模式，测试和调试。</text>
+</svg>

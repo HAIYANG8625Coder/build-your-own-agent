@@ -6,6 +6,20 @@ One agent, built a piece at a time. Every episode is one video (about 7 to 8 min
 **You do not need:** any framework. The whole agent is plain Python plus one SDK.
 **By the end:** a working command-line coding agent of about 500 lines that reads and edits files, runs commands with your permission, manages its own context, delegates to subagents and remembers things between sessions.
 
+## The big picture
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/overview-dark.svg">
+  <img alt="Architecture of the finished agent: the REPL feeds the agent loop, which talks to the model API; the system prompt, notes and context manager feed the loop; tool requests pass the permission gate before the tools run; hooks, MCP, memory and subagents are side paths." src="docs/img/overview.svg">
+</picture>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/series-map-dark.svg">
+  <img alt="Course map: A core (episodes 1-3), B trust and limits (4-5), C working at scale (6-8), D beyond one session (9-11), E ship it (12-13)." src="docs/img/series-map.svg">
+</picture>
+
+Each part has its own short introduction with a diagram: [A core](docs/part-a-core.md) · [B trust and limits](docs/part-b-trust.md) · [C working at scale](docs/part-c-scale.md) · [D beyond one session](docs/part-d-beyond-one-session.md) · [E ship it](docs/part-e-ship-it.md).
+
 | Part | Episodes | You learn |
 |---|---|---|
 | A. The core | 1 to 3 | the loop, tools, the system prompt and notes file |
