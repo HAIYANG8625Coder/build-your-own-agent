@@ -60,15 +60,15 @@ TOOLS = [
     {"name": "edit_file",
      "description": (
          "Replace one exact piece of text in a "
-         "file. 'old' must match the file exactly "
+         "file. 'old_text' must match it exactly "
          "and appear once, so include enough "
          "surrounding text. Read the file first."),
      "input_schema": {
          "type": "object",
          "properties": {"path": {"type": "string"},
-                        "old": {"type": "string"},
-                        "new": {"type": "string"}},
-         "required": ["path", "old", "new"]}},
+                        "old_text": {"type": "string"},
+                        "new_text": {"type": "string"}},
+         "required": ["path", "old_text", "new_text"]}},
 ]
 
 
@@ -78,7 +78,7 @@ class ToolError(Exception):
 
 def safe(path):
     full = os.path.realpath(os.path.join(ROOT, path))
-    if not full.startswith(ROOT):
+    if full != ROOT and not full.startswith(ROOT + os.sep):
         raise ToolError("path is outside the project folder")
     return full
 
@@ -123,16 +123,17 @@ def run_bash(command):
     return "exit code %d\n%s" % (done.returncode, out)
 
 
-def edit_file(path, old, new):
+def edit_file(path, old_text, new_text):
     full = safe(path)
     if full not in READ:
         raise ToolError("read the file first")
     text = open(full).read()
-    n = text.count(old)
+    n = text.count(old_text)
     if n != 1:
-        raise ToolError("'old' appears %d times; "
-                        "it must appear exactly once" % n)
-    open(full, "w").write(text.replace(old, new))
+        raise ToolError("'old_text' appears %d times; "
+                        "it must appear once" % n)
+    open(full, "w").write(
+        text.replace(old_text, new_text))
     return "edited " + path
 
 
@@ -169,7 +170,7 @@ def run(task, client, model):
                 out, bad = run_tool(block.name,
                                     block.input)
                 print(" ", block.name,
-                      json.dumps(block.input)[:70])
+                      json.dumps(block.input)[:110])
                 results.append({
                     "type": "tool_result",
                     "tool_use_id": block.id,

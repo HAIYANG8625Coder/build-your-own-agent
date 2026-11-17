@@ -11,12 +11,12 @@
    },
    {
     "type": "tool_use",
-    "id": "call_00_R7i3KAQD643CoM2voyuv9475",
+    "id": "call_00_XHlYL2Au9amsExbuEj1L1068",
     "name": "edit_file",
     "input": {
      "path": "calc.py",
-     "old": "return a - b",
-     "new": "return a + b"
+     "old_text": "return a - b",
+     "new_text": "return a + b"
     }
    }
   ]
@@ -26,7 +26,7 @@
   "content": [
    {
     "type": "tool_result",
-    "tool_use_id": "call_00_R7i3KAQD643CoM2voyuv9475",
+    "tool_use_id": "call_00_XHlYL2Au9amsExbuEj1L1068",
     "content": "error: read the file first",
     "is_error": true
    }
@@ -39,12 +39,8 @@
     "type": "thinking"
    },
    {
-    "type": "text",
-    "text": "The edit was rejected — the tool requires reading first. Recovering now."
-   },
-   {
     "type": "tool_use",
-    "id": "call_00_SOG3njm2iGDq78GBOzQH7910",
+    "id": "call_00_lE5oNAFieFEa3yxI2iyt8176",
     "name": "read_file",
     "input": {
      "path": "calc.py"
@@ -57,7 +53,7 @@
   "content": [
    {
     "type": "tool_result",
-    "tool_use_id": "call_00_SOG3njm2iGDq78GBOzQH7910",
+    "tool_use_id": "call_00_lE5oNAFieFEa3yxI2iyt8176",
     "content": "1  def add(a, b):\n2      \"\"\"Add two numbers.\"\"\"\n3      return a - b\n4  \n5  \n6  def total(numbers):\n7      result = 0\n8      for n in numbers:\n9          result = add(result, n)\n10      return result\n11  ",
     "is_error": false
    }
@@ -71,12 +67,12 @@
    },
    {
     "type": "tool_use",
-    "id": "call_00_ET_OlraYLYLem3cExZ0d8Wo0264",
+    "id": "call_00_nv5XmIC3eVhM0CPXNdDq0616",
     "name": "edit_file",
     "input": {
      "path": "calc.py",
-     "old": "    return a - b",
-     "new": "    return a + b"
+     "old_text": "    return a - b",
+     "new_text": "    return a + b"
     }
    }
   ]
@@ -86,7 +82,7 @@
   "content": [
    {
     "type": "tool_result",
-    "tool_use_id": "call_00_ET_OlraYLYLem3cExZ0d8Wo0264",
+    "tool_use_id": "call_00_nv5XmIC3eVhM0CPXNdDq0616",
     "content": "edited calc.py",
     "is_error": false
    }
@@ -100,7 +96,7 @@
    },
    {
     "type": "text",
-    "text": "Done. As instructed I tried the edit blind first; it failed with \"read the file first\", so I read `calc.py` and re-applied the change.\n\n- `calc.py:3` — `add()` now returns `a + b` instead of `a - b`.\n- Note: this also fixes `total()`, which sums via `add()`."
+    "text": "The first attempt failed (\"read the file first\"), so I read `calc.py`, then applied the edit successfully. Line 3 now returns `a + b`."
    }
   ]
  }

@@ -5,6 +5,8 @@ from types import SimpleNamespace as NS
 d = tempfile.mkdtemp()
 shutil.copytree(os.path.join(os.path.dirname(os.path.abspath(__file__)), "sandbox"), d + "/p")
 os.chdir(d + "/p")
+os.makedirs(d + "/p-other")
+open(d + "/p-other/secret.txt", "w").write("x")
 import agent  # ROOT is the current folder when agent is imported
 agent.ROOT = os.path.realpath(os.getcwd())
 
@@ -12,20 +14,22 @@ out, bad = agent.run_tool("run_bash", {"command": "python3 test_calc.py"})
 assert not bad and "exit code 1" in out and "add(2, 3) should be 5" in out, out
 out, bad = agent.run_tool("grep", {"pattern": "def add"})
 assert "calc.py:1:def add" in out, out
-out, bad = agent.run_tool("edit_file", {"path": "calc.py", "old": "a - b", "new": "a + b"})
+out, bad = agent.run_tool("edit_file", {"path": "calc.py", "old_text": "a - b", "new_text": "a + b"})
 assert bad and "read the file first" in out, out
 out, bad = agent.run_tool("read_file", {"path": "calc.py"})
 assert not bad and "3      return a - b" in out, out
-out, bad = agent.run_tool("edit_file", {"path": "calc.py", "old": "result", "new": "x"})
+out, bad = agent.run_tool("edit_file", {"path": "calc.py", "old_text": "result", "new_text": "x"})
 assert bad and "appears" in out and "times" in out, out
-out, bad = agent.run_tool("edit_file", {"path": "calc.py", "old": "nothing like this", "new": "x"})
+out, bad = agent.run_tool("edit_file", {"path": "calc.py", "old_text": "nothing like this", "new_text": "x"})
 assert bad and "0 times" in out, out
-out, bad = agent.run_tool("edit_file", {"path": "calc.py", "old": "a - b", "new": "a + b"})
+out, bad = agent.run_tool("edit_file", {"path": "calc.py", "old_text": "a - b", "new_text": "a + b"})
 assert not bad, out
 out, bad = agent.run_tool("run_bash", {"command": "python3 test_calc.py"})
 assert "exit code 0" in out and "all tests passed" in out, out
 out, bad = agent.run_tool("read_file", {"path": "../../etc/passwd"})
 assert bad and "outside" in out, out
+out, bad = agent.run_tool("read_file", {"path": "../p-other/secret.txt"})
+assert bad and "outside" in out, out   # a sibling folder with the same prefix
 out, bad = agent.run_tool("read_file", {"path": "missing.py"})
 assert bad and out.startswith("error"), out
 open("big.txt", "w").write("x" * 20000)
