@@ -62,7 +62,8 @@ The default is `PROVIDER=claude` (model `claude-haiku-5-5`). DeepSeek uses `deep
 | Episode | Topic | Video | Code |
 |---|---|---|---|
 | 1 | The loop | published | [ep01](ep01/) |
-| 2 to 13 | see the syllabus | in production | added with each episode |
+| 2 | Tools | in production | [ep02](ep02/) |
+| 3 to 13 | see the syllabus | planned | added with each episode |
 
 ## Ground rules
 

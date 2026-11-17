@@ -1,0 +1,11 @@
+turn 1 tool_use
+  edit_file {"path": "calc.py", "old": "return a - b", "new": "return a + b"}
+turn 2 tool_use
+  read_file {"path": "calc.py"}
+turn 3 tool_use
+  edit_file {"path": "calc.py", "old": "    return a - b", "new": "    return a + 
+turn 4 end_turn
+Done. As instructed I tried the edit blind first; it failed with "read the file first", so I read `calc.py` and re-applied the change.
+
+- `calc.py:3` — `add()` now returns `a + b` instead of `a - b`.
+- Note: this also fixes `total()`, which sums via `add()`.

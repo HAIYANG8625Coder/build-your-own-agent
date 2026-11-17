@@ -1,0 +1,14 @@
+turn 1 tool_use
+  run_bash {"command": "ls -la"}
+  grep {"pattern": "test|Test", "path": "."}
+turn 2 tool_use
+  read_file {"path": "calc.py"}
+  read_file {"path": "test_calc.py"}
+turn 3 tool_use
+  run_bash {"command": "python3 test_calc.py"}
+turn 4 tool_use
+  edit_file {"path": "calc.py", "old": "    return a - b", "new": "    return a + 
+turn 5 tool_use
+  run_bash {"command": "python3 test_calc.py"}
+turn 6 end_turn
+Fixed. `add()` in `calc.py` returned `a - b` instead of `a + b`, so `add(2, 3)` gave -1. That also broke `total()`, which uses `add()` to accumulate. Both tests pass now.
