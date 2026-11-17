@@ -1,0 +1,27 @@
+turn 1 tool_use
+  run_bash {"command": "ls -la; echo \"---\"; ls helpers 2>/dev/null; echo \"---\"; cat NOTES.md"}
+  grep {"pattern": "round", "path": "."}
+turn 2 tool_use
+  read_file {"path": "check.py"}
+  read_file {"path": "pricing.py"}
+turn 3 tool_use
+  run_bash {"command": "mkdir -p helpers && touch helpers/__init__.py && cat > helpers/round_down_5.py <<'EOF'\ndef round
+turn 4 tool_use
+  run_bash {"command": "cp /tmp/t.py ./_tmp_test.py && python3 _tmp_test.py; python3 check.py; rm _tmp_test.py; ls helper
+turn 5 end_turn
+Created `helpers/round_down_5.py` following the project conventions (helper in `helpers/`, file named after the function, integer-cents math only, one-line docstring), plus an empty `helpers/__init__.py` so it imports cleanly.
+
+```python
+def round_down_5(cents):
+    """Round an integer number of cents down to the nearest multiple of 5 cents."""
+    return cents - (cents % 5)
+```
+
+Verified: 1999→1995, 2000→2000, 12→10, 4→0, 1005→1005, returns int, and the existing `check.py` still passes ("all checks passed").
+
+Done: added `helpers/round_down_5.py` with the `round_down_5(cents)` helper (rounds integer cents down to a multiple of 5) and an empty `helpers/__init__.py`.
+--- files ---
+./check.py
+./helpers/__init__.py
+./helpers/round_down_5.py
+./pricing.py
