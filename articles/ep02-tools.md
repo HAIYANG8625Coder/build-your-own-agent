@@ -1,6 +1,6 @@
 # Episode 2 · Tools
 
-*Part A · Core. Video: "从零做 Agent · 第 2 集：工具" (Chinese). Code: [`ep02/`](../ep02/).*
+*Part A · Core. Video: "Build your own agent · o2：Tools". Code: [`ep02/`](../ep02/).*
 
 This article is the whole of episode 2 in writing, so you can follow it without the video. Every claim about Claude Code is taken from the official pages linked inline.
 
