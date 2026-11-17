@@ -1,39 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'PingFang SC', 'Noto Sans CJK SC'">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
   <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ece8e1"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f0883e"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6f6a63"/></marker></defs>
   <rect width="1200" height="560" fill="#0d1117"/>
-  <text x="40" y="44" font-size="21" font-weight="700" fill="#ece8e1">C 规模化 · 计划、子 Agent、Hooks（第 6 到 8 集）</text>
+  <text x="40" y="44" font-size="21" font-weight="700" fill="#ece8e1">C  Working at scale · plans, subagents, hooks (episodes 6 to 8)</text>
   <rect x="40" y="80" width="360" height="420" rx="14" fill="#1c1a17"/>
-  <text x="220" y="118" font-size="17" font-weight="700" fill="#ece8e1" text-anchor="middle">第 6 集 · 计划</text>
+  <text x="220" y="118" font-size="17" font-weight="700" fill="#ece8e1" text-anchor="middle">Episode 6 · Plans</text>
   <rect x="70" y="150" width="300" height="80" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
-  <text x="220" y="183.95" font-size="19" font-weight="700" fill="#f0883e" text-anchor="middle">计划模式</text>
-  <text x="220" y="212.65" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">只开只读工具</text>
+  <text x="220" y="183.95" font-size="19" font-weight="700" fill="#f0883e" text-anchor="middle">Plan mode</text>
+  <text x="220" y="212.65" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">read-only tools only</text>
   <path d="M220,234 L220,286" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
   <rect x="64" y="286" width="312" height="92" rx="12" fill="#6b4024"/>
   <rect x="70" y="292" width="300" height="80" rx="9" fill="#3d2616" stroke="#f0883e" stroke-width="2.5"/>
-  <text x="220" y="325.95" font-size="19" font-weight="700" fill="#f0883e" text-anchor="middle">任务清单</text>
-  <text x="220" y="354.65" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">模型一条条勾掉</text>
+  <text x="220" y="325.95" font-size="19" font-weight="700" fill="#f0883e" text-anchor="middle">Task list</text>
+  <text x="220" y="354.65" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">the model ticks items off</text>
   <rect x="420" y="80" width="360" height="420" rx="14" fill="#1c1a17"/>
-  <text x="600" y="118" font-size="17" font-weight="700" fill="#ece8e1" text-anchor="middle">第 7 集 · 子 Agent</text>
+  <text x="600" y="118" font-size="17" font-weight="700" fill="#ece8e1" text-anchor="middle">Episode 7 · Subagents</text>
   <rect x="450" y="150" width="300" height="80" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
-  <text x="600" y="183.95" font-size="19" font-weight="700" fill="#ece8e1" text-anchor="middle">主循环</text>
-  <text x="600" y="212.65" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">大任务</text>
+  <text x="600" y="183.95" font-size="19" font-weight="700" fill="#ece8e1" text-anchor="middle">Main loop</text>
+  <text x="600" y="212.65" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">a big task</text>
   <path d="M600,234 L600,286" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
-  <text x="612" y="265" font-size="14" font-weight="400" fill="#aca69d">一个清楚的任务</text>
+  <text x="612" y="265" font-size="14" font-weight="400" fill="#aca69d">a clear brief</text>
   <rect x="450" y="292" width="300" height="80" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
-  <text x="600" y="325.95" font-size="19" font-weight="700" fill="#f0883e" text-anchor="middle">子循环</text>
-  <text x="600" y="354.65" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">新的上下文 · 少量工具</text>
+  <text x="600" y="326.6" font-size="19" font-weight="700" fill="#f0883e" text-anchor="middle">Child loop</text>
+  <text x="600" y="355.3" font-size="14" font-weight="400" fill="#aca69d" text-anchor="middle">fresh context · fewer tools</text>
   <path d="M760,332 L700,332" fill="none" stroke="#6f6a63" stroke-width="2" marker-end="url(#agrey)"/>
-  <text x="450" y="410" font-size="17" font-weight="700" fill="#f0883e">只带回一个短结果</text>
+  <text x="450" y="410" font-size="17" font-weight="700" fill="#f0883e">Returns one short result</text>
   <rect x="800" y="80" width="360" height="420" rx="14" fill="#1c1a17"/>
-  <text x="980" y="118" font-size="17" font-weight="700" fill="#ece8e1" text-anchor="middle">第 8 集 · Hooks</text>
+  <text x="980" y="118" font-size="17" font-weight="700" fill="#ece8e1" text-anchor="middle">Episode 8 · Hooks</text>
   <rect x="830" y="150" width="300" height="70" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
-  <text x="980" y="179.3" font-size="18" font-weight="700" fill="#f0883e" text-anchor="middle">工具调用之前</text>
-  <text x="980" y="206.7" font-size="14" font-weight="400" fill="#aca69d" text-anchor="middle">可放行 · 拦下 · 记录</text>
+  <text x="980" y="179.3" font-size="18" font-weight="700" fill="#f0883e" text-anchor="middle">Before a tool call</text>
+  <text x="980" y="206.7" font-size="14" font-weight="400" fill="#aca69d" text-anchor="middle">allow · block · log</text>
   <path d="M980,224 L980,262" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
   <rect x="830" y="266" width="300" height="70" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
-  <text x="980" y="306.7" font-size="19" font-weight="700" fill="#ece8e1" text-anchor="middle">执行工具</text>
+  <text x="980" y="306.7" font-size="19" font-weight="700" fill="#ece8e1" text-anchor="middle">Run the tool</text>
   <path d="M980,340 L980,378" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
   <rect x="830" y="382" width="300" height="70" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
-  <text x="980" y="411.3" font-size="18" font-weight="700" fill="#f0883e" text-anchor="middle">工具调用之后</text>
-  <text x="980" y="438.7" font-size="14" font-weight="400" fill="#aca69d" text-anchor="middle">记录 · 检查</text>
+  <text x="980" y="411.3" font-size="18" font-weight="700" fill="#f0883e" text-anchor="middle">After a tool call</text>
+  <text x="980" y="438.7" font-size="14" font-weight="400" fill="#aca69d" text-anchor="middle">log · check</text>
 </svg>

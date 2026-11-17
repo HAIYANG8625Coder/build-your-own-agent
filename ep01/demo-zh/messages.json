@@ -1,0 +1,48 @@
+[
+ {
+  "role": "user",
+  "content": "这个文件夹里有什么？"
+ },
+ {
+  "role": "assistant",
+  "content": [
+   {
+    "type": "thinking"
+   },
+   {
+    "type": "text",
+    "text": "我来为你查看一下。"
+   },
+   {
+    "type": "tool_use",
+    "id": "call_00_ET_giphrdMHckwMmEXsp0Cc3020",
+    "name": "list_files",
+    "input": {
+     "path": "."
+    }
+   }
+  ]
+ },
+ {
+  "role": "user",
+  "content": [
+   {
+    "type": "tool_result",
+    "tool_use_id": "call_00_ET_giphrdMHckwMmEXsp0Cc3020",
+    "content": "agent.py\ntest_loop.py"
+   }
+  ]
+ },
+ {
+  "role": "assistant",
+  "content": [
+   {
+    "type": "thinking"
+   },
+   {
+    "type": "text",
+    "text": "这个文件夹里有 2 个文件：\n\n- **agent.py**\n- **test_loop.py**\n\n需要我查看其中某个文件的内容吗？"
+   }
+  ]
+ }
+]

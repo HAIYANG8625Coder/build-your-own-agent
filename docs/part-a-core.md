@@ -1,23 +1,23 @@
-# A 核心 · 第 1 到 3 集
+# A · Core (episodes 1 to 3)
 
-这一部分只做一件事：让一个循环跑起来，并且让它有手、有方向。
+This part does one thing: get a loop running, then give it hands and a sense of direction.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="img/part-a-dark.svg">
-  <img alt="架构图：系统提示和笔记文件、模型 API 都连着 Agent 循环，循环通过 tool_use 和 tool_result 使用工具。" src="img/part-a.svg">
+  <img alt="Architecture: the system prompt and notes file and the model API both connect to the agent loop; the loop uses tools through tool_use and tool_result." src="img/part-a.svg">
 </picture>
 
 
-**只需要 Python 和一个 API 密钥。**
+**You need Python and an API key.**
 
-## 这一部分的每一集
+## Episodes in this part
 
-- **第 1 集 · 循环**（代码：`ep01/`）：调用模型，看 stop_reason，执行工具，追加结果，直到不再要工具。
-- **第 2 集 · 工具**（代码：`ep02/`）：read_file、grep、run_bash、edit_file；工具说明就是给模型看的提示；出错也是一种结果。
-- **第 3 集 · 系统提示和笔记文件**（代码：`ep03/`）：短的系统提示，加一个启动时读取的笔记文件，用固定任务比较改动前后。
+- **Episode 1 · The loop** (code: `ep01/`): Call the model, check stop_reason, run the tool it asks for, append the result, repeat until it stops asking.
+- **Episode 2 · Tools** (code: `ep02/`): read_file, grep, run_bash and edit_file; a tool's description is a prompt for the model; an error is just another result.
+- **Episode 3 · The system prompt and the notes file** (code: `ep03/`): A short system prompt plus a notes file loaded at the start, with a few fixed tasks to compare before and after a change.
 
-## 学完以后你有什么
+## What you have afterwards
 
-一个最小的 Agent：能读文件、改文件、跑命令，并按你写的规则行事。
+A minimal agent that reads files, edits files and runs commands, following rules you wrote.
 
-回到[课程大纲](../SYLLABUS.md)或[项目首页](../README.md)。
+Back to the [syllabus](../SYLLABUS.md) or the [project home](../README.md).

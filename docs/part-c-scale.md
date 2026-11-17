@@ -1,23 +1,23 @@
-# C 规模化 · 第 6 到 8 集
+# C · Working at scale (episodes 6 to 8)
 
-任务变大以后，要有办法计划、拆分，以及在固定的地方插入自己的检查。
+Bigger tasks need a way to plan, to split work up, and to insert your own checks at fixed points.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="img/part-c-dark.svg">
-  <img alt="架构图：计划模式和任务清单；主循环把任务交给子循环，只带回一个短结果；工具调用前后各有一个 hook。" src="img/part-c.svg">
+  <img alt="Architecture: plan mode and a task list; the main loop hands a task to a child loop that returns one short result; a hook runs before and after each tool call." src="img/part-c.svg">
 </picture>
 
 
-**需要先完成 A、B 两部分。**
+**You need the code from parts A and B.**
 
-## 这一部分的每一集
+## Episodes in this part
 
-- **第 6 集 · 计划和任务清单**（代码：`ep06/`）：计划模式只开只读工具，任务清单让模型一条条勾掉。
-- **第 7 集 · 子 Agent**（代码：`ep07/`）：给子任务开一个新的上下文，只带回一个短结果，保护主上下文。
-- **第 8 集 · Hooks**（代码：`ep08/`）：在工具调用之前和之后插入自己的代码：放行、拦下、记录。
+- **Episode 6 · Plans and task lists** (code: `ep06/`): Plan mode allows read-only tools; a task list lets the model tick items off one by one.
+- **Episode 7 · Subagents** (code: `ep07/`): Give a side task a fresh context and bring back only a short result, so the main context stays clean.
+- **Episode 8 · Hooks** (code: `ep08/`): Run your own code before and after a tool call: allow, block or log.
 
-## 学完以后你有什么
+## What you have afterwards
 
-一个能做大任务、能拆分、能被你的规则约束的 Agent。
+An agent that handles large tasks, splits them up, and is bound by your own rules.
 
-回到[课程大纲](../SYLLABUS.md)或[项目首页](../README.md)。
+Back to the [syllabus](../SYLLABUS.md) or the [project home](../README.md).

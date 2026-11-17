@@ -1,6 +1,6 @@
 """Episode 1: an agent is a loop.
 
-    python3 agent.py "这个文件夹里有什么？"
+    python3 agent.py "What is in this folder?"
 
 PROVIDER=claude (default) -> ANTHROPIC_API_KEY, claude-haiku-5-5
 PROVIDER=deepseek         -> DEEPSEEK_API_KEY, deepseek-flash
@@ -85,5 +85,5 @@ def make_client():
 
 if __name__ == "__main__":
     client, model = make_client()
-    task = " ".join(sys.argv[1:]) or "这个文件夹里有什么？"
+    task = " ".join(sys.argv[1:]) or "What is in this folder?"
     print(final_text(run(task, client, model)))

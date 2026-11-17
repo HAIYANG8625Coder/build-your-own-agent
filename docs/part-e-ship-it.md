@@ -1,22 +1,22 @@
-# E 交付 · 第 12、13 集
+# E · Ship it (episodes 12 and 13)
 
-最后两集回答：怎么知道一个改动有没有变好，怎么把它们合成一个能用的命令行程序。
+The last two episodes answer: how do you know a change helped, and how do you turn all the pieces into one usable program?
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="img/part-e-dark.svg">
-  <img alt="架构图：固定的任务跑一遍 Agent，得到完整轨迹和统计；最后的命令行把前面所有部分合起来。" src="img/part-e.svg">
+  <img alt="Architecture: fixed tasks run through the agent to produce a full trace and statistics; the final command-line program ties every earlier part together." src="img/part-e.svg">
 </picture>
 
 
-**需要先完成 A 到 D 部分。**
+**You need the code from parts A to D.**
 
-## 这一部分的每一集
+## Episodes in this part
 
-- **第 12 集 · 测试和调试**（代码：`ep12/`）：3 到 5 个固定任务，保存每一条消息，数轮数和 token，一次只改一处。
-- **第 13 集 · 合起来**（代码：`ep13/`）：带流式输出的命令行 REPL，把所有部分接起来，并画出最终的架构图。
+- **Episode 12 · Testing and debugging** (code: `ep12/`): Three to five fixed tasks, a saved trace of every message, turns and tokens counted, one change at a time.
+- **Episode 13 · Put it together** (code: `ep13/`): A command-line REPL with streaming output, every part wired in, and the final architecture diagram.
 
-## 学完以后你有什么
+## What you have afterwards
 
-一个完整的、约 500 行的命令行 Agent，加一套可以反复比较的测试。
+A complete command-line agent of about 500 lines, plus a test set you can run again and again.
 
-回到[课程大纲](../SYLLABUS.md)或[项目首页](../README.md)。
+Back to the [syllabus](../SYLLABUS.md) or the [project home](../README.md).

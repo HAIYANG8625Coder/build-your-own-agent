@@ -1,22 +1,22 @@
-# B 信任和边界 · 第 4、5 集
+# B · Trust and limits (episodes 4 and 5)
 
-Agent 一旦能执行命令，就要回答两个问题：它能做什么，它还能记住多少。
+Once an agent can run commands, two questions matter: what is it allowed to do, and how much can it still remember?
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="img/part-b-dark.svg">
-  <img alt="架构图：左边权限闸门按规则判断允许、询问、拒绝；右边上下文越来越长，接近上限时压缩成摘要。" src="img/part-b.svg">
+  <img alt="Architecture: on the left the permission gate checks allow, ask and deny rules; on the right the context grows each turn and is compacted into a summary near the limit." src="img/part-b.svg">
 </picture>
 
 
-**需要先完成 A 部分的代码。**
+**You need the code from part A.**
 
-## 这一部分的每一集
+## Episodes in this part
 
-- **第 4 集 · 权限**（代码：`ep04/`）：在模型提出请求和我们真正执行之间加一道闸门：允许、询问、拒绝。讲提示注入：文件里的指令只是数据。
-- **第 5 集 · 上下文**（代码：`ep05/`）：数 token，裁剪过长的输出，快满时把旧对话压缩成摘要。
+- **Episode 4 · Permissions** (code: `ep04/`): A gate between the model's request and our code running it: allow, ask or deny. Also prompt injection: instructions inside a file are data, not orders.
+- **Episode 5 · Context** (code: `ep05/`): Count tokens, trim oversized output, and compact old turns into a summary when the window fills.
 
-## 学完以后你有什么
+## What you have afterwards
 
-一个可以放心让它在你电脑上跑的 Agent，而且长时间运行也不会撑爆上下文。
+An agent you can leave running on your machine without worrying, and that survives long sessions.
 
-回到[课程大纲](../SYLLABUS.md)或[项目首页](../README.md)。
+Back to the [syllabus](../SYLLABUS.md) or the [project home](../README.md).

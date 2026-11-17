@@ -1,6 +1,8 @@
 turn 1 tool_use
 turn 2 end_turn
-这个文件夹里有两个文件：
+This folder contains:
 
 - `agent.py`
+- `demo/`
+- `demo-zh/`
 - `test_loop.py`

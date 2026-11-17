@@ -1,29 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'PingFang SC', 'Noto Sans CJK SC'">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
   <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d4600b"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a8a49c"/></marker></defs>
   <rect width="1200" height="560" fill="#ffffff"/>
-  <text x="40" y="44" font-size="21" font-weight="700" fill="#1f1f1f">B 信任和边界 · 权限和上下文（第 4、5 集）</text>
+  <text x="40" y="44" font-size="21" font-weight="700" fill="#1f1f1f">B  Trust and limits · permissions and context (episodes 4 and 5)</text>
   <rect x="40" y="80" width="540" height="420" rx="14" fill="#f0ede6"/>
-  <text x="310" y="118" font-size="17" font-weight="700" fill="#1f1f1f" text-anchor="middle">第 4 集 · 权限</text>
+  <text x="310" y="118" font-size="17" font-weight="700" fill="#1f1f1f" text-anchor="middle">Episode 4 · Permissions</text>
   <rect x="70" y="150" width="200" height="80" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
-  <text x="170" y="195.4" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">模型要用工具</text>
+  <text x="170" y="194.8" font-size="16" font-weight="700" fill="#d4600b" text-anchor="middle">Model asks for a tool</text>
   <path d="M274,190 L326,190" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
   <rect x="330" y="140" width="220" height="100" rx="10" fill="#ffffff" stroke="#1f1f1f" stroke-width="2.5"/>
-  <text x="440" y="184.25" font-size="20" font-weight="700" fill="#1f1f1f" text-anchor="middle">权限闸门</text>
-  <text x="440" y="214.25" font-size="15" font-weight="400" fill="#6b6b6b" text-anchor="middle">按规则判断</text>
-  <text x="100" y="300" font-size="19" font-weight="700" fill="#1e7a3c">允许 → 直接执行</text>
-  <text x="100" y="350" font-size="19" font-weight="700" fill="#d4600b">询问 → 问你</text>
-  <text x="100" y="400" font-size="19" font-weight="700" fill="#c23b22">拒绝 → 返回错误</text>
-  <text x="70" y="470" font-size="15" font-weight="400" fill="#8a8a8a">规则顺序：拒绝，再询问，再允许</text>
+  <text x="440" y="184.25" font-size="20" font-weight="700" fill="#1f1f1f" text-anchor="middle">Permission gate</text>
+  <text x="440" y="214.25" font-size="15" font-weight="400" fill="#6b6b6b" text-anchor="middle">checks the rules</text>
+  <text x="100" y="300" font-size="19" font-weight="700" fill="#1e7a3c">allow → run it</text>
+  <text x="100" y="350" font-size="19" font-weight="700" fill="#d4600b">ask → ask you first</text>
+  <text x="100" y="400" font-size="19" font-weight="700" fill="#c23b22">deny → return an error</text>
+  <text x="70" y="470" font-size="15" font-weight="400" fill="#8a8a8a">Rule order: deny, then ask, then allow</text>
   <rect x="620" y="80" width="540" height="420" rx="14" fill="#f0ede6"/>
-  <text x="890" y="118" font-size="17" font-weight="700" fill="#1f1f1f" text-anchor="middle">第 5 集 · 上下文</text>
+  <text x="890" y="118" font-size="17" font-weight="700" fill="#1f1f1f" text-anchor="middle">Episode 5 · Context</text>
   <rect x="660" y="170" width="110" height="34" rx="4" fill="#d8d4cc"/>
-  <text x="780" y="196" font-size="16" font-weight="400" fill="#6b6b6b">第 1 轮</text>
+  <text x="780" y="196" font-size="16" font-weight="400" fill="#6b6b6b">turn 1</text>
   <rect x="660" y="232" width="250" height="34" rx="4" fill="#d8d4cc"/>
-  <text x="920" y="258" font-size="16" font-weight="400" fill="#6b6b6b">第 5 轮</text>
+  <text x="920" y="258" font-size="16" font-weight="400" fill="#6b6b6b">turn 5</text>
   <rect x="660" y="294" width="400" height="34" rx="4" fill="#d4600b"/>
-  <text x="1070" y="320" font-size="16" font-weight="400" fill="#6b6b6b">第 20 轮</text>
+  <text x="1070" y="320" font-size="16" font-weight="400" fill="#6b6b6b">turn 20</text>
   <rect x="654" y="374" width="472" height="92" rx="12" fill="#e9c9ae"/>
   <rect x="660" y="380" width="460" height="80" rx="9" fill="#fcefe5" stroke="#d4600b" stroke-width="2.5"/>
-  <text x="890" y="413.65" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">压缩：旧的变摘要，近的保留</text>
-  <text x="890" y="441.05" font-size="15" font-weight="400" fill="#6b6b6b" text-anchor="middle">接近上限时触发</text>
+  <text x="890" y="413.35" font-size="17" font-weight="700" fill="#d4600b" text-anchor="middle">Compact: old turns become a summary</text>
+  <text x="890" y="439.45" font-size="15" font-weight="400" fill="#6b6b6b" text-anchor="middle">triggered near the limit</text>
 </svg>

@@ -1,7 +1,7 @@
 [
  {
   "role": "user",
-  "content": "这个文件夹里有什么？"
+  "content": "What is in this folder?"
  },
  {
   "role": "assistant",
@@ -10,12 +10,8 @@
     "type": "thinking"
    },
    {
-    "type": "text",
-    "text": "我来为你查看一下。"
-   },
-   {
     "type": "tool_use",
-    "id": "call_00_ET_giphrdMHckwMmEXsp0Cc3020",
+    "id": "call_00_emXpJuljN6VyyJplEhdr2792",
     "name": "list_files",
     "input": {
      "path": "."
@@ -28,8 +24,8 @@
   "content": [
    {
     "type": "tool_result",
-    "tool_use_id": "call_00_ET_giphrdMHckwMmEXsp0Cc3020",
-    "content": "agent.py\ntest_loop.py"
+    "tool_use_id": "call_00_emXpJuljN6VyyJplEhdr2792",
+    "content": "agent.py\ndemo\ndemo-zh\ntest_loop.py"
    }
   ]
  },
@@ -41,7 +37,7 @@
    },
    {
     "type": "text",
-    "text": "这个文件夹里有 2 个文件：\n\n- **agent.py**\n- **test_loop.py**\n\n需要我查看其中某个文件的内容吗？"
+    "text": "The current folder contains:\n\n- **agent.py**\n- **demo** (folder)\n- **demo-zh** (folder)\n- **test_loop.py**"
    }
   ]
  }

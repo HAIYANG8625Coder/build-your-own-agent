@@ -1,23 +1,23 @@
-# D 跨会话 · 第 9 到 11 集
+# D · Beyond one session (episodes 9 to 11)
 
-一个会话结束以后，Agent 还能记住什么，能不能在你不在的时候工作，能不能用别人写好的工具。
+What does the agent remember after a session ends, can it work while you are away, and can it use tools someone else wrote?
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="img/part-d-dark.svg">
-  <img alt="架构图：记忆在新会话开始时加载；收件箱和定时器把事件送进同一个循环；MCP 服务器提供别人写好的工具。" src="img/part-d.svg">
+  <img alt="Architecture: memory is loaded when a new session starts; an inbox and timers feed events into the same loop; an MCP server provides tools that others wrote." src="img/part-d.svg">
 </picture>
 
 
-**需要先完成 A 到 C 部分。**
+**You need the code from parts A to C.**
 
-## 这一部分的每一集
+## Episodes in this part
 
-- **第 9 集 · 记忆**（代码：`ep09/`）：笔记文件夹只记查不到的东西；开始时加载索引；可选的离线整理。
-- **第 10 集 · 一直在线**（代码：`ep10/`）：收件箱、定时器、守护进程里的循环、发件箱；没人批准时能做什么。
-- **第 11 集 · MCP 和 skills**（代码：`ep11/`）：接入 MCP 服务器的工具，按需加载 skill 文件；这些工具同样要过权限闸门。
+- **Episode 9 · Memory** (code: `ep09/`): A notes folder that stores only what can't be looked up again, an index loaded at the start, and an optional offline cleanup.
+- **Episode 10 · Always on** (code: `ep10/`): An inbox, timers, the loop running as a daemon, an outbox, and what the agent may do when nobody can approve.
+- **Episode 11 · MCP and skills** (code: `ep11/`): Connect to an MCP server's tools and load skill files on demand; these tools still go through the permission gate.
 
-## 学完以后你有什么
+## What you have afterwards
 
-一个会长期工作、会记事、也能接入外部工具的 Agent。
+An agent that works over time, remembers things, and can use external tools.
 
-回到[课程大纲](../SYLLABUS.md)或[项目首页](../README.md)。
+Back to the [syllabus](../SYLLABUS.md) or the [project home](../README.md).
