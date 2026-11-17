@@ -1,6 +1,6 @@
 # Episode 1 · The agent loop
 
-*Part A · Core. Video: "从零做 Agent · 第 1 集：循环" (Chinese). Code: [`ep01/`](../ep01/).*
+*Part A · Core. Video: "Build your own agent· 001：Loop". Code: [`ep01/`](../ep01/).*
 
 This article is the whole of episode 1 in writing. You do not need the video to follow it: every idea, every line of code and every number used in the video is here, with the page it came from linked inline.
 
