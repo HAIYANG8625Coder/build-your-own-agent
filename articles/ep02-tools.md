@@ -137,6 +137,11 @@ def edit_file(path, old_text, new_text):
     return "edited " + path
 ```
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../docs/img/ep02-edit-checks-dark.svg">
+  <img alt="Flow chart of edit_file: first check the path is inside the project folder, then that the file was read earlier, then that old_text appears exactly once; each failed check returns a clear error, otherwise the replacement is written." src="../docs/img/ep02-edit-checks.svg">
+</picture>
+
 ## 4. Why edit by exact replacement?
 
 You could let the model rewrite a whole file. That is slow and expensive (it must output the entire file) and risky (it can change lines it was not asked to touch). Exact replacement needs only the one piece that changes.
@@ -168,6 +173,11 @@ def run_tool(name, args):
     except Exception as e:
         return "error: %s" % e, True
 ```
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../docs/img/ep02-tool-call-path-dark.svg">
+  <img alt="How a tool call becomes a result: the tool_use block goes to run_tool, which looks up the function; the output is cut and sent back as a tool_result; any exception is caught in run_tool and returned with is_error set." src="../docs/img/ep02-tool-call-path.svg">
+</picture>
 
 Here is the real error block from a run (the run is shown next):
 

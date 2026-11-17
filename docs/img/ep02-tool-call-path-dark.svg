@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ece8e1"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f0883e"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6f6a63"/></marker></defs>
+  <rect width="1200" height="560" fill="#0d1117"/>
+  <text x="40" y="52" font-size="21" font-weight="700" fill="#ece8e1">How one tool call becomes a result</text>
+  <rect x="40" y="180" width="200" height="120" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="140" y="222.9" font-size="19" font-weight="700" fill="#f0883e" text-anchor="middle">tool_use block</text>
+  <text x="140" y="251.6" font-size="16" font-weight="400" fill="#aca69d" text-anchor="middle">name + input</text>
+  <text x="140" y="272.4" font-size="16" font-weight="400" fill="#aca69d" text-anchor="middle">from the model</text>
+  <path d="M244,240 L268,240" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <rect x="272" y="180" width="200" height="120" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
+  <text x="372" y="222.9" font-size="19" font-weight="700" fill="#ece8e1" text-anchor="middle">run_tool</text>
+  <text x="372" y="251.6" font-size="16" font-weight="400" fill="#aca69d" text-anchor="middle">looks up the</text>
+  <text x="372" y="272.4" font-size="16" font-weight="400" fill="#aca69d" text-anchor="middle">function by name</text>
+  <path d="M476,240 L500,240" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <rect x="498" y="174" width="212" height="132" rx="12" fill="#6b4024"/>
+  <rect x="504" y="180" width="200" height="120" rx="9" fill="#3d2616" stroke="#f0883e" stroke-width="2.5"/>
+  <text x="604" y="222.9" font-size="19" font-weight="700" fill="#f0883e" text-anchor="middle">the tool function</text>
+  <text x="604" y="251.6" font-size="16" font-weight="400" fill="#aca69d" text-anchor="middle">read_file · grep</text>
+  <text x="604" y="272.4" font-size="16" font-weight="400" fill="#aca69d" text-anchor="middle">run_bash · edit_file</text>
+  <path d="M708,240 L732,240" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <rect x="736" y="180" width="200" height="120" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="836" y="222.9" font-size="19" font-weight="700" fill="#f0883e" text-anchor="middle">cut(...)</text>
+  <text x="836" y="251.6" font-size="16" font-weight="400" fill="#aca69d" text-anchor="middle">at most 4,000</text>
+  <text x="836" y="272.4" font-size="16" font-weight="400" fill="#aca69d" text-anchor="middle">characters</text>
+  <path d="M940,240 L964,240" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <rect x="968" y="180" width="200" height="120" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="1068" y="222.9" font-size="19" font-weight="700" fill="#f0883e" text-anchor="middle">tool_result</text>
+  <text x="1068" y="251.6" font-size="16" font-weight="400" fill="#aca69d" text-anchor="middle">content + is_error</text>
+  <text x="1068" y="272.4" font-size="16" font-weight="400" fill="#aca69d" text-anchor="middle">sent back</text>
+  <rect x="272" y="380" width="200" height="90" rx="9" fill="#2a2723" stroke="#6f6a63" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="372" y="418.05" font-size="16" font-weight="700" fill="#aca69d" text-anchor="middle">ToolError / exception</text>
+  <text x="372" y="442.85" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">caught in run_tool</text>
+  <path d="M372,304 L372,374" fill="none" stroke="#6f6a63" stroke-width="2" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <path d="M476,425 L998,425 Q1010,425 1010,413 L1010,306" fill="none" stroke="#6f6a63" stroke-width="2" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <text x="760" y="410" font-size="16" font-weight="400" fill="#aca69d">is_error: true</text>
+  <text x="40" y="520" font-size="18" font-weight="400" fill="#8f8a82">A failure never crashes the loop: it becomes a tool_result with is_error set, and the model reads it.</text>
+</svg>

@@ -161,4 +161,61 @@ for k, (t, a, b, kind) in enumerate(rows):
     y = 110 + k * 96
     d.text(60, y + 50, "Turn %s" % t, 22, "#6b6b6b", 700); d.box(200, y, 260, 76, a, None, kind=kind, title_size=21); d.text(490, y + 46, b, 20, "#1f1f1f", 600)
 save(d, "ep02-run-trace")
+
+# ---------------- extra charts
+d = Diagram(1200, 560)
+d.title(40, 52, "Who does what: the model proposes, our code acts")
+d.panel(40, 90, 500, 410, "The model (the API)")
+d.panel(660, 90, 500, 410, "Our program (agent.py)")
+for k, t in enumerate(["reads the messages list", "decides: answer, or ask for a tool", "writes a tool_use block", "reads the tool_result"]):
+    d.box(70, 150 + k * 82, 440, 66, t, None, kind="plain", title_size=18)
+for k, t in enumerate(["sends the messages list", "checks stop_reason", "runs the tool (run_tool)", "wraps the output as tool_result"]):
+    d.box(690, 150 + k * 82, 440, 66, t, None, kind="accent" if k == 2 else "plain", title_size=18)
+d.arrow([(544, 183), (656, 183)], color="grey", dashed=True)
+d.arrow([(656, 265), (544, 265)], color="accent")
+d.arrow([(544, 347), (656, 347)], color="grey", dashed=True)
+d.arrow([(656, 429), (544, 429)], color="accent")
+d.note(40, 536, "The model never runs anything itself. Everything that touches your machine happens in our program.", 18)
+save(d, "ep01-who-does-what")
+
+d = Diagram(1200, 560)
+d.title(40, 52, "How one tool call becomes a result")
+steps = [("tool_use block", "name + input\nfrom the model", "plain"), ("run_tool", "looks up the\nfunction by name", "main"), ("the tool function", "read_file · grep\nrun_bash · edit_file", "accent"), ("cut(...)", "at most 4,000\ncharacters", "plain"), ("tool_result", "content + is_error\nsent back", "plain")]
+for k, (a, b, kind) in enumerate(steps):
+    x = 40 + k * 232
+    d.box(x, 180, 200, 120, a, b, kind=kind, title_size=19, sub_size=16)
+    if k < 4: d.arrow([(x + 204, 240), (x + 228, 240)], color="accent")
+d.box(272, 380, 200, 90, "ToolError / exception", "caught in run_tool", kind="dashed", title_size=16, sub_size=15)
+d.arrow([(372, 304), (372, 374)], color="grey", dashed=True)
+d.arrow([(476, 425), (1010, 425), (1010, 306)], color="grey", dashed=True, label="is_error: true", label_at=(760, 410), label_size=16)
+d.note(40, 520, "A failure never crashes the loop: it becomes a tool_result with is_error set, and the model reads it.", 18)
+save(d, "ep02-tool-call-path")
+
+d = Diagram(1200, 740)
+d.title(40, 52, "edit_file: the checks, in order")
+qs = [("1. Is the path inside the project folder?", "error: path is outside the project folder"),
+      ("2. Was the file read earlier in this session?", "error: read the file first"),
+      ("3. Does old_text appear exactly once?", "error: 'old_text' appears N times")]
+for k, (q, e) in enumerate(qs):
+    y = 100 + k * 150
+    d.box(60, y, 480, 84, q, None, kind="main", title_size=18)
+    d.arrow([(546, y + 42), (640, y + 42)], color="grey", dashed=True, label="no", label_size=17)
+    d.box(646, y, 500, 84, e, None, kind="dashed", title_size=17)
+    if k < 2: d.arrow([(300, y + 90), (300, y + 144)], color="accent", label="yes", label_size=17)
+d.arrow([(300, 490), (300, 594)], color="accent", label="yes", label_size=17)
+d.box(60, 600, 480, 90, "Replace, write, return 'edited <path>'", None, kind="accent", title_size=19)
+d.note(646, 660, "Each refusal is a clear sentence the model can act on.", 18)
+save(d, "ep02-edit-checks")
+
+d = Diagram(1200, 620)
+d.title(40, 52, "Repository layout")
+d.panel(40, 90, 1120, 480)
+rows = [("README.md · SYLLABUS.md · LICENSE", "start here"), ("articles/", "one full written article per episode"), ("docs/", "part introductions and the diagrams (img/)"),
+        ("ep01/", "agent.py · test_loop.py · demo/"), ("ep02/", "agent.py · test_tools.py · sandbox/ · demo/"), ("ep03/ … ep13/", "one folder per episode, added as the series grows")]
+for k, (a, b) in enumerate(rows):
+    y = 120 + k * 72
+    d.box(70, y, 420, 58, a, None, kind="accent" if k == 3 else "plain", title_size=17)
+    d.text(520, y + 36, b, 19, "#6b6b6b")
+save(d, "repo-layout")
+print("extra ok")
 print("ok")

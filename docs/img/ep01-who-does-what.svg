@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d4600b"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a8a49c"/></marker></defs>
+  <rect width="1200" height="560" fill="#ffffff"/>
+  <text x="40" y="52" font-size="21" font-weight="700" fill="#1f1f1f">Who does what: the model proposes, our code acts</text>
+  <rect x="40" y="90" width="500" height="410" rx="14" fill="#f0ede6"/>
+  <text x="290" y="128" font-size="17" font-weight="700" fill="#1f1f1f" text-anchor="middle">The model (the API)</text>
+  <rect x="660" y="90" width="500" height="410" rx="14" fill="#f0ede6"/>
+  <text x="910" y="128" font-size="17" font-weight="700" fill="#1f1f1f" text-anchor="middle">Our program (agent.py)</text>
+  <rect x="70" y="150" width="440" height="66" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="290" y="188.4" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">reads the messages list</text>
+  <rect x="70" y="232" width="440" height="66" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="290" y="270.4" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">decides: answer, or ask for a tool</text>
+  <rect x="70" y="314" width="440" height="66" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="290" y="352.4" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">writes a tool_use block</text>
+  <rect x="70" y="396" width="440" height="66" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="290" y="434.4" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">reads the tool_result</text>
+  <rect x="690" y="150" width="440" height="66" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="910" y="188.4" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">sends the messages list</text>
+  <rect x="690" y="232" width="440" height="66" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="910" y="270.4" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">checks stop_reason</text>
+  <rect x="684" y="308" width="452" height="78" rx="12" fill="#e9c9ae"/>
+  <rect x="690" y="314" width="440" height="66" rx="9" fill="#fcefe5" stroke="#d4600b" stroke-width="2.5"/>
+  <text x="910" y="352.4" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">runs the tool (run_tool)</text>
+  <rect x="690" y="396" width="440" height="66" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="910" y="434.4" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">wraps the output as tool_result</text>
+  <path d="M544,183 L656,183" fill="none" stroke="#a8a49c" stroke-width="2" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <path d="M656,265 L544,265" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <path d="M544,347 L656,347" fill="none" stroke="#a8a49c" stroke-width="2" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <path d="M656,429 L544,429" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <text x="40" y="536" font-size="18" font-weight="400" fill="#8a8a8a">The model never runs anything itself. Everything that touches your machine happens in our program.</text>
+</svg>

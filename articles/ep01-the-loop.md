@@ -68,6 +68,11 @@ The `tool_use` block has three fields: `id` (the number of this request), `name`
 
 Why does the result go in a *user* message? In this API a conversation has only two roles, `user` and `assistant`. The result comes from our side, so it counts as the user side.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="../docs/img/ep01-who-does-what-dark.svg">
+  <img alt="Two columns: the model reads messages, decides, writes a tool_use block and reads the tool_result; our program sends messages, checks stop_reason, runs the tool and wraps the output as tool_result." src="../docs/img/ep01-who-does-what.svg">
+</picture>
+
 Here is the real list of four messages after a full run (from a real DeepSeek run; the model's private thinking blocks are left out):
 
 ```json

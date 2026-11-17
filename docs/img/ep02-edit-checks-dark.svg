@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 740" width="1200" height="740" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ece8e1"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f0883e"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6f6a63"/></marker></defs>
+  <rect width="1200" height="740" fill="#0d1117"/>
+  <text x="40" y="52" font-size="21" font-weight="700" fill="#ece8e1">edit_file: the checks, in order</text>
+  <rect x="60" y="100" width="480" height="84" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
+  <text x="300" y="147.4" font-size="18" font-weight="700" fill="#ece8e1" text-anchor="middle">1. Is the path inside the project folder?</text>
+  <path d="M546,142 L640,142" fill="none" stroke="#6f6a63" stroke-width="2" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <text x="593" y="130" font-size="17" font-weight="400" fill="#aca69d" text-anchor="middle">no</text>
+  <rect x="646" y="100" width="500" height="84" rx="9" fill="#2a2723" stroke="#6f6a63" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="896" y="147.1" font-size="17" font-weight="700" fill="#aca69d" text-anchor="middle">error: path is outside the project folder</text>
+  <path d="M300,190 L300,244" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <text x="312" y="222" font-size="17" font-weight="400" fill="#aca69d">yes</text>
+  <rect x="60" y="250" width="480" height="84" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
+  <text x="300" y="297.4" font-size="18" font-weight="700" fill="#ece8e1" text-anchor="middle">2. Was the file read earlier in this session?</text>
+  <path d="M546,292 L640,292" fill="none" stroke="#6f6a63" stroke-width="2" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <text x="593" y="280" font-size="17" font-weight="400" fill="#aca69d" text-anchor="middle">no</text>
+  <rect x="646" y="250" width="500" height="84" rx="9" fill="#2a2723" stroke="#6f6a63" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="896" y="297.1" font-size="17" font-weight="700" fill="#aca69d" text-anchor="middle">error: read the file first</text>
+  <path d="M300,340 L300,394" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <text x="312" y="372" font-size="17" font-weight="400" fill="#aca69d">yes</text>
+  <rect x="60" y="400" width="480" height="84" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
+  <text x="300" y="447.4" font-size="18" font-weight="700" fill="#ece8e1" text-anchor="middle">3. Does old_text appear exactly once?</text>
+  <path d="M546,442 L640,442" fill="none" stroke="#6f6a63" stroke-width="2" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <text x="593" y="430" font-size="17" font-weight="400" fill="#aca69d" text-anchor="middle">no</text>
+  <rect x="646" y="400" width="500" height="84" rx="9" fill="#2a2723" stroke="#6f6a63" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="896" y="447.1" font-size="17" font-weight="700" fill="#aca69d" text-anchor="middle">error: 'old_text' appears N times</text>
+  <path d="M300,490 L300,594" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <text x="312" y="547" font-size="17" font-weight="400" fill="#aca69d">yes</text>
+  <rect x="54" y="594" width="492" height="102" rx="12" fill="#6b4024"/>
+  <rect x="60" y="600" width="480" height="90" rx="9" fill="#3d2616" stroke="#f0883e" stroke-width="2.5"/>
+  <text x="300" y="650.7" font-size="19" font-weight="700" fill="#f0883e" text-anchor="middle">Replace, write, return 'edited &lt;path&gt;'</text>
+  <text x="646" y="660" font-size="18" font-weight="400" fill="#8f8a82">Each refusal is a clear sentence the model can act on.</text>
+</svg>

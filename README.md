@@ -57,6 +57,13 @@ The default is `PROVIDER=claude` (model `claude-haiku-5-5`). DeepSeek uses `deep
 
 `ep01/demo/` holds the output of a real run (model: deepseek-flash) so you can compare with your own; `ep01/demo-zh/` is the same run with a Chinese prompt, as shown in the Chinese video.
 
+## Repository layout
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/img/repo-layout-dark.svg">
+  <img alt="Repository layout: README, syllabus and license at the top; articles, docs and one folder per episode (ep01, ep02, and more to come)." src="docs/img/repo-layout.svg">
+</picture>
+
 ## Articles
 
 Each episode also has a full written article, so you can learn everything in it without the video. Every claim about Claude Code is cited inline with a link to the official page it came from.
