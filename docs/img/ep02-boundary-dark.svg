@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 580" width="1200" height="580" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ece8e1"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f0883e"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6f6a63"/></marker></defs>
+  <rect width="1200" height="580" fill="#0d1117"/>
+  <text x="40" y="52" font-size="21" font-weight="700" fill="#ece8e1">Boundaries: a path check and a timeout</text>
+  <rect x="40" y="90" width="620" height="440" rx="14" fill="#1c1a17"/>
+  <text x="350" y="128" font-size="17" font-weight="700" fill="#ece8e1" text-anchor="middle">The project folder</text>
+  <rect x="80" y="160" width="170" height="80" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="165" y="193.65" font-size="18" font-weight="700" fill="#f0883e" text-anchor="middle">read_file</text>
+  <text x="165" y="221.05" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">checks the path</text>
+  <rect x="270" y="160" width="170" height="80" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="355" y="193.65" font-size="18" font-weight="700" fill="#f0883e" text-anchor="middle">grep</text>
+  <text x="355" y="221.05" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">checks the path</text>
+  <rect x="460" y="160" width="170" height="80" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="545" y="193.65" font-size="18" font-weight="700" fill="#f0883e" text-anchor="middle">edit_file</text>
+  <text x="545" y="221.05" font-size="15" font-weight="400" fill="#aca69d" text-anchor="middle">checks the path</text>
+  <text x="80" y="300" font-size="20" font-weight="700" fill="#3fb950">Path inside the project folder: allowed</text>
+  <rect x="760" y="90" width="400" height="440" rx="14" fill="#1c1a17"/>
+  <text x="960" y="128" font-size="17" font-weight="700" fill="#ece8e1" text-anchor="middle">Other folders</text>
+  <path d="M640,200 L756,200" fill="none" stroke="#6f6a63" stroke-width="2" marker-end="url(#agrey)"/>
+  <text x="790" y="190" font-size="18" font-weight="400" fill="#aca69d">for example ../p-other</text>
+  <text x="790" y="300" font-size="20" font-weight="700" fill="#f85149">✗ path outside: refused</text>
+  <rect x="80" y="400" width="300" height="90" rx="9" fill="#2a2723" stroke="#6f6a63" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="230" y="438.9" font-size="21" font-weight="700" fill="#aca69d" text-anchor="middle">run_bash</text>
+  <text x="230" y="470.2" font-size="16" font-weight="400" fill="#aca69d" text-anchor="middle">not covered by the path check</text>
+  <path d="M384,445 L754,445" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <text x="400" y="432" font-size="18" font-weight="700" fill="#f0883e">can reach other folders</text>
+  <text x="80" y="520" font-size="20" font-weight="700" fill="#f0883e">So real permissions come later (episode 4).</text>
+</svg>

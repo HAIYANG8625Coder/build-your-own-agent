@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d4600b"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a8a49c"/></marker></defs>
+  <rect width="1200" height="560" fill="#ffffff"/>
+  <text x="40" y="52" font-size="21" font-weight="700" fill="#1f1f1f">edit_file: old_text must appear, and appear exactly once</text>
+  <text x="210" y="118" font-size="22" font-weight="700" fill="#1f1f1f" text-anchor="middle">0 matches</text>
+  <rect x="60" y="150" width="300" height="90" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="210" y="188" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">old_text = return a * b</text>
+  <text x="210" y="215.4" font-size="16" font-weight="400" fill="#6b6b6b" text-anchor="middle">not in the file</text>
+  <path d="M210,246 L210,318" fill="none" stroke="#a8a49c" stroke-width="2" marker-end="url(#agrey)"/>
+  <rect x="60" y="324" width="300" height="100" rx="9" fill="#ffffff" stroke="#a8a49c" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="210" y="367.9" font-size="21" font-weight="700" fill="#6b6b6b" text-anchor="middle">error</text>
+  <text x="210" y="399.2" font-size="16" font-weight="400" fill="#6b6b6b" text-anchor="middle">'old_text' appears 0 times</text>
+  <text x="590" y="118" font-size="22" font-weight="700" fill="#d4600b" text-anchor="middle">1 match</text>
+  <rect x="440" y="150" width="300" height="90" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="590" y="188" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">old_text = return a - b</text>
+  <text x="590" y="215.4" font-size="16" font-weight="400" fill="#6b6b6b" text-anchor="middle">only one place</text>
+  <path d="M590,246 L590,318" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <rect x="434" y="318" width="312" height="112" rx="12" fill="#e9c9ae"/>
+  <rect x="440" y="324" width="300" height="100" rx="9" fill="#fcefe5" stroke="#d4600b" stroke-width="2.5"/>
+  <text x="590" y="367.25" font-size="21" font-weight="700" fill="#d4600b" text-anchor="middle">edited calc.py</text>
+  <text x="590" y="398.55" font-size="17" font-weight="400" fill="#6b6b6b" text-anchor="middle">replaced</text>
+  <text x="970" y="118" font-size="22" font-weight="700" fill="#1f1f1f" text-anchor="middle">2+ matches</text>
+  <rect x="820" y="150" width="300" height="90" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="970" y="188" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">old_text = result</text>
+  <text x="970" y="215.4" font-size="16" font-weight="400" fill="#6b6b6b" text-anchor="middle">several places</text>
+  <path d="M970,246 L970,318" fill="none" stroke="#a8a49c" stroke-width="2" marker-end="url(#agrey)"/>
+  <rect x="820" y="324" width="300" height="100" rx="9" fill="#ffffff" stroke="#a8a49c" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="970" y="367.9" font-size="21" font-weight="700" fill="#6b6b6b" text-anchor="middle">error</text>
+  <text x="970" y="399.2" font-size="16" font-weight="400" fill="#6b6b6b" text-anchor="middle">'old_text' appears 4 times</text>
+  <text x="60" y="500" font-size="19" font-weight="400" fill="#8a8a8a">The error says how many times it matched, so the model knows how to fix the call.</text>
+</svg>

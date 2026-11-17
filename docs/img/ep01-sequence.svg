@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" width="1200" height="680" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d4600b"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a8a49c"/></marker></defs>
+  <rect width="1200" height="680" fill="#ffffff"/>
+  <text x="40" y="52" font-size="21" font-weight="700" fill="#1f1f1f">One question, two turns</text>
+  <text x="40" y="80" font-size="17" font-weight="400" fill="#8a8a8a">Orange: requests. Grey dashed: replies.</text>
+  <rect x="35" y="104" width="210" height="76" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="140" y="148" font-size="20" font-weight="700" fill="#d4600b" text-anchor="middle">User</text>
+  <line x1="140" y1="186" x2="140" y2="650" stroke="#c9c4ba" stroke-width="2" stroke-dasharray="3 7"/>
+  <rect x="335" y="104" width="210" height="76" rx="10" fill="#ffffff" stroke="#1f1f1f" stroke-width="2.5"/>
+  <text x="440" y="136.25" font-size="20" font-weight="700" fill="#1f1f1f" text-anchor="middle">agent.py</text>
+  <text x="440" y="166.25" font-size="15" font-weight="400" fill="#6b6b6b" text-anchor="middle">our code</text>
+  <line x1="440" y1="186" x2="440" y2="650" stroke="#c9c4ba" stroke-width="2" stroke-dasharray="3 7"/>
+  <rect x="649" y="98" width="222" height="88" rx="12" fill="#e9c9ae"/>
+  <rect x="655" y="104" width="210" height="76" rx="9" fill="#fcefe5" stroke="#d4600b" stroke-width="2.5"/>
+  <text x="760" y="136.25" font-size="20" font-weight="700" fill="#d4600b" text-anchor="middle">Model</text>
+  <text x="760" y="166.25" font-size="15" font-weight="400" fill="#6b6b6b" text-anchor="middle">Claude / DeepSeek</text>
+  <line x1="760" y1="186" x2="760" y2="650" stroke="#c9c4ba" stroke-width="2" stroke-dasharray="3 7"/>
+  <rect x="945" y="104" width="210" height="76" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
+  <text x="1050" y="136.25" font-size="20" font-weight="700" fill="#d4600b" text-anchor="middle">list_files</text>
+  <text x="1050" y="166.25" font-size="15" font-weight="400" fill="#6b6b6b" text-anchor="middle">tool function</text>
+  <line x1="1050" y1="186" x2="1050" y2="650" stroke="#c9c4ba" stroke-width="2" stroke-dasharray="3 7"/>
+  <path d="M148,232 L430,232" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <text x="290" y="220" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">1. What is in this folder?</text>
+  <path d="M448,290 L750,290" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <text x="600" y="278" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">2. messages.create(messages)</text>
+  <path d="M752,348 L450,348" fill="none" stroke="#a8a49c" stroke-width="2" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <text x="600" y="336" font-size="18" font-weight="400" fill="#6b6b6b" text-anchor="middle">3. tool_use · list_files</text>
+  <path d="M448,406 L1040,406" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <text x="905" y="394" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">4. run_tool → list_files(".")</text>
+  <path d="M1042,464 L450,464" fill="none" stroke="#a8a49c" stroke-width="2" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <text x="905" y="452" font-size="18" font-weight="400" fill="#6b6b6b" text-anchor="middle">5. agent.py  test_loop.py</text>
+  <path d="M448,522 L750,522" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <text x="600" y="510" font-size="18" font-weight="700" fill="#d4600b" text-anchor="middle">6. messages.create(+ result)</text>
+  <path d="M752,580 L450,580" fill="none" stroke="#a8a49c" stroke-width="2" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <text x="600" y="568" font-size="18" font-weight="400" fill="#6b6b6b" text-anchor="middle">7. end_turn · text answer</text>
+  <path d="M432,638 L150,638" fill="none" stroke="#a8a49c" stroke-width="2" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <text x="290" y="626" font-size="18" font-weight="400" fill="#6b6b6b" text-anchor="middle">8. This folder has two files</text>
+</svg>

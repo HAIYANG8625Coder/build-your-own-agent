@@ -6,6 +6,8 @@ One agent, built a piece at a time. Every episode is one video (about 7 to 8 min
 **You do not need:** any framework. The whole agent is plain Python plus one SDK.
 **By the end:** a working command-line coding agent of about 500 lines that reads and edits files, runs commands with your permission, manages its own context, delegates to subagents and remembers things between sessions.
 
+Every published episode has a full article with the code, real run output, diagrams and inline citations: see the **Articles** table in the [README](README.md).
+
 ## The big picture
 
 <picture>

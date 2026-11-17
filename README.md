@@ -57,6 +57,15 @@ The default is `PROVIDER=claude` (model `claude-haiku-5-5`). DeepSeek uses `deep
 
 `ep01/demo/` holds the output of a real run (model: deepseek-flash) so you can compare with your own; `ep01/demo-zh/` is the same run with a Chinese prompt, as shown in the Chinese video.
 
+## Articles
+
+Each episode also has a full written article, so you can learn everything in it without the video. Every claim about Claude Code is cited inline with a link to the official page it came from.
+
+| Episode | Article |
+|---|---|
+| 1 · The loop | [articles/ep01-the-loop.md](articles/ep01-the-loop.md) |
+| 2 · Tools | [articles/ep02-tools.md](articles/ep02-tools.md) |
+
 ## Progress
 
 | Episode | Topic | Video | Code |

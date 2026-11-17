@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" width="1200" height="520" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d4600b"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a8a49c"/></marker></defs>
+  <rect width="1200" height="520" fill="#ffffff"/>
+  <text x="40" y="52" font-size="21" font-weight="700" fill="#1f1f1f">Don't flood the context: cut long output</text>
+  <text x="60" y="130" font-size="21" font-weight="700" fill="#1f1f1f">Tool output</text>
+  <rect x="60" y="150" width="1000" height="44" rx="4" fill="#d8d4cc"/>
+  <text x="1075" y="182" font-size="18" font-weight="400" fill="#6b6b6b">20,000 chars</text>
+  <text x="60" y="250" font-size="21" font-weight="700" fill="#1f1f1f">Returned to the model (our code)</text>
+  <rect x="60" y="270" width="200" height="44" rx="4" fill="#d4600b"/>
+  <text x="275" y="302" font-size="18" font-weight="700" fill="#d4600b">at most 4,000 chars + "... cut off. Ask for less."</text>
+  <rect x="60" y="350" width="1080" height="130" rx="14" fill="#f0ede6"/>
+  <text x="90" y="392" font-size="21" font-weight="700" fill="#1f1f1f">Claude Code (official docs)</text>
+  <text x="90" y="430" font-size="19" font-weight="400" fill="#6b6b6b">Bash output over about 30,000 characters is saved to a file, with a short preview kept</text>
+  <text x="90" y="462" font-size="19" font-weight="400" fill="#6b6b6b">Anthropic's article: tool responses default to at most 25,000 tokens in Claude Code</text>
+</svg>

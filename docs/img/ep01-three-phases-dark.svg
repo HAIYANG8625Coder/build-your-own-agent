@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ece8e1"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f0883e"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6f6a63"/></marker></defs>
+  <rect width="1200" height="600" fill="#0d1117"/>
+  <text x="40" y="50" font-size="21" font-weight="700" fill="#ece8e1">Claude Code's three phases · and our minimal version</text>
+  <rect x="40" y="90" width="480" height="440" rx="14" fill="#1c1a17"/>
+  <text x="280" y="128" font-size="17" font-weight="700" fill="#ece8e1" text-anchor="middle">Claude Code (official docs)</text>
+  <rect x="680" y="90" width="480" height="440" rx="14" fill="#1c1a17"/>
+  <text x="920" y="128" font-size="17" font-weight="700" fill="#ece8e1" text-anchor="middle">Our agent.py</text>
+  <rect x="70" y="150" width="420" height="96" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
+  <text x="280" y="191.55" font-size="22" font-weight="700" fill="#ece8e1" text-anchor="middle">Gather context</text>
+  <text x="280" y="224.15" font-size="17" font-weight="400" fill="#aca69d" text-anchor="middle">read files, search</text>
+  <rect x="704" y="144" width="432" height="108" rx="12" fill="#6b4024"/>
+  <rect x="710" y="150" width="420" height="96" rx="9" fill="#3d2616" stroke="#f0883e" stroke-width="2.5"/>
+  <text x="920" y="191.25" font-size="21" font-weight="700" fill="#f0883e" text-anchor="middle">list_files</text>
+  <text x="920" y="222.55" font-size="17" font-weight="400" fill="#aca69d" text-anchor="middle">this episode</text>
+  <path d="M496,198 L704,198" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <rect x="70" y="275" width="420" height="96" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
+  <text x="280" y="316.55" font-size="22" font-weight="700" fill="#ece8e1" text-anchor="middle">Take action</text>
+  <text x="280" y="349.15" font-size="17" font-weight="400" fill="#aca69d" text-anchor="middle">edit files, run commands</text>
+  <rect x="710" y="275" width="420" height="96" rx="9" fill="#2a2723" stroke="#6f6a63" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="920" y="316.25" font-size="21" font-weight="700" fill="#aca69d" text-anchor="middle">edit_file · run_bash</text>
+  <text x="920" y="347.55" font-size="17" font-weight="400" fill="#aca69d" text-anchor="middle">next episode</text>
+  <path d="M496,323 L704,323" fill="none" stroke="#6f6a63" stroke-width="2.5" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <rect x="70" y="400" width="420" height="96" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
+  <text x="280" y="441.55" font-size="22" font-weight="700" fill="#ece8e1" text-anchor="middle">Verify results</text>
+  <text x="280" y="474.15" font-size="17" font-weight="400" fill="#aca69d" text-anchor="middle">run the tests, look again</text>
+  <rect x="710" y="400" width="420" height="96" rx="9" fill="#2a2723" stroke="#6f6a63" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="920" y="441.25" font-size="21" font-weight="700" fill="#aca69d" text-anchor="middle">feed the output back</text>
+  <text x="920" y="472.55" font-size="17" font-weight="400" fill="#aca69d" text-anchor="middle">same loop</text>
+  <path d="M496,448 L704,448" fill="none" stroke="#6f6a63" stroke-width="2.5" stroke-dasharray="10 7" marker-end="url(#agrey)"/>
+  <text x="40" y="572" font-size="18" font-weight="400" fill="#8f8a82">The phases blend together and repeat until the model's reply has no tool calls.</text>
+</svg>

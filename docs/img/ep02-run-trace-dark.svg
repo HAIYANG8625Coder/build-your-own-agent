@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ece8e1"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f0883e"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6f6a63"/></marker></defs>
+  <rect width="1200" height="600" fill="#0d1117"/>
+  <text x="40" y="52" font-size="21" font-weight="700" fill="#ece8e1">A real run: 5 turns</text>
+  <text x="40" y="84" font-size="19" font-weight="400" fill="#8f8a82">Task: the tests in this folder fail. Find out why and fix it.</text>
+  <text x="60" y="160" font-size="22" font-weight="700" fill="#aca69d">Turn 1</text>
+  <rect x="200" y="110" width="260" height="76" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="330" y="154.3" font-size="21" font-weight="700" fill="#f0883e" text-anchor="middle">run_bash</text>
+  <text x="490" y="156" font-size="20" font-weight="600" fill="#ece8e1">ls -la</text>
+  <text x="60" y="256" font-size="22" font-weight="700" fill="#aca69d">Turn 2</text>
+  <rect x="194" y="200" width="272" height="88" rx="12" fill="#6b4024"/>
+  <rect x="200" y="206" width="260" height="76" rx="9" fill="#3d2616" stroke="#f0883e" stroke-width="2.5"/>
+  <text x="330" y="250.3" font-size="21" font-weight="700" fill="#f0883e" text-anchor="middle">read_file × 2</text>
+  <text x="490" y="252" font-size="20" font-weight="600" fill="#ece8e1">calc.py and test_calc.py (two requests in one reply)</text>
+  <text x="60" y="352" font-size="22" font-weight="700" fill="#aca69d">Turn 3</text>
+  <rect x="200" y="302" width="260" height="76" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="330" y="346.3" font-size="21" font-weight="700" fill="#f0883e" text-anchor="middle">edit_file</text>
+  <text x="490" y="348" font-size="20" font-weight="600" fill="#ece8e1">return a - b  →  return a + b</text>
+  <text x="60" y="448" font-size="22" font-weight="700" fill="#aca69d">Turn 4</text>
+  <rect x="200" y="398" width="260" height="76" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="330" y="442.3" font-size="21" font-weight="700" fill="#f0883e" text-anchor="middle">run_bash</text>
+  <text x="490" y="444" font-size="20" font-weight="600" fill="#ece8e1">python3 test_calc.py</text>
+  <text x="60" y="544" font-size="22" font-weight="700" fill="#aca69d">Turn 5</text>
+  <rect x="200" y="494" width="260" height="76" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
+  <text x="330" y="538.3" font-size="21" font-weight="700" fill="#ece8e1" text-anchor="middle">end_turn</text>
+  <text x="490" y="540" font-size="20" font-weight="600" fill="#ece8e1">no more tool calls: the loop ends with an answer</text>
+</svg>
