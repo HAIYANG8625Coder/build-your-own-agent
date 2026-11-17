@@ -1,0 +1,8 @@
+# keys and local config: never commit
+.env
+.env.*
+*.env
+keys.env
+__pycache__/
+*.pyc
+.venv/
