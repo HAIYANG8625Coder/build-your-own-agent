@@ -180,7 +180,7 @@ save(d, "ep01-who-does-what")
 
 d = Diagram(1200, 560)
 d.title(40, 52, "How one tool call becomes a result")
-steps = [("tool_use block", "name + input\nfrom the model", "plain"), ("run_tool", "looks up the\nfunction by name", "main"), ("the tool function", "read_file · grep\nrun_bash · edit_file", "accent"), ("cut(...)", "at most 4,000\ncharacters", "plain"), ("tool_result", "content + is_error\nsent back", "plain")]
+steps = [("tool_use block", "name + input\nfrom the model", "plain"), ("run_tool", "looks up the\nfunction by name", "main"), ("the tool function", "read_file · grep\nrun_bash · edit_file", "accent"), ("cut(...)", "read_file, run_bash:\nat most 4,000 chars", "plain"), ("tool_result", "content + is_error\nsent back", "plain")]
 for k, (a, b, kind) in enumerate(steps):
     x = 40 + k * 232
     d.box(x, 180, 200, 120, a, b, kind=kind, title_size=19, sub_size=16)

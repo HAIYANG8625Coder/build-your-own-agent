@@ -20,8 +20,8 @@
   <path d="M708,240 L732,240" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
   <rect x="736" y="180" width="200" height="120" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
   <text x="836" y="222.9" font-size="19" font-weight="700" fill="#d4600b" text-anchor="middle">cut(...)</text>
-  <text x="836" y="251.6" font-size="16" font-weight="400" fill="#6b6b6b" text-anchor="middle">at most 4,000</text>
-  <text x="836" y="272.4" font-size="16" font-weight="400" fill="#6b6b6b" text-anchor="middle">characters</text>
+  <text x="836" y="251.6" font-size="16" font-weight="400" fill="#6b6b6b" text-anchor="middle">read_file, run_bash:</text>
+  <text x="836" y="272.4" font-size="16" font-weight="400" fill="#6b6b6b" text-anchor="middle">at most 4,000 chars</text>
   <path d="M940,240 L964,240" fill="none" stroke="#d4600b" stroke-width="2.5" marker-end="url(#aaccent)"/>
   <rect x="968" y="180" width="200" height="120" rx="9" fill="#ffffff" stroke="#d8d4cc" stroke-width="1.5"/>
   <text x="1068" y="222.9" font-size="19" font-weight="700" fill="#d4600b" text-anchor="middle">tool_result</text>
