@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="1200" height="620" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#ece8e1"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#f0883e"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#6f6a63"/></marker></defs>
+  <rect width="1200" height="620" fill="#0d1117"/>
+  <text x="40" y="52" font-size="21" font-weight="700" fill="#ece8e1">Our notes file and Claude Code's CLAUDE.md</text>
+  <rect x="40" y="90" width="440" height="500" rx="14" fill="#1c1a17"/>
+  <text x="260" y="128" font-size="17" font-weight="700" fill="#ece8e1" text-anchor="middle">Ours (this episode)</text>
+  <rect x="660" y="90" width="500" height="500" rx="14" fill="#1c1a17"/>
+  <text x="910" y="128" font-size="17" font-weight="700" fill="#ece8e1" text-anchor="middle">Claude Code docs</text>
+  <rect x="70" y="150" width="380" height="84" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="260" y="198" font-size="20" font-weight="700" fill="#f0883e" text-anchor="middle">One NOTES.md</text>
+  <rect x="690" y="150" width="440" height="84" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
+  <text x="910" y="197.1" font-size="17" font-weight="700" fill="#ece8e1" text-anchor="middle">Several levels: user · project · local · organisation</text>
+  <path d="M456,192 L684,192" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <rect x="70" y="270" width="380" height="84" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="260" y="318" font-size="20" font-weight="700" fill="#f0883e" text-anchor="middle">In the first user message</text>
+  <rect x="690" y="270" width="440" height="84" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
+  <text x="910" y="317.1" font-size="17" font-weight="700" fill="#ece8e1" text-anchor="middle">Same: a user message after the system prompt</text>
+  <path d="M456,312 L684,312" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <rect x="70" y="390" width="380" height="84" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
+  <text x="260" y="438" font-size="20" font-weight="700" fill="#f0883e" text-anchor="middle">Over 200 lines: a warning</text>
+  <rect x="690" y="390" width="440" height="84" rx="10" fill="#2a2723" stroke="#ece8e1" stroke-width="2.5"/>
+  <text x="910" y="437.1" font-size="17" font-weight="700" fill="#ece8e1" text-anchor="middle">Aim for under 200 lines per file</text>
+  <path d="M456,432 L684,432" fill="none" stroke="#f0883e" stroke-width="2.5" marker-end="url(#aaccent)"/>
+  <text x="690" y="530" font-size="18" font-weight="400" fill="#aca69d">Also: @ imports (up to four hops deep)</text>
+  <text x="690" y="562" font-size="18" font-weight="700" fill="#f0883e">Must-happen rules: use hooks, not notes</text>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs><marker id="aink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1f1f1f"/></marker><marker id="aaccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#d4600b"/></marker><marker id="agrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#a8a49c"/></marker></defs>
+  <rect width="1200" height="640" fill="#ffffff"/>
+  <text x="40" y="52" font-size="21" font-weight="700" fill="#1f1f1f">Results: passes out of three runs</text>
+  <text x="560" y="110" font-size="22" font-weight="700" fill="#6b6b6b" text-anchor="middle">No notes</text>
+  <text x="960" y="110" font-size="22" font-weight="700" fill="#d4600b" text-anchor="middle">With notes</text>
+  <text x="40" y="184" font-size="21" font-weight="600" fill="#1f1f1f">Discount: integer result</text>
+  <rect x="440" y="156" width="240" height="40" rx="4" fill="#8a8a8a"/>
+  <text x="692" y="188" font-size="22" font-weight="700" fill="#6b6b6b">3/3</text>
+  <rect x="840" y="156" width="240" height="40" rx="4" fill="#d4600b"/>
+  <text x="1092" y="188" font-size="22" font-weight="700" fill="#d4600b">3/3</text>
+  <text x="40" y="262" font-size="21" font-weight="600" fill="#1f1f1f">Discount: one-line docstring</text>
+  <rect x="440" y="234" width="240" height="40" rx="4" fill="#8a8a8a"/>
+  <text x="692" y="266" font-size="22" font-weight="700" fill="#6b6b6b">3/3</text>
+  <rect x="840" y="234" width="240" height="40" rx="4" fill="#d4600b"/>
+  <text x="1092" y="266" font-size="22" font-weight="700" fill="#d4600b">3/3</text>
+  <text x="40" y="340" font-size="21" font-weight="600" fill="#1f1f1f">Discount: rounds half up</text>
+  <rect x="440" y="312" width="160" height="40" rx="4" fill="#8a8a8a"/>
+  <text x="612" y="344" font-size="22" font-weight="700" fill="#6b6b6b">2/3</text>
+  <rect x="840" y="312" width="240" height="40" rx="4" fill="#d4600b"/>
+  <text x="1092" y="344" font-size="22" font-weight="700" fill="#d4600b">3/3</text>
+  <text x="40" y="418" font-size="21" font-weight="600" fill="#1f1f1f">Discount: ends with Done: line</text>
+  <rect x="440" y="390" width="0.01" height="40" rx="4" fill="#8a8a8a"/>
+  <text x="452" y="422" font-size="22" font-weight="700" fill="#6b6b6b">0/3</text>
+  <rect x="840" y="390" width="240" height="40" rx="4" fill="#d4600b"/>
+  <text x="1092" y="422" font-size="22" font-weight="700" fill="#d4600b">3/3</text>
+  <text x="40" y="496" font-size="21" font-weight="600" fill="#1f1f1f">Helper: file in helpers/</text>
+  <rect x="440" y="468" width="0.01" height="40" rx="4" fill="#8a8a8a"/>
+  <text x="452" y="500" font-size="22" font-weight="700" fill="#6b6b6b">0/3</text>
+  <rect x="840" y="468" width="240" height="40" rx="4" fill="#d4600b"/>
+  <text x="1092" y="500" font-size="22" font-weight="700" fill="#d4600b">3/3</text>
+  <text x="40" y="574" font-size="21" font-weight="600" fill="#1f1f1f">Helper: works</text>
+  <rect x="440" y="546" width="0.01" height="40" rx="4" fill="#8a8a8a"/>
+  <text x="452" y="578" font-size="22" font-weight="700" fill="#6b6b6b">0/3</text>
+  <rect x="840" y="546" width="240" height="40" rx="4" fill="#d4600b"/>
+  <text x="1092" y="578" font-size="22" font-weight="700" fill="#d4600b">3/3</text>
+  <text x="40" y="625" font-size="17" font-weight="400" fill="#8a8a8a">"Works" is only checked when the file exists, so without notes (no file in helpers/) it counts as 0.</text>
+</svg>

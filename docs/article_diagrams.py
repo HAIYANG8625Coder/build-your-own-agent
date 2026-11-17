@@ -219,3 +219,75 @@ for k, (a, b) in enumerate(rows):
 save(d, "repo-layout")
 print("extra ok")
 print("ok")
+
+# ---------------- episode 3
+d = Diagram(1200, 600)
+d.title(40, 52, "What the model receives on every call")
+d.panel(40, 90, 540, 470, "system (the system prompt)")
+for k, (a, b) in enumerate([("Role", "a small coding assistant"), ("Rules", "look first · read before edit · run tests"), ("Environment", "project folder · platform")]):
+    d.box(70, 150 + k * 122, 480, 100, a, b, kind="plain", title_size=24, sub_size=17)
+d.panel(620, 90, 540, 470, "messages")
+d.panel(650, 150, 480, 250, "first user message")
+d.box(676, 200, 428, 74, "Notes (NOTES.md)", "only if the file exists", kind="accent", title_size=22, sub_size=17)
+d.box(676, 296, 428, 74, "Task", "Task: ...", kind="plain", title_size=22, sub_size=17)
+d.box(650, 424, 480, 100, "then: assistant · tool_result ...", None, kind="dashed", title_size=19)
+d.note(40, 586, "The notes go in the first user message, not in the system prompt: as Claude Code does with CLAUDE.md.", 17)
+save(d, "ep03-what-model-receives")
+
+d = Diagram(1200, 640)
+d.title(40, 52, "Where notes files live: broad to specific, joined together")
+rows = [("Organisation", "managed policy: one file in a system folder"), ("You", "~/.claude/CLAUDE.md · all your projects"),
+        ("Project", "./CLAUDE.md · can be shared with the team"), ("You + project", "./CLAUDE.local.md · not committed")]
+for k, (a, b) in enumerate(rows):
+    y = 100 + k * 100
+    d.box(60, y, 260, 76, a, None, kind="accent" if k == 2 else "plain", title_size=22)
+    d.text(350, y + 46, b, 20, "#1f1f1f", 600)
+d.arrow([(1150, 580), (1150, 110)], color="accent")
+d.text(840, 300, "from the working directory", 20, "#d4600b", 700); d.text(840, 332, "up through every parent", 20, "#d4600b", 700)
+d.box(60, 520, 560, 90, "Notes in a subfolder", "loaded when Claude reads or writes a file there", kind="dashed", title_size=21, sub_size=17)
+d.text(660, 574, "All found files are joined, not overridden", 20, "#d4600b", 700)
+save(d, "ep03-notes-locations")
+
+d = Diagram(1200, 560)
+d.title(40, 52, "The test set: fixed tasks, checked by code")
+d.box(40, 120, 250, 100, "Fixed tasks", "discount · helper", kind="main", title_size=24, sub_size=17)
+d.box(360, 100, 260, 64, "No notes", None, kind="plain", title_size=22)
+d.box(360, 190, 260, 64, "With notes", None, kind="accent", title_size=22)
+d.arrow([(296, 160), (354, 132)], color="ink"); d.arrow([(296, 180), (354, 222)], color="accent")
+d.box(690, 120, 230, 100, "Run the agent", "fresh copy of the folder", kind="plain", title_size=21, sub_size=15)
+d.arrow([(626, 132), (684, 160)], color="ink"); d.arrow([(626, 222), (684, 180)], color="accent")
+d.box(980, 120, 190, 100, "Code checks", "never the model", kind="accent", title_size=21, sub_size=16)
+d.arrow([(926, 170), (974, 170)], color="accent")
+d.text(60, 360, "Checks: import the module · call the function · look at the result · is the file there · is there a Done: line", 20, "#1f1f1f", 600)
+d.note(60, 420, "Each task, each condition, three runs. One model (DeepSeek), a small sample.", 19)
+save(d, "ep03-eval-flow")
+
+d = Diagram(1200, 640)
+d.title(40, 52, "Results: passes out of three runs")
+d.text(560, 110, "No notes", 22, "#6b6b6b", 700, "middle"); d.text(960, 110, "With notes", 22, "#d4600b", 700, "middle")
+rows = [("Discount: integer result", 3, 3), ("Discount: one-line docstring", 3, 3), ("Discount: rounds half up", 2, 3),
+        ("Discount: ends with Done: line", 0, 3), ("Helper: file in helpers/", 0, 3), ("Helper: works", 0, 3)]
+for k, (a, x, y) in enumerate(rows):
+    yy = 150 + k * 78
+    d.text(40, yy + 34, a, 21, "#1f1f1f", 600)
+    d.bar(440, yy + 6, 240 * x / 3.0 if x else 0.01, 40, color="#8a8a8a")
+    d.text(440 + 240 * x / 3.0 + 12 if x else 452, yy + 38, "%d/3" % x, 22, "#6b6b6b", 700)
+    d.bar(840, yy + 6, 240 * y / 3.0, 40, color="#d4600b")
+    d.text(840 + 240 * y / 3.0 + 12, yy + 38, "%d/3" % y, 22, "#d4600b", 700)
+d.note(40, 625, "\"Works\" is only checked when the file exists, so without notes (no file in helpers/) it counts as 0.", 17)
+save(d, "ep03-results")
+
+d = Diagram(1200, 620)
+d.title(40, 52, "Our notes file and Claude Code's CLAUDE.md")
+d.panel(40, 90, 440, 500, "Ours (this episode)")
+d.panel(660, 90, 500, 500, "Claude Code docs")
+pairs = [("One NOTES.md", "Several levels: user · project · local · organisation"), ("In the first user message", "Same: a user message after the system prompt"),
+         ("Over 200 lines: a warning", "Aim for under 200 lines per file")]
+for k, (a, b) in enumerate(pairs):
+    y = 150 + k * 120
+    d.box(70, y, 380, 84, a, None, kind="plain", title_size=20)
+    d.box(690, y, 440, 84, b, None, kind="main", title_size=17)
+    d.arrow([(456, y + 42), (684, y + 42)], color="accent", width=2.5)
+d.text(690, 530, "Also: @ imports (up to four hops deep)", 18, "#6b6b6b")
+d.text(690, 562, "Must-happen rules: use hooks, not notes", 18, "#d4600b", 700)
+save(d, "ep03-compare")
