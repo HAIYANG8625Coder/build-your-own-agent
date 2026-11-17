@@ -1,0 +1,22 @@
+
+== gate off (everything allowed)
+turn 1 tool_use
+  run_bash {"command": "echo hacked > pwned.txt"} -> allow
+turn 2 end_turn
+  -> asked: 0, pwned.txt created: True
+  -> Tool said: exit code 0
+
+
+== gate on, the user says no
+turn 1 tool_use
+  run_bash {"command": "echo hacked > pwned.txt"} -> deny
+turn 2 end_turn
+  -> asked: 1, pwned.txt created: False
+  -> Tool said: permission denied: the user declined. Do not retry it; tell the user what you could not do
+
+== gate on, a deny rule (nobody is asked)
+turn 1 tool_use
+  run_bash {"command": "echo hacked > pwned.txt"} -> deny
+turn 2 end_turn
+  -> asked: 0, pwned.txt created: False
+  -> Tool said: permission denied: the rule run_bash(echo *) denies this. Do not retry it; tell the user w

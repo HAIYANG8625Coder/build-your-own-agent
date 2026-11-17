@@ -1,0 +1,94 @@
+
+== no rules, default mode | run 1
+turn 1 tool_use
+  run_bash {"command": "ls -la && echo \"---\" && cat *.md 2>/dev/null | head -50"} -> allow
+  run_bash {"command": "find . -type f -not -path \"*/node_modules/*\" -not -path \"*/.git/*\" | head -100" -> allow (asked)
+turn 2 tool_use
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpuoa9d4q4/p/calc.py"} -> allow
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpuoa9d4q4/p/test_calc.py"} -> allow
+  run_bash {"command": "cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpuoa9d4q4/p && (pytho -> allow (asked)
+turn 3 tool_use
+  edit_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpuoa9d4q4/p/calc.py", "old_ -> allow (asked)
+turn 4 tool_use
+  run_bash {"command": "cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpuoa9d4q4/p && python -> allow (asked)
+turn 5 end_turn
+  -> questions asked: 4, tests pass: True
+
+== no rules, default mode | run 2
+turn 1 tool_use
+  run_bash {"command": "ls -la"} -> allow
+  run_bash {"command": "find . -type f -not -path \"*/node_modules/*\" -not -path \"*/.git/*\" | head -50"} -> allow (asked)
+turn 2 tool_use
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpl9395oyf/p/calc.py"} -> allow
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpl9395oyf/p/test_calc.py"} -> allow
+turn 3 tool_use
+  run_bash {"command": "python3 test_calc.py; echo \"exit: $?\""} -> allow (asked)
+turn 4 tool_use
+  edit_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpl9395oyf/p/calc.py", "old_ -> allow (asked)
+turn 5 tool_use
+  run_bash {"command": "python3 test_calc.py; echo \"exit: $?\""} -> allow (asked)
+turn 6 end_turn
+  -> questions asked: 4, tests pass: True
+
+== no rules, default mode | run 3
+turn 1 tool_use
+  run_bash {"command": "find . -type f -not -path '*/node_modules/*' -not -path '*/.git/*' | head -50 && ec -> allow (asked)
+turn 2 tool_use
+  read_file {"path": "calc.py"} -> allow
+  read_file {"path": "test_calc.py"} -> allow
+turn 3 tool_use
+  run_bash {"command": "python3 test_calc.py 2>&1 | tail -5"} -> allow (asked)
+turn 4 tool_use
+  edit_file {"path": "calc.py", "old_text": "    return a - b", "new_text": "    return a + b"} -> allow (asked)
+turn 5 tool_use
+  run_bash {"command": "python3 test_calc.py 2>&1 | tail -5"} -> allow (asked)
+turn 6 end_turn
+  -> questions asked: 4, tests pass: True
+
+== accept-edits + one allow rule | run 1
+turn 1 tool_use
+  run_bash {"command": "ls -la"} -> allow
+  run_bash {"command": "find . -type f -not -path \"*/node_modules/*\" -not -path \"*/.git/*\" | head -50"} -> allow (asked)
+turn 2 tool_use
+  read_file {"path": "calc.py"} -> allow
+  read_file {"path": "test_calc.py"} -> allow
+turn 3 tool_use
+  run_bash {"command": "python3 test_calc.py; echo \"exit: $?\""} -> allow
+turn 4 tool_use
+  edit_file {"path": "calc.py", "old_text": "    return a - b", "new_text": "    return a + b"} -> allow
+turn 5 tool_use
+  run_bash {"command": "python3 test_calc.py; echo \"exit: $?\""} -> allow
+turn 6 end_turn
+  -> questions asked: 1, tests pass: True
+
+== accept-edits + one allow rule | run 2
+turn 1 tool_use
+  run_bash {"command": "ls -la"} -> allow
+  run_bash {"command": "find . -type f -not -path '*/node_modules/*' -not -path '*/.git/*' | head -50"} -> allow (asked)
+turn 2 tool_use
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpicp15qtw/p/calc.py"} -> allow
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpicp15qtw/p/test_calc.py"} -> allow
+turn 3 tool_use
+  run_bash {"command": "python3 test_calc.py; echo \"exit: $?\""} -> allow
+turn 4 tool_use
+  edit_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpicp15qtw/p/calc.py", "old_ -> allow
+turn 5 tool_use
+  run_bash {"command": "python3 test_calc.py; echo \"exit: $?\""} -> allow
+turn 6 end_turn
+  -> questions asked: 1, tests pass: True
+
+== accept-edits + one allow rule | run 3
+turn 1 tool_use
+  run_bash {"command": "ls -la"} -> allow
+  run_bash {"command": "find . -type f -not -path \"*/node_modules/*\" -not -path \"*/.git/*\" | head -50"} -> allow (asked)
+turn 2 tool_use
+  read_file {"path": "calc.py"} -> allow
+  read_file {"path": "test_calc.py"} -> allow
+turn 3 tool_use
+  run_bash {"command": "python3 test_calc.py; echo \"exit: $?\""} -> allow
+turn 4 tool_use
+  edit_file {"path": "calc.py", "old_text": "    return a - b", "new_text": "    return a + b"} -> allow
+turn 5 tool_use
+  run_bash {"command": "python3 test_calc.py; echo \"exit: $?\""} -> allow
+turn 6 end_turn
+  -> questions asked: 1, tests pass: True
