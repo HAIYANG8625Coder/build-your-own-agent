@@ -150,4 +150,4 @@ turn 60 tool_use | context 10899
   context: cleared 1 old tool results
 
 FINAL: 
-saved /Users/michael/Documents/agent-from-scratch/ep05/demo/long-both.csv
+saved <repo>/ep05/demo/long-both.csv

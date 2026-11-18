@@ -165,4 +165,4 @@ turn 60 tool_use | context 6688
   read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpp0ihj4k9/p/src/mod01.py"} -> allow
 
 FINAL: 
-saved /Users/michael/Documents/agent-from-scratch/ep05/demo/long-both.csv
+saved <repo>/ep05/demo/long-both.csv

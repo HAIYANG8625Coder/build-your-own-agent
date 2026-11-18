@@ -41,7 +41,7 @@ def long(mode):
         for t, n, a in agent.run.context:
             f.write('%d,%d,"%s"\n' % (t, n, a))
     print("\nFINAL:", agent.final_text(msgs))
-    print("saved", out)
+    print("saved", os.path.relpath(out, os.path.dirname(HERE)))
 
 
 if __name__ == "__main__":
