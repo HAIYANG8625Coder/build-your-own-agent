@@ -379,3 +379,72 @@ for k, (a, b) in enumerate(pairs):
     d.box(690, y, 440, 84, b, None, kind="main", title_size=16)
     d.arrow([(456, y + 42), (684, y + 42)], color="accent", width=2.5)
 save(d, "ep04-compare")
+
+# ---------------- episode 5
+import csv
+REPEAT = os.path.join(os.path.dirname(HERE), "ep05", "demo", "repeat")
+
+d = Diagram(1200, 520)
+d.title(40, 52, "What fills the window: a real run, turn 25 of 25 (no management)")
+d.panel(40, 100, 1120, 150, "The window, about 25,000 tokens")
+d.bar(60, 150, 34, 70, color="#8a8a8a"); d.bar(94, 150, 1046, 70, color="#d4600b")
+d.text(60, 280, "system prompt + tools + task + notes", 20, "#6b6b6b", 700); d.text(60, 306, "about 800", 24, "#1f1f1f", 800)
+d.text(1140, 280, "24 file reads, about 1,000 tokens each", 20, "#d4600b", 700, "end"); d.text(1140, 306, "about 24,500", 24, "#d4600b", 800, "end")
+d.panel(40, 350, 1120, 140, "Every turn sends the whole history again")
+for k, (lab, w) in enumerate([("turn 5", 220), ("turn 10", 400), ("turn 15", 580), ("turn 20", 760), ("turn 25", 960)]):
+    d.text(70 + k * 218, 412, lab, 17, "#6b6b6b", 700); d.bar(70 + k * 218, 424, 190 * (w / 960), 14, color="#d4600b")
+d.note(70, 470, "The longer the history, the more each turn sends, and the more the model has to sift (context rot).", 19)
+save(d, "ep05-window")
+
+d = Diagram(1200, 520)
+d.title(40, 52, "How big is the window? Add the three numbers the API returns")
+d.box(40, 120, 320, 120, "input_tokens", "new input", kind="plain", title_size=28, sub_size=20)
+d.box(440, 120, 340, 120, "cache_read_input_tokens", "read from the cache", kind="plain", title_size=21, sub_size=20)
+d.box(860, 120, 300, 120, "cache_creation_input_tokens", "written to the cache", kind="plain", title_size=17, sub_size=20)
+d.text(392, 192, "+", 54, "#1f1f1f", 800, "middle"); d.text(820, 192, "+", 54, "#1f1f1f", 800, "middle")
+d.text(200, 290, "225", 60, "#1f1f1f", 800, "middle"); d.text(610, 290, "1,408", 60, "#1f1f1f", 800, "middle"); d.text(1010, 290, "0", 60, "#1f1f1f", 800, "middle")
+d.box(340, 340, 520, 120, "window = 1,633", "DeepSeek endpoint, second call (real)", kind="accent", title_size=40, sub_size=20)
+save(d, "ep05-count")
+
+d = Diagram(1200, 560)
+d.title(40, 52, "Clearing: the newest 3 tool results stay, older ones become one line")
+d.panel(40, 90, 540, 440, "Before"); d.panel(620, 90, 540, 440, "After")
+for k, (name, age) in enumerate([("read mod00.py", "old"), ("read mod01.py", "old"), ("read mod02.py", "old"), ("read mod03.py", "new"), ("read mod04.py", "new"), ("read mod05.py", "new")]):
+    y = 140 + k * 62
+    d.box(60, y, 500, 50, "%s -> about 1,000 tokens" % name, None, kind="plain", title_size=18)
+    d.box(640, y, 500, 50, ("%s -> [old result cleared]" % name) if age == "old" else ("%s -> about 1,000 tokens" % name), None, kind="dashed" if age == "old" else "accent", title_size=18)
+d.note(640, 520, "Every tool call keeps a result, so the pairs stay valid.", 19)
+save(d, "ep05-clear")
+
+d = Diagram(1200, 560)
+d.title(40, 52, "Compaction: the old turns become one summary")
+d.box(40, 130, 300, 120, "Old turns", "all but the last 4", kind="plain", title_size=28, sub_size=18)
+d.box(440, 130, 300, 120, "The model writes a summary", "fixed prompt", kind="accent", title_size=20, sub_size=18)
+d.box(840, 130, 320, 120, "One summary", "task · decisions · files · open items · next step", kind="main", title_size=28, sub_size=15)
+d.arrow([(346, 190), (434, 190)], color="accent", width=3); d.arrow([(746, 190), (834, 190)], color="accent", width=3)
+d.panel(40, 300, 1120, 220, "The message list afterwards")
+d.box(70, 350, 300, 100, "Task + notes", "first message, unchanged", kind="plain", title_size=22, sub_size=17)
+d.box(400, 350, 300, 100, "Summary + files touched", "appended to the first message", kind="accent", title_size=19, sub_size=17)
+d.box(730, 350, 400, 100, "Last 4 turns", "kept whole, calls and results paired", kind="plain", title_size=22, sub_size=17)
+d.note(70, 490, "The same model writes the summary; we do not claim it matches Claude Code's.", 19)
+save(d, "ep05-compact")
+
+def _series(name):
+    return [(int(r["turn"]), int(r["tokens"]), r["action"]) for r in csv.DictReader(open(os.path.join(REPEAT, "%s-1.csv" % name)))]
+d = Diagram(1200, 560)
+d.title(40, 44, "Window size per turn, first real run of each setup (DeepSeek, 24 files)")
+X0, X1, Y0, Y1, TMAX, XMAX = 110, 1150, 500, 120, 27000, 30
+sx = lambda t: X0 + (t - 1) * (X1 - X0) / (XMAX - 1); sy = lambda v: Y0 - v * (Y0 - Y1) / TMAX
+for v in (0, 5000, 10000, 15000, 20000, 25000):
+    d.line(X0, sy(v), X1, sy(v), color="#e2ddd3", width=1); d.text(X0 - 12, sy(v) + 6, "{:,}".format(v), 17, "#6b6b6b", 600, "end")
+for t in (1, 5, 10, 15, 20, 25, 30):
+    d.text(sx(t), Y0 + 28, str(t), 17, "#6b6b6b", 600, "middle")
+d.text((X0 + X1) / 2, Y0 + 52, "turn", 18, "#6b6b6b", 700, "middle")
+for k, (name, label, color) in enumerate([("without", "no management", "#8a8a8a"), ("clear", "clear only", "#d4600b"), ("compact", "compact only", "#2b6cb0"), ("both", "both", "#1f7a4d")]):
+    pts = _series(name)
+    for (t1, v1, _), (t2, v2, _) in zip(pts, pts[1:]):
+        d.line(sx(t1), sy(v1), sx(t2), sy(v2), color=color, width=4)
+    for t, v, a in pts:
+        if a.startswith("compact"): d.dot(sx(t), sy(v), r=7, color=color)
+    d.bar(X0 + 20 + k * 250, 86, 28, 10, color=color); d.text(X0 + 56 + k * 250, 98, label, 19, "#1f1f1f", 700)
+save(d, "ep05-chart")

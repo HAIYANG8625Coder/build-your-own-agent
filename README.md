@@ -74,6 +74,7 @@ Each episode also has a full written article, so you can learn everything in it 
 | 2 · Tools | [articles/ep02-tools.md](articles/ep02-tools.md) |
 | 3 · The system prompt and the notes file | [articles/ep03-system-prompt-and-notes.md](articles/ep03-system-prompt-and-notes.md) |
 | 4 · Permissions | [articles/ep04-permissions.md](articles/ep04-permissions.md) |
+| 5 · Context | [articles/ep05-context.md](articles/ep05-context.md) |
 
 ## Progress
 
@@ -81,9 +82,10 @@ Each episode also has a full written article, so you can learn everything in it 
 |---|---|---|---|
 | 1 | The loop | published | [ep01](ep01/) |
 | 2 | Tools | published | [ep02](ep02/) |
-| 3 | The system prompt and the notes file | scheduled | [ep03](ep03/) |
-| 4 | Permissions | in production | [ep04](ep04/) |
-| 5 to 13 | see the syllabus | planned | added with each episode |
+| 3 | The system prompt and the notes file | published | [ep03](ep03/) |
+| 4 | Permissions | published | [ep04](ep04/) |
+| 5 | Context | scheduled for 2026-11-18 19:00 (SGT) | [ep05](ep05/) |
+| 6 to 13 | see the syllabus | planned | added with each episode |
 
 ## Ground rules
 

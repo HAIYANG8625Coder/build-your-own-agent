@@ -1,0 +1,153 @@
+turn 1 tool_use | context 558
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod00.py"} -> allow
+turn 2 tool_use | context 1569
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod01.py"} -> allow
+turn 3 tool_use | context 2590
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod02.py"} -> allow
+turn 4 tool_use | context 3622
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod03.py"} -> allow
+turn 5 tool_use | context 4646
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod04.py"} -> allow
+turn 6 tool_use | context 5657
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod05.py"} -> allow
+turn 7 tool_use | context 6674
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod06.py"} -> allow
+turn 8 tool_use | context 7685
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod07.py"} -> allow
+turn 9 tool_use | context 8696
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod08.py"} -> allow
+  context: cleared 6 old tool results
+turn 10 tool_use | context 4289
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod09.py"} -> allow
+turn 11 tool_use | context 5300
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod10.py"} -> allow
+turn 12 tool_use | context 6311
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod11.py"} -> allow
+turn 13 tool_use | context 7322
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod12.py"} -> allow
+turn 14 tool_use | context 8333
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod13.py"} -> allow
+  context: cleared 5 old tool results
+turn 15 tool_use | context 4808
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod14.py"} -> allow
+turn 16 tool_use | context 5840
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod15.py"} -> allow
+turn 17 tool_use | context 6864
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod16.py"} -> allow
+turn 18 tool_use | context 7875
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod17.py"} -> allow
+turn 19 tool_use | context 8886
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod18.py"} -> allow
+  context: cleared 5 old tool results
+turn 20 tool_use | context 5361
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod19.py"} -> allow
+turn 21 tool_use | context 6372
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod20.py"} -> allow
+turn 22 tool_use | context 7404
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod21.py"} -> allow
+turn 23 tool_use | context 8415
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod22.py"} -> allow
+  context: cleared 4 old tool results
+turn 24 tool_use | context 5814
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod23.py"} -> allow
+turn 25 tool_use | context 6827
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod00.py"} -> allow
+turn 26 tool_use | context 7974
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod01.py"} -> allow
+turn 27 tool_use | context 8995
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod02.py"} -> allow
+  context: cleared 4 old tool results
+turn 28 tool_use | context 6402
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod03.py"} -> allow
+turn 29 tool_use | context 7493
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod04.py"} -> allow
+turn 30 tool_use | context 8504
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod05.py"} -> allow
+  context: cleared 3 old tool results
+turn 31 tool_use | context 6785
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod06.py"} -> allow
+turn 32 tool_use | context 7796
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod07.py"} -> allow
+turn 33 tool_use | context 8807
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod08.py"} -> allow
+  context: cleared 3 old tool results
+turn 34 tool_use | context 7130
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod09.py"} -> allow
+turn 35 tool_use | context 8155
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod10.py"} -> allow
+  context: cleared 2 old tool results
+turn 36 tool_use | context 7360
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod11.py"} -> allow
+turn 37 tool_use | context 8371
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod12.py"} -> allow
+  context: cleared 2 old tool results
+turn 38 tool_use | context 7555
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod13.py"} -> allow
+turn 39 tool_use | context 8566
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod06.py"} -> allow
+  context: cleared 2 old tool results
+turn 40 tool_use | context 7919
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod15.py"} -> allow
+turn 41 tool_use | context 8942
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod16.py"} -> allow
+  context: cleared 2 old tool results
+turn 42 tool_use | context 8155
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod17.py"} -> allow
+  context: cleared 1 old tool results
+turn 43 tool_use | context 8263
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod18.py"} -> allow
+  context: cleared 1 old tool results
+turn 44 tool_use | context 8371
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod19.py"} -> allow
+  context: cleared 1 old tool results
+turn 45 tool_use | context 8479
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod20.py"} -> allow
+  context: cleared 1 old tool results
+turn 46 tool_use | context 8927
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod21.py"} -> allow
+  context: cleared 1 old tool results
+turn 47 tool_use | context 9056
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod22.py"} -> allow
+  context: cleared 1 old tool results
+turn 48 tool_use | context 9164
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod23.py"} -> allow
+  context: cleared 1 old tool results
+turn 49 tool_use | context 9253
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod00.py"} -> allow
+  context: cleared 1 old tool results
+turn 50 tool_use | context 9650
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod01.py"} -> allow
+  context: cleared 1 old tool results
+turn 51 tool_use | context 9780
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod02.py"} -> allow
+  context: cleared 1 old tool results
+turn 52 tool_use | context 9933
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod03.py"} -> allow
+  context: cleared 1 old tool results
+turn 53 tool_use | context 10075
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod04.py"} -> allow
+  context: cleared 1 old tool results
+turn 54 tool_use | context 10192
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod05.py"} -> allow
+  context: cleared 1 old tool results
+turn 55 tool_use | context 10288
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod06.py"} -> allow
+  context: cleared 1 old tool results
+turn 56 tool_use | context 10405
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod07.py"} -> allow
+  context: cleared 1 old tool results
+turn 57 tool_use | context 10522
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod08.py"} -> allow
+  context: cleared 1 old tool results
+turn 58 tool_use | context 10660
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod09.py"} -> allow
+  context: cleared 1 old tool results
+turn 59 tool_use | context 10782
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod10.py"} -> allow
+  context: cleared 1 old tool results
+turn 60 tool_use | context 10899
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpokgad476/p/src/mod11.py"} -> allow
+  context: cleared 1 old tool results
+
+FINAL: 
+saved /Users/michael/Documents/agent-from-scratch/ep05/demo/long-both.csv
