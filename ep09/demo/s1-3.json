@@ -1,0 +1,51 @@
+{
+ "turns": 16,
+ "tools": [
+  "read_file",
+  "grep",
+  "grep",
+  "memory_write",
+  "read_file",
+  "memory_write",
+  "memory_write",
+  "submit_plan",
+  "todo_write",
+  "edit_file",
+  "read_file",
+  "edit_file",
+  "read_file",
+  "todo_write",
+  "edit_file",
+  "edit_file",
+  "read_file",
+  "run_bash",
+  "todo_write"
+ ],
+ "hook_calls": 12,
+ "memory_index_lines": 0,
+ "main_peak": 6031,
+ "main_spent": 67239,
+ "read_deploy_doc": false,
+ "finished": true,
+ "run": 3,
+ "final": "已完成：\n\n- `pricing.py`：新增 `apply_discount(price, percent)`，返回打折后价格，四舍五入到分（未改 `config.py`）。\n- `tests/test_pricing.py`：新增 `test_discount`（10%、15%、0%、100%）。\n- 测试全部通过（3 个）。\n\n你提到的约定已记入长期记忆：不改 `config.py`、用 `SHOP_<NAME>` 环境变量覆盖设置、staging 用 `STAGING_DEPLOY_KEY` 及地址。",
+ "notes": 3,
+ "facts_saved": 4,
+ "facts": {
+  "config": true,
+  "key": true,
+  "url": true,
+  "chinese": true
+ },
+ "junk_notes": 0,
+ "note_files": [
+  "answer-in-chinese.md",
+  "config-and-env-vars.md",
+  "staging-deploy.md"
+ ],
+ "wrote_memory": [
+  "memory_write",
+  "memory_write",
+  "memory_write"
+ ]
+}

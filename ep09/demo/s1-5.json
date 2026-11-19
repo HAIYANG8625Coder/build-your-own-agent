@@ -1,0 +1,55 @@
+{
+ "turns": 18,
+ "tools": [
+  "read_file",
+  "grep",
+  "grep",
+  "memory_write",
+  "memory_write",
+  "memory_write",
+  "memory_write",
+  "submit_plan",
+  "todo_write",
+  "edit_file",
+  "read_file",
+  "edit_file",
+  "read_file",
+  "todo_write",
+  "read_file",
+  "edit_file",
+  "edit_file",
+  "read_file",
+  "todo_write",
+  "run_bash",
+  "todo_write"
+ ],
+ "hook_calls": 12,
+ "memory_index_lines": 0,
+ "main_peak": 6051,
+ "main_spent": 78248,
+ "read_deploy_doc": false,
+ "finished": true,
+ "run": 5,
+ "final": "完成：\n\n- `pricing.py` 新增 `apply_discount(price, percent)`，返回 `round(price*(1-percent/100), 2)`。\n- `tests/test_pricing.py` 新增 `test_discount`（100 减 10%→90，0%→19.99，10 减 25%→7.5）。\n- 测试：3 个全通过。未动 `config.py`。\n\n已记住：不改 config.py、`SHOP_<NAME>` 环境变量、STAGING_DEPLOY_KEY / https://staging.shop.example、中文简短回复。",
+ "notes": 4,
+ "facts_saved": 4,
+ "facts": {
+  "config": true,
+  "key": true,
+  "url": true,
+  "chinese": true
+ },
+ "junk_notes": 0,
+ "note_files": [
+  "config-py-owned-by-ops.md",
+  "settings-env-override-convention.md",
+  "staging-deploy-facts.md",
+  "user-language-and-style.md"
+ ],
+ "wrote_memory": [
+  "memory_write",
+  "memory_write",
+  "memory_write",
+  "memory_write"
+ ]
+}

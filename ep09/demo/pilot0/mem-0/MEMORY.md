@@ -1,0 +1,3 @@
+- [reply-in-chinese](reply-in-chinese.md) — User wants replies in Chinese, as short as possible
+- [config-py-owned-by-ops](config-py-owned-by-ops.md) — config.py belongs to the ops team and must never be edited
+- [staging-deploy](staging-deploy.md) — Staging deploy key lives in env var STAGING_DEPLOY_KEY; staging URL

@@ -1,0 +1,3 @@
+- [answer-in-chinese](answer-in-chinese.md) — User wants all answers in Chinese, very short
+- [config-and-env-vars](config-and-env-vars.md) — config.py is ops-owned, never edit; override settings via SHOP_&lt;NAME&gt; env vars
+- [staging-deploy](staging-deploy.md) — Staging deploy key env var STAGING_DEPLOY_KEY; staging URL https://staging.shop.example

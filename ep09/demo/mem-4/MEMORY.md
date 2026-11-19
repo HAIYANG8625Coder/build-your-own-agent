@@ -1,0 +1,4 @@
+- [user-language-chinese](user-language-chinese.md) — User wants answers in Chinese, as short as possible
+- [config-py-owned-by-ops](config-py-owned-by-ops.md) — config.py belongs to the ops team; never edit it
+- [shop-env-var-overrides](shop-env-var-overrides.md) — Settings that change are overridden with SHOP_<NAME> env vars
+- [staging-deploy](staging-deploy.md) — Staging address and where its deploy key lives
