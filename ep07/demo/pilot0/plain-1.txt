@@ -1,0 +1,34 @@
+turn 1 tool_use | context 837
+  run_bash {"command": "ls -la /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p"} -> allow
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p/x-assistant/pos -> allow
+turn 2 tool_use | context 2549
+  run_bash {"command": "cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p && grep - -> allow (asked)
+turn 3 tool_use | context 3839
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p/x-assistant/pos -> allow
+  run_bash {"command": "cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p && sed -n -> allow (asked)
+turn 4 tool_use | context 6903
+  run_bash {"command": "cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p && sed -n -> allow (asked)
+turn 5 tool_use | context 8438
+  run_bash {"command": "cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p && sed -n -> allow (asked)
+turn 6 tool_use | context 9983
+  run_bash {"command": "cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p && sed -n -> allow (asked)
+turn 7 tool_use | context 11518
+  run_bash {"command": "cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p && sed -n -> allow (asked)
+turn 8 tool_use | context 12895
+  run_bash {"command": "cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p/x-assista -> allow
+turn 9 tool_use | context 14757
+  run_bash {"command": "cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p/x-assista -> allow (asked)
+turn 10 tool_use | context 15370
+  run_bash {"command": "cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p/x-assista -> allow (asked)
+turn 11 tool_use | context 15845
+  run_bash {"command": "cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p/x-assista -> allow (asked)
+turn 12 tool_use | context 16341
+  run_bash {"command": "cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p/x-assista -> allow (asked)
+turn 13 tool_use | context 17203
+  run_bash {"command": "cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p/x-assista -> allow (asked)
+turn 14 tool_use | context 17663
+  run_bash {"command": "cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp7mvmni06/p/x-assista -> allow
+turn 15 max_tokens | context 18433
+turn 16 end_turn | context 18452
+
+ROWS 27/27  TAGS 21/27  turns 15  main peak 18452 tokens  helpers []

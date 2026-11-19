@@ -1,0 +1,58 @@
+{
+ "setup": "sub",
+ "run": 3,
+ "turns": 5,
+ "main_peak": 19407,
+ "main_spent": 166654,
+ "subs": [],
+ "asked": [
+  "run_bash",
+  "run_bash"
+ ],
+ "saved_file": true,
+ "plans": [
+  "Write `x-assistant/weekly-summary.md` with a 25-row table (date | platform | title | hashtags) for Xiaohongshu + YouTube posts 2026-11-13..2026-11-19, hashtags taken from the last line of each entry's post file. Then reply with the same table.\n\nRows: 11-13 xhs video-styles, 11-13 xhs tg-stable (the entry was edited; live file is `xhs-tg-stable-post.md`, 5 tags), 11-13 xhs msft-outage, 11-14 xhs harness, harness-anime, sg-top-income, 11-15 xhs msft-root-cause, nvda-vs-amd, always-on-agents, stats-agent, always-on-deep-dive-en, 11-16 xhs ai-jobs, 11-17 xhs agent-memory, sg-work-passes, ep1, ep2 + yt ep2, 11-18 xhs ep3, xhs ep4, xhs ep5 + yt ep3, yt ep4, yt ep5 (these were scheduled for 11-18 and have gone live), 11-19 xhs ep6 (v2) + yt ep6 (v2).\n\nExcluded: X/Twitter entries, plain date headings, and the deleted ep6 v1 posts (11-19 08:23/08:45)."
+ ],
+ "todos_final": [],
+ "context_actions": [
+  "compact: 2 messages -> summary (about 13031 -> 11876 tokens)",
+  "compact: 2 messages -> summary (about 15908 -> 16038 tokens)",
+  "compact: 2 messages -> summary (about 18421 -> 17535 tokens)",
+  "compact: 2 messages -> summary (about 22017 -> 17365 tokens)",
+  "cut off, asked again",
+  "compact: 2 messages -> summary (about 19099 -> 14866 tokens)",
+  "compact: 2 messages -> summary (about 16232 -> 12243 tokens)",
+  "compact: 2 messages -> summary (about 13634 -> 11902 tokens)",
+  "compact: 2 messages -> summary (about 12240 -> 7773 tokens)"
+ ],
+ "tools": [
+  "read_file",
+  "read_file",
+  "grep",
+  "grep",
+  "grep",
+  "grep",
+  "grep",
+  "grep",
+  "grep",
+  "grep",
+  "grep",
+  "grep",
+  "grep",
+  "grep",
+  "grep",
+  "submit_plan",
+  "run_bash",
+  "run_bash"
+ ],
+ "rows": 25,
+ "rows_of": 27,
+ "tags": 25,
+ "tags_of": 27,
+ "missing": [
+  "2026-11-19 Xiaohongshu 从零做Agent第6集：计划和清单",
+  "2026-11-19 YouTube 从零到1做Agent第6集：计划模式和任务清单｜真实测试"
+ ],
+ "finished": true,
+ "final": "Saved to `x-assistant/weekly-summary.md` (25 rows).\n\n| date | platform | title | hashtags |\n|---|---|---|---|\n| 2026-11-13 | Xiaohongshu | Claude Code做视频｜4种风格 | #ClaudeCode #AI视频 #视频剪辑 #HeyGen #AI工具 |\n| 2026-11-13 | Xiaohongshu | Claude Code遥控不掉线｜3步 | #ClaudeCode #AI编程 #Telegram #AIAgent #效率工具 |\n| 2026-11-13 | Xiaohongshu | 微软宕机20多小时，到底怎么回事儿？ | #微软宕机 #微软 #Outlook #Office365 #科技新闻 |\n| 2026-11-14 | Xiaohongshu | AI Agent：产品为什么不是模型？ | #AIAgent #智能体 #ClaudeCode #AI编程 #Harness |\n| 2026-11-14 | Xiaohongshu | 开源Agent四大流派｜你敢让它跑命令吗 | #AIAgent #智能体 #开源 #ClaudeCode #Harness |\n| 2026-11-14 | Xiaohongshu | 新加坡收入最高的10个行业｜2025 | #新加坡 #新加坡工作 #新加坡收入 #新加坡生活 #新加坡薪资 |\n| 2026-11-15 | Xiaohongshu | 微软宕机初步原因出了：不是被黑 | #微软宕机 #微软 #Outlook #Office365 #科技新闻 |\n| 2026-11-15 | Xiaohongshu | 英伟达vs AMD｜27年数据谁更能涨 | #英伟达 #AMD #美股 #芯片 #数据分析 |\n| 2026-11-15 | Xiaohongshu | AI Agent一直在线？5个部件看懂 | #AIAgent #ClaudeCode #Anthropic #AI编程 #智能体 |\n| 2026-11-15 | Xiaohongshu | AI Agent一直在线｜我真做了一个 | #AIAgent #ClaudeCode #Anthropic #AI编程 #智能体 |\n| 2026-11-15 | Xiaohongshu | 英文版｜Always-on Agent逐节拆解（中字） | #Agent #Anthropic #Claude #AI工程 #英语听力 #人工智能 |\n| 2026-11-16 | Xiaohongshu | AI会抢工作吗｜Anthropic数据 | #AI #就业 #人工智能 #Anthropic #职场 |\n| 2026-11-17 | Xiaohongshu | Anthropic：Agent记忆怎么做 | #Agent #Anthropic #Claude #AI工程 #大模型 #人工智能 |\n| 2026-11-17 | Xiaohongshu | 新加坡工作准证全解析2027 | #新加坡 #工作准证 #新加坡工作 #EP #MOM #出国工作 |\n| 2026-11-17 | Xiaohongshu | 从零做Agent第1集：循环 | #Agent #ClaudeCode #AI编程 #Python #大模型 #AI工程 |\n| 2026-11-17 | Xiaohongshu | 从零做Agent第2集：工具 | #Agent #ClaudeCode #AI编程 #Python #大模型 #AI工程 |\n| 2026-11-17 | YouTube | 从零到1做Agent第2集：工具｜读文件、搜索、改代码、跑命令 | #Agent #ClaudeCode #AI编程 |\n| 2026-11-18 | Xiaohongshu | 从零做Agent第3集：笔记 | #Agent #ClaudeCode #AI编程 #Python #大模型 #AI工程 |\n| 2026-11-18 | Xiaohongshu | 从零做Agent第4集：权限 | #Agent #ClaudeCode #AI编程 #Python #大模型 #AI工程 |\n| 2026-11-18 | Xiaohongshu | 从零做Agent第5集：上下文 | #Agent #ClaudeCode #AI编程 #Python #大模型 #AI工程 |\n| 2026-11-18 | YouTube | 从零到1做Agent第3集：笔记｜系统提示和 NOTES.md | #Agent #ClaudeCode #AI编程 |\n| 2026-11-18 | YouTube | 从零到1做Agent第4集：权限｜放行、询问、拒绝 | #Agent #ClaudeCode #AI编程 |\n| 2026-11-18 | YouTube | 从零到1做Agent第5集：上下文｜数 token、清旧结果、压缩 | #Agent #ClaudeCode #AI编程 |\n| 2026-11-19 | Xiaohongshu | 从零做Agent第6集：计划模式和清单（重做版） | #Agent #ClaudeCode #AI编程 #Python #大模型 #AI工程 |\n| 2026-11-19 | YouTube | 从零到1做Agent第6集：计划模式和任务清单｜是什么、为什么、有没有用 | #Agent #ClaudeCode #AI编程 |\n\nNotes:\n- 2026-11-13 遥控 entry was edited the same day; I used the live version's file (`xhs-tg-stable-post.md`, 5 hashtags) rather than the stale `xhs-tg-disconnect-post.md` (4).\n- 2026-11-18 items were scheduled that morning and have gone live, so they're included.\n- Deleted duplicates left out: X/Twitter cross-posts, the 11-19 08:23 Xiaohongshu ep6 and 08:45 YouTube ep6 (`OwczdWzZOhw`); only the re-shot ep6 versions are listed."
+}

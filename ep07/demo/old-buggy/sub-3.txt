@@ -1,0 +1,42 @@
+turn 1 tool_use | context 997
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjr5oxuj_/p/NOTES.md"} -> allow
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjr5oxuj_/p/x-assistant/pos -> allow
+turn 2 tool_use | context 2727
+  grep {"pattern": "^## 2026-11-", "path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tm -> allow
+  grep {"pattern": "^## ", "path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjr5oxuj -> allow
+turn 3 tool_use | context 3024
+  grep {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjr5oxuj_/p/x-assistant", " -> allow
+turn 4 tool_use | context 4455
+  grep {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjr5oxuj_/p/x-assistant", " -> allow
+  grep {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjr5oxuj_/p/x-assistant", " -> allow
+turn 5 tool_use | context 10313
+  grep {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjr5oxuj_/p/x-assistant", " -> allow
+  grep {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjr5oxuj_/p/x-assistant", " -> allow
+  context: compact: 2 messages -> summary (about 13031 -> 11876 tokens)
+turn 6 tool_use | context 13066
+  grep {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjr5oxuj_/p/x-assistant", " -> allow
+  grep {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjr5oxuj_/p/x-assistant", " -> allow
+  context: compact: 2 messages -> summary (about 15908 -> 16038 tokens)
+turn 7 tool_use | context 17556
+  grep {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjr5oxuj_/p/x-assistant", " -> allow
+  context: compact: 2 messages -> summary (about 18421 -> 17535 tokens)
+turn 8 tool_use | context 19241
+  grep {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjr5oxuj_/p/x-assistant", " -> allow
+  grep {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjr5oxuj_/p/x-assistant", " -> allow
+  context: compact: 2 messages -> summary (about 22017 -> 17365 tokens)
+turn 9 max_tokens | context 19388
+turn 10 tool_use | context 19407
+  grep {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjr5oxuj_/p/x-assistant", " -> allow
+  context: compact: 2 messages -> summary (about 19099 -> 14866 tokens)
+turn 11 tool_use | context 17388
+  submit_plan {"plan": "Write `x-assistant/weekly-summary.md` with a 25-row table (date | platform | title | h -> allow
+  context: compact: 2 messages -> summary (about 16232 -> 12243 tokens)
+turn 12 tool_use | context 15074
+  run_bash {"command": "cat > x-assistant/weekly-summary.md <<'EOF'\n# Weekly posting summary \u2014 2026-1 -> allow (asked)
+  context: compact: 2 messages -> summary (about 13634 -> 11902 tokens)
+turn 13 tool_use | context 14453
+  run_bash {"command": "sed -n '1,4p;28,29p' x-assistant/weekly-summary.md"} -> allow (asked)
+  context: compact: 2 messages -> summary (about 12240 -> 7773 tokens)
+turn 14 end_turn | context 9565
+
+ROWS 25/27  TAGS 25/27  turns 5  main peak 19407 tokens  context actions 9  asked 2  helpers []
