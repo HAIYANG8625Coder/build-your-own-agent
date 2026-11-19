@@ -1,0 +1,39 @@
+{
+ "level": "work",
+ "setup": "todo",
+ "run": 1,
+ "turns": 18,
+ "edits": 7,
+ "score": 11,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": false
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [],
+ "final": "All 10 rule checks now pass. Summary of what I found and fixed:\n\n| What was wrong | What I changed |\n|---|---|\n| `.claude/skills/voice-video` was a broken symlink (pointed at `skills/voice_video`) | Re-created it pointing to `../../plugins/avatar-video/skills/voice-video` |\n| No `.claude/skills/x-image` link for `plugins/x-assistant/skills/x-image` | Added the symlink |\n| No `.claude/agents/x-reviewer.md` link for `plugins/x-assistant/agents/x-reviewer.md` | Added the symlink |\n| `plugins/x-assistant/skills/xhs-post/SKILL.md` frontmatter had `name` but no `description` | Added `description` |\n| `plugins/avatar-video/agents/video-scripter.md` frontmatter had no `name` | Added `name: video-scripter` |\n| `plugins/diagrams/.claude-plugin/plugin.json` had `\"name\": \"diagram\"` (folder is `diagrams`) | Changed to `\"name\": \"diagrams\"` |\n| `plugins/diagrams` was missing from `.claude-plugin/marketplace.json` | Added the marketplace entry (source + description) |\n| `plugins/outlook-email/.claude-plugin/plugin.json` had no `version` | Added `\"version\": \"0.1.0\"` |\n| `plugins/avatar-video/.claude-plugin/plugin.json` had no `description` | Added `\"description\": \"The avatar-video plugin.\"` |\n| README had no row for `plugins/x-assistant/skills/youtube-post/` or `plugins/avatar-video/agents/video-reviewer.md` | Added both table rows |\n\nVerified afterwards: every skill/agent has frontmatter with `name` + `description`, every `plugin.json` has name matching its folder plus version and description, every plugin is in the marketplace, no broken symlinks, and every skill/subagent has a README row.\n\nOne thing I did **not** fix, because it needs your decision:\n\n- `.claude/skills/quick-notes/` is a real directory (not a symlink) with a `SKILL.md`, created directly in `.claude/` — that breaks the \"skills live in `plugins/<plugin>/skills/` and get linked\" rule. It isn't one of the four third-party skills, and there's no existing plugin it clearly belongs to (x-assistant / avatar-video / diagrams / outlook-email). Tell me which plugin it should live in and I'll move it and link it.\n\n(The third-party skills `heygen-avatar`, `heygen-video`, `hyperframes`, `media-use` were left untouched.)"
+}

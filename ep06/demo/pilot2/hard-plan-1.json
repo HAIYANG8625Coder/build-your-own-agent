@@ -1,0 +1,46 @@
+{
+ "level": "hard",
+ "setup": "plan",
+ "run": 1,
+ "turns": 18,
+ "edits": 0,
+ "score": 16,
+ "of": 17,
+ "checks": {
+  "1 rename to order_total everywhere": true,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true,
+  "10 SHIPPING_FEE = 5.0 in config": true,
+  "11 shipping_cost(): free over 100": true,
+  "12 cart summary shows shipping": true,
+  "13 report has version header": true,
+  "14 test for shipping_cost": false,
+  "15 README documents shipping": true,
+  "16 CHANGELOG has 5+ bullets for 1.1.0": true,
+  "17 cli --version prints version": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "## Plan: shop project upgrade to v1.1.0\n\nNote: read tools are blocked in plan mode, so file contents below are inferred. Step 0 is to actually read everything before editing.\n\n### Step 0 — Reconnaissance (read only)\n- List/read all files: `pricing.py`, `config.py`, `README.md`, `CHANGELOG.md`, `cli.py`, `tests/`, plus any report/cart module (e.g. `report.py`, `cart.py`).\n- Run `python3 -m unittest discover -s tests` to capture the current baseline (what passes/fails today).\n\n### Step 1 — Rename `calc_total` → `order_total`\n- Update the definition in `pricing.py` and every call site (cli, cart/report modules), tests, and docs/README mentions.\n- Keep no backwards-compat alias unless a test demands it (task says \"everywhere\").\n\n### Step 2 — Tax rate to 9%\n- Change the rate constant in `config.py` (and hardcoded 0.08 copies in pricing/docstrings/tests) to `0.09`.\n- Fix any test asserting old totals.\n\n### Step 3 — `config.py`: `SHIPPING_FEE = 5.0` + version bump\n- Set version to `\"1.1.0\"` (or `VERSION = \"1.1.0\"`, matching existing style).\n- Add `SHIPPING_FEE = 5.0`.\n\n### Step 4 — `pricing.py`: add `apply_discount(total, percent)`\n- Returns `round(total - total * percent / 100, 2)`; handle percent as a per-number (e.g. `10` for 10%).\n\n### Step 5 — `shipping.py` with `shipping_cost(total)`\n- Returns `0` when `total > 100`, else `SHIPPING_FEE` (imported from `config`). Free shipping strictly over 100.\n\n### Step 6 — Cart summary shows shipping\n- Extend the summary string to append `, shipping 5.00` using f-string `:.2f` formatting.\n\n### Step 7 — Report header shows version\n- First line becomes `Sales report v1.1.0`, built from the version in `config.py`.\n\n### Step 8 — CLI banner + `--version`\n- Banner prints the new version.\n- `python3 cli.py --version` prints only the version string (no banner, no extra blank lines) and exits 0.\n\n### Step 9 — Tests\n- Add `tests/test_apply_discount.py` (or add cases to existing pricing test file): normal percent, 0%, rounding to 2 decimals.\n- Add `tests/test_shipping.py`: total > 100 → 0, total == 100 → 5.0, total < 100 → 5.0.\n- Update any existing tests broken by rename/tax/banner/summary changes.\n\n### Step 10 — Docs\n- README: state 9% tax rate, document the shipping rule (free over 100, otherwise 5.00 fee), show the updated summary format and `--version` usage.\n- CHANGELOG: `## 1.1.0` section with at least 5 separate bullets (rename, tax 9%, apply_discount, shipping.py + fee, version bump/banner, report header, --version).\n\n### Step 11 — Verify\n- Run `python3 -m unittest discover -s tests` until green.\n- Run `python3 cli.py --version` and confirm output is exactly `1.1.0`.\n- Read back each edited file to confirm changes landed.\n\nReport back anything I can't do (e.g. denied edits) rather than working around it."
+ ],
+ "final": "All 16 changes are done and the suite is green: **11 tests, OK** (baseline was 2).\n\n**Code**\n- `config.py` — `VERSION = \"1.1.0\"`, `TAX_RATE = 0.09`, `SHIPPING_FEE = 5.0`\n- `pricing.py` — `calc_total` renamed to `order_total` everywhere (code, tests, README); added `apply_discount(total, percent)` returning `round(total - total*percent/100, 2)`\n- `shipping.py` (new) — `shipping_cost(total)`: `0` when `total > 100`, else `SHIPPING_FEE`\n- `cart.py` — uses `order_total`; summary now `\"2 items, total 32.70, shipping 5.00\"`\n- `report.py` — first line `Sales report v1.1.0`, then the per-order lines\n- `cli.py` — banner `shop v1.1.0`; `--version` short-circuits and prints only the version\n\n**Tests**\n- `tests/test_pricing.py` — updated for 9% tax (`109.0`), new summary format, plus `apply_discount` cases (10% off 100, rounding, 0%)\n- `tests/test_shipping.py` (new) — fee below/at the 100 threshold, free over it\n- `tests/test_report_cli.py` (new) — report header and that `cli.py --version` outputs exactly `1.1.0\\n`\n\n**Docs**\n- `README.md` — 9% tax, `apply_discount`, shipping rule (free over 100, else 5.00), example summary, `--version`, report header\n- `CHANGELOG.md` — `## 1.1.0` with 8 bullets\n\nVerified manually: `python3 cli.py --version` → `1.1.0\\n` only (checked with `od -c`); normal run prints banner + summary; report starts with `Sales report v1.1.0`. The only remaining `calc_total` string is the changelog line describing the rename."
+}

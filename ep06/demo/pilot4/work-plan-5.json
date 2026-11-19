@@ -1,0 +1,30 @@
+{
+ "level": "work",
+ "setup": "plan",
+ "run": 5,
+ "turns": 15,
+ "edits": 10,
+ "score": 12,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": true
+ },
+ "finished": true,
+ "todos_final": [],
+ "plans": [
+  "## Caveat first\n\nI could not look around yet: in plan mode both `read_file` and `grep` were refused (\"not available in plan mode\"). So I have zero information about this repo's contents or its `CLAUDE.md` rules. Everything below is the process I'll follow, not a list of known problems. Also note the `todo_write` tool mentioned in my instructions is not actually available to me here, so I'll track steps inline in my replies instead.\n\n## Plan\n\n1. **Read `CLAUDE.md`** and write out its rules explicitly in my reply, numbered, so you can see exactly what I'm checking against — and so I can't quietly drift from them later.\n\n2. **Inventory the repo**: list files, identify languages/build system, and look for config that encodes rules (linters, editorconfig, CI).\n\n3. **Scan for violations**, rule by rule, using `grep` to find candidate spots and `read_file` to confirm each one actually breaks a rule before touching it. I will not edit anything on a grep hit alone.\n\n4. **Fix only real violations**, one rule at a time, keeping each change minimal and in the existing style of the file.\n\n5. **Verify**: re-read every file I changed, and run the project's own test/lint command if one exists. If no test command exists or tests can't run in this environment, I'll say so plainly rather than claiming verification I didn't do.\n\n6. **Report** with the short table you asked for:\n\n   | Rule broken | What was wrong | What I changed |\n   |---|---|---|\n\n## What I need from you\n\nApprove the plan and I'll start at step 1. Two things worth flagging up front:\n\n- If `CLAUDE.md` contains rules that are judgement calls (naming, structure, comment style) rather than hard errors, I'll list the borderline cases in the table with a note instead of silently rewriting working code.\n- I won't try to get around the plan-mode restriction, and I won't guess at findings. If a rule turns out to be genuinely ambiguous or the fix would mean a real behaviour change, I'll flag it and ask rather than decide for you."
+ ],
+ "final": "No test suite here (pure markdown/JSON plugin repo, no `.git` either). So I'll write a checker that mechanically enforces all six rules and run it."
+}

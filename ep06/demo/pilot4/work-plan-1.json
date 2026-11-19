@@ -1,0 +1,38 @@
+{
+ "level": "work",
+ "setup": "plan",
+ "run": 1,
+ "turns": 28,
+ "edits": 11,
+ "score": 12,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "I could not read anything yet (read_file and grep are both denied in plan mode), so this plan is about how I will find and fix the violations, not a list of known violations.\n\n1. Read CLAUDE.md and turn each rule into a concrete, checkable item (naming, file layout, imports, tests, commit/formatting conventions, allowed commands, etc.). Write the rule list into my reply so it survives later tool output truncation.\n2. Inventory the repo: list files, then grep for the patterns the rules care about (e.g. banned imports or APIs, naming conventions, file placement, required test files, leftover TODOs/debug output, secrets).\n3. Read every file that looks suspicious in full before touching it.\n4. Fix violations one at a time, smallest change that satisfies the rule. Stop and ask instead of guessing if a rule is genuinely ambiguous or if a fix would change behaviour beyond the rule.\n5. Run the project's tests/linters (whatever CLAUDE.md specifies) after the fixes, and re-read each edited file to confirm.\n6. Report a short table: rule broken | what was wrong | what I changed. If a rule cannot be fixed safely or a command is denied, I will name it instead of working around it."
+ ],
+ "final": "All 5 rules verified programmatically at the end: 0 failures across 11 skills, 4 subagents, 5 plugins.\n\n| Rule | What was wrong | What I changed |\n|---|---|---|\n| plugin.json | `avatar-video` had no `description` | Added `\"description\": \"The avatar-video plugin.\"` |\n| plugin.json | `outlook-email` had no `version` | Added `\"version\": \"0.1.0\"` (matching siblings) |\n| plugin.json | `diagrams` declared `\"name\": \"diagram\"` — didn't match its folder | Changed to `\"diagrams\"` |\n| marketplace.json | `diagrams` plugin was missing entirely | Added entry with `source: \"./plugins/diagrams\"` |\n| Frontmatter | `xhs-post/SKILL.md` had no `description` | Added one in the existing house style |\n| Frontmatter | `agents/video-scripter.md` had no `name` | Added `name: video-scripter` |\n| Symlinks | `.claude/skills/voice-video` was broken (pointed at non-existent `skills/voice_video`) | Repointed to `skills/voice-video` |\n| Symlinks | No `.claude/skills/x-image` link | Created it |\n| Symlinks | No `.claude/agents/x-reviewer.md` link | Created it |\n| Skills location | `.claude/skills/quick-notes/` was a **real directory** in `.claude/`, not a symlink to a plugin | Moved it to `plugins/quick-notes/skills/quick-notes/`, added `plugins/quick-notes/.claude-plugin/plugin.json`, marketplace entry, and symlinked it |\n| README.md | Missing rows for `youtube-post`, `video-reviewer.md`, and `quick-notes` | Added all three (table now covers all 11 skills + 4 subagents) |\n\nTwo things to flag:\n\n- **The `quick-notes` fix was a judgement call.** The rule forbids skills living in `.claude/` but doesn't say which plugin should own one, and there was no obvious home. I created a new `plugins/quick-notes/` plugin (same convention as `outlook-email`). I moved rather than deleted the file so nothing was lost, and the content is byte-identical — but if you meant it to belong to an existing plugin, say which and I'll relocate it.\n- **This folder is not a git repository** (`git rev-parse` fails: no `.git` anywhere up the tree), so I couldn't use `git mv` and couldn't verify anything about the pending commit itself. The symlink changes are also invisible to a plain `git add`-style review of file contents, so check `git status`/`git diff` for the renames and new links before you commit.\n\nThird-party skills (`heygen-avatar`, `heygen-video`, `hyperframes`, `media-use`) were left untouched."
+}

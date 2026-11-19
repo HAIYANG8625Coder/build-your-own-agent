@@ -1,0 +1,33 @@
+{
+ "setup": "plan",
+ "run": 2,
+ "turns": 15,
+ "edits": 8,
+ "score": 8,
+ "checks": {
+  "1 rename to order_total everywhere": false,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "## Plan (shop project)\n\nNote: read tools are blocked in plan mode, so I could not inspect the code yet. Step 0 is to read everything before any edit.\n\n### Step 0 — Survey\n- Read `pricing.py`, `config.py`, `tests/`, the CLI entry point (likely `main.py`/`cli.py`), `README.md`, `CHANGELOG.md`, and `NOTES.md`.\n- Locate every occurrence of `calc_total`, the tax rate, the version string, and the banner text.\n\n### Step 1 — Rename `calc_total` → `order_total`\n- Update the definition in `pricing.py`, all call sites (CLI, any other modules), tests, and docs/README references. Keep behaviour identical.\n\n### Step 2 — Raise tax rate to 9%\n- Change the tax constant in `pricing.py` (e.g. `0.06`/`6` → `0.09`/`9`) and any test expectations that hard-code the old rate.\n- Keep the existing rounding behaviour.\n\n### Step 3 — README\n- Update the stated tax rate to 9%.\n- Reflect the `order_total` name and mention `apply_discount` if the README documents the API.\n\n### Step 4 — `apply_discount(total, percent)` in `pricing.py`\n- Returns `total - total * percent / 100`, rounded to 2 decimals via `round(..., 2)`.\n- Add a docstring; no new dependencies.\n\n### Step 5 — Test for `apply_discount`\n- Add a case to the existing test file (matching current test style) asserting e.g. `apply_discount(100.0, 10)` == `90.0` and a rounding case such as `apply_discount(19.99, 15)` == `16.99`.\n\n### Step 6 — Version bump\n- Set version to `1.1.0` in `config.py`.\n\n### Step 7 — CHANGELOG\n- Add a `1.1.0` section at the top, matching the existing format, listing: rename of `calc_total` to `order_total`, tax rate raised to 9%, new `apply_discount` helper.\n\n### Step 8 — CLI banner\n- Make the banner print the version from `config.py` (import it) so it shows `1.1.0` without a duplicated literal; if it already imports config, the bump covers it.\n\n### Step 9 — Verify\n- Run `python3 -m unittest discover -s tests` from the project root and confirm all tests pass.\n- Re-read each edited file to confirm no stale `calc_total` or old tax rate remains.\n\n### Report\nIf any step can't be completed as described (e.g. no banner exists, or a tool is denied), I'll say so explicitly rather than working around it.\n"
+ ],
+ "final": "All 8 changes are done and verified (4 tests pass).\n\n**What changed**\n- **pricing.py** — `calc_total` → `order_total`; added `apply_discount(total, percent)` returning `round(total - total*percent/100, 2)`.\n- **cart.py, report.py** — imports/calls renamed to `order_total` (comment in cart updated too).\n- **config.py** — `VERSION = \"1.1.0\"`, `TAX_RATE = 0.09`.\n- **tests/test_pricing.py** — renamed to `order_total`, expectations updated for 9% (107.0 → 109.0, \"total 109.00\"), plus `test_apply_discount` (100, 10 → 90.0) and a rounding case (19.99, 15 → 16.99).\n- **README.md** — `order_total`, tax rate 9%, documents `apply_discount`, version 1.1.0.\n- **CHANGELOG.md** — new `1.1.0` section above `1.0.0`.\n- **cli.py** — banner now builds from `config.VERSION` instead of a hard-coded string, so it prints `shop v1.1.0`.\n\n**Verification**\n- `python3 -m unittest discover -s tests` → `Ran 4 tests ... OK`\n- `python3 cli.py 10 20` → `shop v1.1.0` / `2 items, total 32.70`\n- Searched for stale `calc_total`/`107`/`0.07`/`7%`: the only remaining mention is the intentional `1.1.0` changelog line \"Renamed `calc_total` to `order_total`.\"\n\nOne note on plan mode: I couldn't read or grep files before submitting the plan (those tools were blocked), so the plan was based on the task description; I surveyed the code as the first step after approval."
+}

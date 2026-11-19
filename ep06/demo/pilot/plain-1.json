@@ -1,0 +1,22 @@
+{
+ "setup": "plain",
+ "run": 1,
+ "turns": 8,
+ "edits": 10,
+ "score": 8,
+ "checks": {
+  "1 rename to order_total everywhere": false,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true
+ },
+ "finished": true,
+ "todos_final": [],
+ "plans": [],
+ "final": "All 3 tests pass. The only remaining matches for old values are intentional: the CHANGELOG note describing the rename and the historical `1.0.0` entry.\n\nSummary of changes:\n\n1. **Rename** `calc_total` → `order_total` in `pricing.py`, `cart.py` (import + call + comment), `report.py` (import + call), `tests/test_pricing.py`, and `README.md`.\n2. **Tax rate** 0.07 → 0.09 in `config.py`; test expectations updated (107 → 109).\n3. **README** now states \"The tax rate is 9%\".\n4. **`apply_discount(total, percent)`** added to `pricing.py`, returning `round(total * (1 - percent/100), 2)`.\n5. **New test** `test_apply_discount` covering 10% off 100, 15% off 50, the 9.99/33% rounding case, and a 0% no-op.\n6. **`config.py` VERSION** bumped to \"1.1.0\".\n7. **CHANGELOG.md** has a new `## 1.1.0` section.\n8. **Banner** in `cli.py` is now built from `config.VERSION` instead of hardcoded, printing `shop v1.1.0`.\n\nVerified output: CLI banner shows `shop v1.1.0`, cart/report totals reflect 9% tax (`109.00` on 100)."
+}

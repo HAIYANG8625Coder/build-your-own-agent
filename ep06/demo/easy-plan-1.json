@@ -1,0 +1,35 @@
+{
+ "level": "easy",
+ "setup": "plan",
+ "run": 1,
+ "turns": 20,
+ "edits": 11,
+ "score": 9,
+ "broke": [],
+ "of": 9,
+ "checks": {
+  "1 rename to order_total everywhere": true,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "Files: config.py, pricing.py, cart.py, report.py, cli.py, README.md, CHANGELOG.md, tests/test_pricing.py\n\n1. Rename calc_total -> order_total everywhere:\n   - pricing.py: def order_total(prices)\n   - cart.py: import + call (also the comment mentioning calc_total)\n   - report.py: import + call\n   - tests/test_pricing.py: import + call\n   - README.md: `order_total(prices)` bullet\n\n2. Raise tax to 9%:\n   - config.py: TAX_RATE = 0.09\n   - README.md: \"The tax rate is 9%.\"\n   - tests: expectations that depend on tax must change too:\n     order_total([100]) == 109.0, cart summary \"2 items, total 109.00\"\n\n3. Add to pricing.py:\n   def apply_discount(total, percent):\n       \"\"\"Return the total minus percent percent, rounded to cents.\"\"\"\n       return round(total * (1 - percent / 100.0), 2)\n\n4. Add test_apply_discount in tests/test_pricing.py, e.g. apply_discount(100, 10) == 90.0\n   and a rounding case apply_discount(19.99, 15) == 16.99.\n\n5. Version bump: config.py VERSION = \"1.1.0\"; cli.py BANNER built from VERSION\n   (from config import VERSION; BANNER = \"shop v%s\" % VERSION) so it shows shop v1.1.0\n   and cannot drift again. README \"Current version: 1.1.0\".\n\n6. CHANGELOG.md: add a \"## 1.1.0\" section above 1.0.0 listing renamed order_total,\n   tax 9%, new apply_discount.\n\n7. Verify: python3 -m unittest discover -s tests (must pass), plus run\n   python3 cli.py 10 20 to confirm the banner shows v1.1.0, and re-grep for any\n   leftover calc_total / 7% / 1.0.0 references."
+ ],
+ "final": "All 8 changes are done and the tests pass (5 tests, OK).\n\n- **Rename**: `calc_total` → `order_total` in `pricing.py`, `cart.py` (incl. its comment), `report.py`, `tests/test_pricing.py`, and the README.\n- **Tax 9%**: `TAX_RATE = 0.09` in `config.py`; tax-dependent test expectations updated (`109.0` / `\"2 items, total 109.00\"`).\n- **README**: says the tax rate is 9%, documents both functions, and shows version 1.1.0.\n- **`apply_discount(total, percent)`** added to `pricing.py`, returning `round(total * (1 - percent/100), 2)`.\n- **Tests**: added `test_apply_discount` plus a rounding case (19.99, 15 → 16.99) and a 0% case.\n- **Version**: `VERSION = \"1.1.0\"`; `cli.py` now builds `BANNER = \"shop v%s\" % VERSION` from config so it can't drift again — `python3 cli.py 10 20` prints `shop v1.1.0` / `2 items, total 32.70`.\n- **CHANGELOG**: new 1.1.0 section above 1.0.0 (only remaining mentions of `calc_total` and 7% are there, as intentional history).\n\n`report.report()` also verified: `alice: 163.50 SGD`."
+}

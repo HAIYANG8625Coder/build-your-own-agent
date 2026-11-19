@@ -1,0 +1,36 @@
+{
+ "level": "easy",
+ "setup": "plan",
+ "run": 1,
+ "turns": 22,
+ "edits": 16,
+ "score": 9,
+ "of": 9,
+ "checks": {
+  "1 rename to order_total everywhere": true,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "Plan (I could not read files yet — grep/read_file are blocked in plan mode, so step 0 is reconnaissance once approved):\n\n0. Recon: list project files and read pricing.py, config.py, the CLI/banner module, README.md, CHANGELOG.md, and tests; locate every occurrence of `calc_total` and the tax rate.\n\n1. Rename `calc_total` -> `order_total` everywhere: pricing.py definition, all callers, the CLI module, tests, and docs.\n\n2. Tax rate: change it to 9% in pricing.py (keep it as a named constant if one exists, e.g. TAX_RATE = 0.09) and make sure calculations use it.\n\n3. README: update the stated tax rate to 9% (and any example numbers that depend on it).\n\n4. pricing.py: add `apply_discount(total, percent)` returning the total minus `percent` percent, rounded to 2 decimals: `round(total - total * percent / 100, 2)`.\n\n5. tests: add a test for `apply_discount` (e.g. 100 at 10% -> 90.0, plus a rounding case like 19.99 at 15% -> 16.99), and update existing tests for the renamed function and the 9% tax rate.\n\n6. config.py: bump VERSION to \"1.1.0\".\n\n7. CHANGELOG.md: add a 1.1.0 entry at the top describing the rename, 9% tax, new `apply_discount`, and version bump.\n\n8. CLI banner: make it show the version from config (new 1.1.0), not a hardcoded string.\n\n9. Verify: run `python3 -m unittest discover -s tests` and confirm all tests pass; also run the CLI once to confirm the banner shows 1.1.0. Re-read each edited file to confirm changes.\n\nThe final test run must be green before I report done."
+ ],
+ "final": "All eight changes are done and the suite is green (5 tests, `OK`).\n\n**Changes**\n1. **Rename** — `calc_total` → `order_total` in `pricing.py`, `cart.py` (code + comment), `report.py`, `tests/test_pricing.py`, `README.md`. No stale references left (only the intentional mention in the changelog).\n2. **Tax rate** — `config.py`: `TAX_RATE = 0.09`.\n3. **README** — states \"The tax rate is 9%.\"; I also updated \"Current version\" to 1.1.0 so it isn't stale.\n4. **`apply_discount(total, percent)`** in `pricing.py` — `round(total - total * percent / 100.0, 2)`.\n5. **Tests** — added `test_apply_discount` (100 @ 10% → 90.0), plus rounding (19.99 @ 15% → 16.99) and 0% cases; updated existing expectations to 9% tax (107.0 → 109.0, cart summary `109.00`).\n6. **Version** — `config.py`: `VERSION = \"1.1.0\"`.\n7. **CHANGELOG** — new `## 1.1.0` section above 1.0.0.\n8. **Banner** — `cli.py` now derives `BANNER = \"shop v%s\" % VERSION` from `config.py` instead of a hardcoded string.\n\n**Verification**\n- `python3 -m unittest discover -s tests` → 5 tests, `OK`.\n- `python3 cli.py 10 20` → `shop v1.1.0` / `2 items, total 32.70` (30 × 1.09)."
+}

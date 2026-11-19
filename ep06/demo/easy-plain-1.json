@@ -1,0 +1,24 @@
+{
+ "level": "easy",
+ "setup": "plain",
+ "run": 1,
+ "turns": 4,
+ "edits": 0,
+ "score": 9,
+ "of": 9,
+ "checks": {
+  "1 rename to order_total everywhere": true,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true
+ },
+ "finished": true,
+ "todos_final": [],
+ "plans": [],
+ "final": "All 8 changes are done and the 4 tests pass.\n\n- **Rename**: `calc_total` → `order_total` in `pricing.py`, `cart.py`, `report.py`, the tests, and README (only the historical mention in CHANGELOG remains, intentionally).\n- **Tax**: `TAX_RATE = 0.09` in `config.py`.\n- **README**: now says 9% tax, documents `apply_discount`, version 1.1.0.\n- **`apply_discount(total, percent)`** in `pricing.py`, rounded to 2 decimals.\n- **Tests**: added two `apply_discount` tests (`100, 10 → 90.0` and `19.99, 15 → 16.99`); updated existing expectations 107 → 109.\n- **Version**: `VERSION = \"1.1.0\"` in `config.py`.\n- **CHANGELOG**: added a 1.1.0 entry.\n- **Banner**: `cli.py` now builds it from `config.VERSION`, printing `shop v1.1.0`."
+}

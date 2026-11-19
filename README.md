@@ -84,8 +84,9 @@ Each episode also has a full written article, so you can learn everything in it 
 | 2 | Tools | published | [ep02](ep02/) |
 | 3 | The system prompt and the notes file | published | [ep03](ep03/) |
 | 4 | Permissions | published | [ep04](ep04/) |
-| 5 | Context | scheduled for 2026-11-18 19:00 (SGT) | [ep05](ep05/) |
-| 6 to 13 | see the syllabus | planned | added with each episode |
+| 5 | Context | published | [ep05](ep05/) |
+| 6 | Plan mode and the task list | published (code only; the article is not written yet) | [ep06](ep06/) |
+| 7 to 13 | see the syllabus | planned | added with each episode |
 
 ## Ground rules
 

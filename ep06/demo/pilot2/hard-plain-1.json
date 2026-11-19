@@ -1,0 +1,32 @@
+{
+ "level": "hard",
+ "setup": "plain",
+ "run": 1,
+ "turns": 5,
+ "edits": 0,
+ "score": 17,
+ "of": 17,
+ "checks": {
+  "1 rename to order_total everywhere": true,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true,
+  "10 SHIPPING_FEE = 5.0 in config": true,
+  "11 shipping_cost(): free over 100": true,
+  "12 cart summary shows shipping": true,
+  "13 report has version header": true,
+  "14 test for shipping_cost": true,
+  "15 README documents shipping": true,
+  "16 CHANGELOG has 5+ bullets for 1.1.0": true,
+  "17 cli --version prints version": true
+ },
+ "finished": true,
+ "todos_final": [],
+ "plans": [],
+ "final": "All 16 changes are done and the tests pass (6 tests, OK).\n\n**Code**\n- `config.py`: `VERSION = \"1.1.0\"`, `TAX_RATE = 0.09`, new `SHIPPING_FEE = 5.0`.\n- `pricing.py`: `calc_total` → `order_total`; new `apply_discount(total, percent)` returning `round(total - total*percent/100, 2)`.\n- `shipping.py` (new): `shipping_cost(total)` → `0` when `total > 100`, else `SHIPPING_FEE`.\n- `cart.py`: uses `order_total` and now prints e.g. `2 items, total 109.00, shipping 0.00`.\n- `report.py`: first line is `Sales report v1.1.0`.\n- `cli.py`: banner `shop v1.1.0`; `--version` prints only `1.1.0` and exits.\n\n**Tests** (`tests/test_pricing.py`): renamed to `order_total`, updated tax expectations (109.0 / \"109.00\"), added tests for `apply_discount`, `shipping_cost`, cart shipping output, and the report version header.\n\n**Docs**: README documents tax 9%, `apply_discount`, the shipping rule, summary/report formats, and version 1.1.0. CHANGELOG has a 1.1.0 section with 7 bullets."
+}

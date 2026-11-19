@@ -1,0 +1,33 @@
+{
+ "setup": "plan",
+ "run": 3,
+ "turns": 20,
+ "edits": 18,
+ "score": 8,
+ "checks": {
+  "1 rename to order_total everywhere": false,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "Plan for the shop project changes (I could not read any files yet — read/grep are disabled in plan mode, so step 0 is to inspect before editing):\n\n0. Read the project: pricing.py, config.py, the CLI entry point, tests/, README.md, CHANGELOG.md, NOTES.md. Grep for `calc_total` and for the tax rate constant so I find every place that needs touching.\n\n1. Rename `calc_total` -> `order_total` everywhere: its definition in pricing.py, every caller (CLI, other modules), the tests, and any docs/README mentions. Verify with a final grep that `calc_total` no longer appears anywhere.\n\n2. Raise the tax rate to 9%: find the rate constant in pricing.py, change it to 9 (or 0.09, matching the existing style/units), and update any test expectations that encode the old rate.\n\n3. Update README.md so the stated tax rate is the new 9%.\n\n4. Add `apply_discount(total, percent)` to pricing.py: returns `total - total * percent / 100`, rounded to 2 decimals (use `round(..., 2)`). Add a short docstring.\n\n5. Add a test for `apply_discount` in the existing tests (including a rounding case, e.g. a percent that produces a repeating decimal), following the existing test style.\n\n6. Bump the version to 1.1.0 in config.py.\n\n7. Add a 1.1.0 entry at the top of CHANGELOG.md describing the rename, the tax rate change, apply_discount, and the version bump — matching the existing entry format.\n\n8. Make the CLI banner show the new version. Prefer reading it from config.py (import the version constant) instead of hardcoding, unless the existing code already hardcodes it — then just update the string. I'll report which I did.\n\n9. Check the work: run `python3 -m unittest discover -s tests` and confirm all tests pass; read back each edited file to confirm the changes landed. Report anything I was unable to do."
+ ],
+ "final": "All 8 items done and verified. `python3 -m unittest discover -s tests` passes (4 tests, OK).\n\nWhat changed:\n1. **Rename** — `calc_total` → `order_total` in `pricing.py` (def), `cart.py` (import + call + comment), `report.py` (import + call), `tests/test_pricing.py`, and `README.md`. No `calc_total` remains except the intentional history line in CHANGELOG.\n2. **Tax rate** — `config.py`: `TAX_RATE = 0.07` → `0.09`; test expectations updated to 109.0 / `\"2 items, total 109.00\"`.\n3. **README** — now says \"The tax rate is 9%.\"\n4. **`apply_discount(total, percent)`** in `pricing.py`: `round(total - total * percent / 100.0, 2)`, with a docstring.\n5. **Test** — `test_discount` (100 − 10% = 90.0, and 0% = 100.0) plus `test_discount_rounds_to_cents` (19.99 − 33% → 13.39).\n6. **Version** — `config.py`: `VERSION = \"1.1.0\"`.\n7. **CHANGELOG** — new `## 1.1.0` section above 1.0.0.\n8. **Banner** — `cli.py` now imports `VERSION` from `config.py` and builds `BANNER = \"shop v%s\" % VERSION` (no hardcoded string, so future bumps need no CLI edit). `python3 cli.py 10 20` prints `shop v1.1.0`.\n\nNothing was blocked or left undone."
+}

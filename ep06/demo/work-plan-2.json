@@ -1,0 +1,41 @@
+{
+ "level": "work",
+ "setup": "plan",
+ "run": 2,
+ "turns": 21,
+ "edits": 11,
+ "score": 12,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "Fix everything that breaks CLAUDE.md before the commit.\n\n**Can do by editing files (items 1-8):**\n1. `plugins/diagrams/.claude-plugin/plugin.json`: `\"name\": \"diagram\"` -> `\"diagrams\"` (rule: name = folder name).\n2. `.claude-plugin/marketplace.json`: add a `diagrams` entry (`source: ./plugins/diagrams`).\n3. `plugins/x-assistant/skills/xhs-post/SKILL.md`: add a `description:` line to the frontmatter.\n4. `plugins/avatar-video/agents/video-scripter.md`: add `name: video-scripter` to the frontmatter.\n5. `plugins/outlook-email/.claude-plugin/plugin.json`: add `\"version\": \"0.1.0\"`.\n6. `plugins/avatar-video/.claude-plugin/plugin.json`: add `\"description\": \"The avatar-video plugin.\"`.\n7. README: add rows for `plugins/x-assistant/skills/youtube-post/`, `plugins/avatar-video/agents/video-reviewer.md`, and the quick-notes skill's new plugin path.\n8. `.claude/skills/quick-notes/` is a skill created directly in `.claude/`, which the rules forbid. I'll copy it to `plugins/quick-notes/.claude-plugin/plugin.json` + `plugins/quick-notes/skills/quick-notes/SKILL.md` (its own plugin, since it fits none of the existing ones), add the marketplace entry, and a README row.\n\n**Needs a shell — I can't do these, will report instead:**\n9. Deleting the real dir `.claude/skills/quick-notes/` and replacing it with `ln -s ../../plugins/quick-notes/skills/quick-notes .claude/skills/quick-notes`. Until that's run, the skill still lives directly in `.claude/`, so item 8 is only half-fixed. Same for the missing `.claude/agents/x-reviewer.md` symlink.\n\nI only have read/edit/test tools here (no shell), so I cannot create or verify symlinks. Tell me if you'd rather I leave quick-notes alone entirely and just report it, since a half-migrated skill may be worse than a flagged one."
+ ],
+ "final": "All rules now pass a full check (plugin.json name/version/description, marketplace entries, frontmatter, README rows, `.claude/` layout, broken symlinks, JSON validity).\n\n| # | What was wrong | What I changed |\n|---|---|---|\n| 1 | `plugins/diagrams/.claude-plugin/plugin.json` had `\"name\": \"diagram\"` — not the folder name | Set to `\"diagrams\"` |\n| 2 | `diagrams` plugin had no `.claude-plugin/marketplace.json` entry | Added entry (`./plugins/diagrams`) |\n| 3 | `plugins/x-assistant/skills/xhs-post/SKILL.md` frontmatter had no `description` | Added a `description:` line |\n| 4 | `plugins/avatar-video/agents/video-scripter.md` frontmatter had no `name` | Added `name: video-scripter` |\n| 5 | `plugins/outlook-email/.claude-plugin/plugin.json` had no `version` | Added `\"version\": \"0.1.0\"` |\n| 6 | `plugins/avatar-video/.claude-plugin/plugin.json` had no `description` | Added `\"description\": \"The avatar-video plugin.\"` |\n| 7 | `.claude/skills/quick-notes/` was a real skill dir inside `.claude/` (only the 4 third-party ones may live there) | Moved to new `plugins/quick-notes/` (plugin.json + `skills/quick-notes/SKILL.md`), marketplace + README entries, real dir replaced with a symlink |\n| 8 | `.claude/skills/voice-video` pointed at `.../skills/voice_video` (underscore) — broken link | Re-pointed to `skills/voice-video` |\n| 9 | `.claude/skills/x-image` symlink missing (skill existed only in `plugins/`) | Created it |\n| 10 | `.claude/agents/x-reviewer.md` symlink missing | Created it |\n| 11 | README had no rows for `youtube-post`, `video-reviewer`, `quick-notes` | Added all three rows |\n\nTwo notes:\n- The quick-notes migration needed a judgement call: it fits none of the existing plugins, so I gave it its own `plugins/quick-notes` plugin rather than filing it under an unrelated one. Say the word if you'd rather it live elsewhere.\n- `git status` fails here — this folder isn't a git repo (no `.git`), so I couldn't confirm what's staged; I checked the working tree only. The 4 third-party skills are untouched."
+}

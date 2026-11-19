@@ -1,0 +1,45 @@
+{
+ "level": "hard",
+ "setup": "plan",
+ "run": 2,
+ "turns": 15,
+ "edits": 6,
+ "score": 17,
+ "broke": [],
+ "of": 17,
+ "checks": {
+  "1 rename to order_total everywhere": true,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true,
+  "10 SHIPPING_FEE = 5.0 in config": true,
+  "11 shipping_cost(): free over 100": true,
+  "12 cart summary shows shipping": true,
+  "13 report has version header": true,
+  "14 test for shipping_cost": true,
+  "15 README documents shipping": true,
+  "16 CHANGELOG has 5+ bullets for 1.1.0": true,
+  "17 cli --version prints version": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "Here's what I found: a tiny project with `pricing.py` (`calc_total`), `cart.py`, `report.py`, `cli.py` (hardcoded banner \"shop v1.0.0\"), `config.py`, `README.md`, `CHANGELOG.md`, and one test file `tests/test_pricing.py` (asserts total 107.0 with the old 7% tax, and cart summary \"2 items, total 107.00\").\n\nPlan of changes:\n\n1. `config.py`: `VERSION = \"1.1.0\"`, `TAX_RATE = 0.09`, add `SHIPPING_FEE = 5.0`.\n2. `pricing.py`: rename `calc_total` -> `order_total`; add `apply_discount(total, percent)` returning `round(total - total*percent/100, 2)`.\n3. `shipping.py` (new): `shipping_cost(total)` -> `0` if `total > 100` else `SHIPPING_FEE`.\n4. `cart.py`: import `order_total` and `shipping_cost`; summary becomes `\"%d items, total %.2f, shipping %.2f\"`.\n5. `report.py`: import `order_total` and `VERSION`; first line `\"Sales report v%s\" % VERSION`, then the per-order lines.\n6. `cli.py`: banner uses `config.VERSION` (\"shop v1.1.0\"), and `--version` prints only the version (`print(VERSION)`) then exits.\n7. `tests/test_pricing.py`: fix broken assertions (109.0 total, summary with shipping), and add tests for `apply_discount`, `shipping_cost`, report first line, and `python3 cli.py --version` output.\n8. `README.md`: rename function reference, state 9% tax rate, document shipping rule (free over 100, else 5.00), version 1.1.0.\n9. `CHANGELOG.md`: add a `## 1.1.0` section with at least five bullets.\n10. Run `python3 -m unittest discover -s tests` and verify `python3 cli.py --version` / `python3 cli.py 10 20` output."
+ ],
+ "final": "All 16 changes are done and the suite passes (12 tests, OK).\n\n- `config.py`: `VERSION = \"1.1.0\"`, `TAX_RATE = 0.09`, new `SHIPPING_FEE = 5.0`.\n- `pricing.py`: `calc_total` → `order_total`; added `apply_discount(total, percent)` (rounded to 2 decimals).\n- `shipping.py` (new): `shipping_cost(total)` → 0 if total > 100, else `SHIPPING_FEE`.\n- `cart.py`: summary now `\"2 items, total 109.00, shipping 0.00\"` (uses `order_total` then `shipping_cost`).\n- `report.py`: first line `Sales report v1.1.0` from `config.VERSION`.\n- `cli.py`: banner `shop v1.1.0` from `VERSION`; `--version` prints only `1.1.0`.\n- Tests: fixed old 107.0 assertions (now 109) and the summary string, added `tests/test_pricing.py` cases for `apply_discount`, `shipping_cost`, report version/tax, plus a new `tests/test_cli.py` for `--version`, banner, and summary output.\n- `README.md`: renamed function, 9% tax, shipping rule, version 1.1.0.\n- `CHANGELOG.md`: `## 1.1.0` with 8 bullets.\n\nVerified: `python3 -m unittest discover -s tests` → OK; `python3 cli.py --version` → `1.1.0` only; `python3 cli.py 10 20` → banner + `2 items, total 32.70, shipping 5.00`; no leftover `calc_total`/`1.0.0`/`0.07` references outside the changelog."
+}

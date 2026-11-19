@@ -1,0 +1,643 @@
+"""Episode 6: plans and task lists.
+
+    python3 agent.py "Rename a function everywhere and update the docs."
+    python3 agent.py --todo "..."          # the model keeps a task list
+    python3 agent.py --plan "..."          # plan mode first: read only, then submit_plan
+    python3 agent.py --plan --todo "..."   # both
+
+Two new things. A task list: a todo_write tool whose list the model rewrites as it
+works. Plan mode: only read-only tools plus submit_plan; you approve the plan, then
+the edit tools appear.
+
+Run it inside a throwaway folder: run_bash really runs commands.
+(Episode 6 adds plan mode and the task list. Episodes 4 and 5 are unchanged.)
+
+PROVIDER=claude (default) -> ANTHROPIC_API_KEY, claude-haiku-5-5
+PROVIDER=deepseek         -> DEEPSEEK_API_KEY, deepseek-flash
+"""
+import json
+import os
+import re
+import subprocess
+import sys
+
+import anthropic
+
+MAX_TURNS = int(os.environ.get("AGENT_MAX_TURNS", "15"))
+MAX_CHARS = 4000
+
+# Context limits, in tokens. Small on purpose so a short demo hits them;
+# a real agent sets them near the model's window.
+CLEAR_AT = int(os.environ.get("AGENT_CLEAR_AT", "6000"))     # clear old tool results past this
+COMPACT_AT = int(os.environ.get("AGENT_COMPACT_AT", "9000"))  # summarize old turns past this
+KEEP_RESULTS = 3      # the newest tool results stay whole
+KEEP_TURNS = 4        # the newest assistant turns (with their results) stay whole
+CLEARED = "[old tool result cleared to save space; call the tool again if you need it]"
+ROOT = os.getcwd()
+READ = set()   # files the model has read (edit needs this)
+
+NOTES_FILE = "NOTES.md"
+NOTES_MAX_LINES = 200   # Claude Code's docs: aim for under 200 lines
+
+# The system prompt has three parts: a role, a few rules, the environment.
+ROLE = "You are a small coding assistant working in a project folder."
+RULES = ("Use the tools to look, then act. Read a file before you edit it. "
+         "Check your work by running the tests. Answer briefly. "
+         "If an action is denied, do not try to get around it: "
+         "say what you could not do. "
+         "Old tool results are cleared to save space, so write down what you "
+         "find in your own reply before you move on.")
+
+
+def environment():
+    return "Project folder: %s\nPlatform: %s" % (ROOT, sys.platform)
+
+
+def build_system():
+    return "%s\n\n%s\n\n%s" % (ROLE, RULES, environment())
+
+
+def load_notes():
+    """The project notes, or "" if there is no notes file."""
+    path = os.path.join(ROOT, NOTES_FILE)
+    if not os.path.exists(path):
+        return ""
+    text = open(path).read()
+    n = len(text.split("\n"))
+    if n > NOTES_MAX_LINES:
+        print("warning: %s has %d lines; long notes get followed less"
+              % (NOTES_FILE, n))
+    return text
+
+
+def first_message(task, notes):
+    """Notes go in the first user message, not in the system prompt.
+    (Claude Code does the same with CLAUDE.md.)"""
+    if not notes:
+        return task
+    return "Project notes (%s):\n%s\n\nTask: %s" % (NOTES_FILE, notes, task)
+
+TOOLS = [
+    {"name": "read_file",
+     "description": (
+         "Read a text file and return its lines, "
+         "each with a line number. Use it before "
+         "you edit a file. Long files are cut "
+         "off; use grep to find the part you need."),
+     "input_schema": {
+         "type": "object",
+         "properties": {"path": {"type": "string"}},
+         "required": ["path"]}},
+    {"name": "grep",
+     "description": (
+         "Search the files under a folder for a "
+         "regular expression. Returns file:line:"
+         "text for each match, at most 50. Use it "
+         "to find where something is defined."),
+     "input_schema": {
+         "type": "object",
+         "properties": {"pattern": {"type": "string"},
+                        "path": {"type": "string"}},
+         "required": ["pattern"]}},
+    {"name": "run_bash",
+     "description": (
+         "Run a shell command in the project "
+         "folder and return its output and exit "
+         "code. Use it to run tests or list "
+         "files. It stops after 20 seconds."),
+     "input_schema": {
+         "type": "object",
+         "properties": {"command": {"type": "string"}},
+         "required": ["command"]}},
+    {"name": "edit_file",
+     "description": (
+         "Replace one exact piece of text in a "
+         "file. 'old_text' must match it exactly "
+         "and appear once, so include enough "
+         "surrounding text. Read the file first."),
+     "input_schema": {
+         "type": "object",
+         "properties": {"path": {"type": "string"},
+                        "old_text": {"type": "string"},
+                        "new_text": {"type": "string"}},
+         "required": ["path", "old_text", "new_text"]}},
+]
+
+TODO_TOOL = {
+    "name": "todo_write",
+    "description": (
+        "Write your task list. Pass the WHOLE list every time: "
+        "a list of items, each with 'task' (one small step you can check) "
+        "and 'status' (pending, in_progress or done). "
+        "Keep exactly one item in_progress. Mark an item done only after "
+        "you checked it."),
+    "input_schema": {
+        "type": "object",
+        "properties": {"items": {"type": "array", "items": {
+            "type": "object",
+            "properties": {"task": {"type": "string"},
+                           "status": {"type": "string",
+                                      "enum": ["pending", "in_progress", "done"]}},
+            "required": ["task", "status"]}}},
+        "required": ["items"]}}
+
+PLAN_TOOL = {
+    "name": "submit_plan",
+    "description": (
+        "Show your plan to the user and ask to go ahead. Use it when you "
+        "have looked around and know what to change. Until the user "
+        "approves, you can only read."),
+    "input_schema": {
+        "type": "object",
+        "properties": {"plan": {"type": "string"}},
+        "required": ["plan"]}}
+
+READ_ONLY_TOOLS = ("read_file", "grep")   # what plan mode offers, plus submit_plan
+TODOS = []                                 # the task list
+
+
+class ToolError(Exception):
+    """A problem the model can fix by trying again."""
+
+
+def safe(path):
+    full = os.path.realpath(os.path.join(ROOT, path))
+    if full != ROOT and not full.startswith(ROOT + os.sep):
+        raise ToolError("path is outside the project folder")
+    return full
+
+
+def cut(text, limit=MAX_CHARS):
+    if len(text) <= limit:
+        return text
+    return text[:limit] + "\n... cut off. Ask for less."
+
+
+def read_file(path):
+    full = safe(path)
+    with open(full) as f:
+        lines = f.read().split("\n")
+    READ.add(full)
+    body = "\n".join("%d  %s" % (i + 1, l)
+                     for i, l in enumerate(lines))
+    return cut(body)
+
+
+def grep(pattern, path="."):
+    hits = []
+    for folder, _, names in os.walk(safe(path)):
+        for name in sorted(names):
+            file = os.path.join(folder, name)
+            try:
+                text = open(file).read()
+            except (UnicodeDecodeError, OSError):
+                continue
+            for n, line in enumerate(text.split("\n"), 1):
+                if re.search(pattern, line):
+                    rel = os.path.relpath(file, ROOT)
+                    hits.append("%s:%d:%s" % (rel, n, line))
+    return "\n".join(hits[:50]) or "no matches"
+
+
+def run_bash(command):
+    done = subprocess.run(
+        command, shell=True, cwd=ROOT, timeout=20,
+        capture_output=True, text=True)
+    out = cut(done.stdout + done.stderr)
+    return "exit code %d\n%s" % (done.returncode, out)
+
+
+def edit_file(path, old_text, new_text):
+    full = safe(path)
+    if full not in READ:
+        raise ToolError("read the file first")
+    text = open(full).read()
+    n = text.count(old_text)
+    if n != 1:
+        raise ToolError("'old_text' appears %d times; "
+                        "it must appear once" % n)
+    open(full, "w").write(
+        text.replace(old_text, new_text))
+    return "edited " + path
+
+
+STATUSES = ("pending", "in_progress", "done")
+MARK = {"pending": "[ ]", "in_progress": "[>]", "done": "[x]"}
+
+
+def todo_write(items):
+    """Replace the task list. Check it, then show it back."""
+    if not isinstance(items, list) or not items:
+        raise ToolError("'items' must be a non-empty list")
+    for it in items:
+        if not isinstance(it, dict) or not str(it.get("task", "")).strip():
+            raise ToolError("every item needs a 'task'")
+        if it.get("status") not in STATUSES:
+            raise ToolError("status must be one of: " + ", ".join(STATUSES))
+    if sum(it["status"] == "in_progress" for it in items) > 1:
+        raise ToolError("only one item can be in_progress")
+    TODOS[:] = [{"task": str(it["task"]).strip(), "status": it["status"]} for it in items]
+    return show_todos()
+
+
+def show_todos():
+    done = sum(t["status"] == "done" for t in TODOS)
+    lines = ["%s %s" % (MARK[t["status"]], t["task"]) for t in TODOS]
+    return "Task list (%d of %d done):\n%s" % (done, len(TODOS), "\n".join(lines))
+
+
+FUNCS = {"read_file": read_file, "grep": grep,
+         "run_bash": run_bash, "edit_file": edit_file,
+         "todo_write": todo_write}
+
+
+def run_tool(name, args):
+    """Returns (text, is_error). An error is a result too."""
+    try:
+        return FUNCS[name](**args), False
+    except subprocess.TimeoutExpired:
+        return "error: the command took too long", True
+    except Exception as e:
+        return "error: %s" % e, True
+
+
+# ---------------------------------------------------------------- permissions
+MODES = ("default", "accept-edits", "read-only", "dont-ask")
+SPLIT = re.compile(r"&&|\|\||;|\||&|\n")        # where a shell command splits
+UNSAFE = ("$(", "`", "<(", ">(")                 # we cannot analyze these
+READ_ONLY_BASH = {"ls", "cat", "pwd", "cd", "echo", "head", "tail", "wc", "grep", "diff"}
+
+
+def subcommands(command):
+    keep = command.replace(">&", ">\0")           # 2>&1 is not a new command
+    return [p.replace("\0", "&").strip()
+            for p in SPLIT.split(keep) if p.strip()]
+
+
+def subject(tool, args):
+    """The text a rule is matched against: the command, or the path."""
+    if tool == "run_bash":
+        return args.get("command", "")
+    full = os.path.realpath(os.path.join(ROOT, args.get("path") or "."))
+    return os.path.relpath(full, ROOT)
+
+
+def pattern(spec):
+    """A rule specifier as a regex. * matches any text, spaces included.
+    A trailing ' *' also matches the bare command: 'ls *' matches 'ls'."""
+    def esc(t):
+        return ".*".join(re.escape(x) for x in t.split("*"))
+    if spec.endswith(" *"):
+        return re.compile(esc(spec[:-2]) + "(?: .*)?", re.S)
+    return re.compile(esc(spec), re.S)
+
+
+def rule_matches(rule, tool, text):
+    m = re.fullmatch(r"(\w+)(?:\((.*)\))?", rule.strip(), re.S)
+    if not m or m.group(1) != tool:
+        return False
+    return m.group(2) is None or bool(pattern(m.group(2)).fullmatch(text))
+
+
+def read_only(part):
+    """A single command that only looks. Output to /dev/null is fine;
+    any other redirect writes a file."""
+    plain = part.replace("2>/dev/null", "").replace("2>&1", "")
+    return part.split()[0] in READ_ONLY_BASH and ">" not in plain
+
+
+class Permissions:
+    """Rules in three lists, a mode, and what the user allowed this session.
+    Order: deny, then ask, then allow. The first match decides."""
+
+    def __init__(self, allow=(), ask=(), deny=(), mode="default"):
+        assert mode in MODES, mode
+        self.allow, self.ask, self.deny = list(allow), list(ask), list(deny)
+        self.mode = mode
+        self.session = set()       # (tool, text) the user said "always" to
+        self.last_asked = False
+
+    @classmethod
+    def load(cls, mode=None):
+        """Rules from ~/.agent/permissions.json and ./.agent/permissions.json.
+        The lists are joined, not replaced (Claude Code does the same)."""
+        lists = {"allow": [], "ask": [], "deny": []}
+        home = os.environ.get("AGENT_HOME") or os.path.expanduser("~/.agent")
+        for path in (os.path.join(home, "permissions.json"),
+                     os.path.join(ROOT, ".agent", "permissions.json")):
+            if os.path.exists(path):
+                data = json.load(open(path))
+                for k in lists:
+                    lists[k] += data.get(k, [])
+        return cls(mode=mode or os.environ.get("AGENT_MODE", "default"), **lists)
+
+    def remember(self, tool, args):
+        for t in self.texts(tool, args):
+            self.session.add((tool, t))
+
+    def texts(self, tool, args):
+        text = subject(tool, args)
+        return subcommands(text) if tool == "run_bash" else [text]
+
+    def allowed(self, tool, text):
+        return ((tool, text) in self.session
+                or any(rule_matches(r, tool, text) for r in self.allow))
+
+    def check(self, tool, args):
+        """Returns ("allow" | "ask" | "deny", reason)."""
+        texts = self.texts(tool, args)
+        for rule in self.deny:
+            if any(rule_matches(rule, tool, t) for t in texts):
+                return "deny", "the rule %s denies this" % rule
+        for rule in self.ask:
+            if any(rule_matches(rule, tool, t) for t in texts):
+                return "ask", "the rule %s asks first" % rule
+        if tool == "run_bash" and any(u in args.get("command", "") for u in UNSAFE):
+            return "ask", "this command cannot be analyzed"
+        if all(self.allowed(tool, t) for t in texts):
+            return "allow", "an allow rule covers this"
+        return self.by_mode(tool, texts)
+
+    def by_mode(self, tool, texts):
+        if tool in ("read_file", "grep"):
+            return "allow", "reading is allowed"
+        if tool == "run_bash" and all(
+                self.allowed(tool, t) or read_only(t) for t in texts):
+            return "allow", "a read-only command"
+        if tool == "edit_file" and self.mode == "accept-edits":
+            return "allow", "accept-edits mode"
+        if self.mode == "read-only":
+            return "deny", "read-only mode: no edits and no commands"
+        if self.mode == "dont-ask":
+            return "deny", "dont-ask mode: nothing that needs approval runs"
+        return "ask", "this changes things"
+
+
+def ask_user(tool, args):
+    """The confirm prompt. Returns "y" (once), "a" (always, this session), "n"."""
+    shown = json.dumps(args)[:200]
+    print("\n  Allow %s %s ?" % (tool, shown))
+    return input("  [y] once  [a] always this session  [n] no > ").strip().lower()
+
+
+def gated(tool, args, perms, approver):
+    """Decide, maybe ask, then run. Returns (text, is_error, verdict)."""
+    verdict, why = perms.check(tool, args)
+    perms.last_asked = verdict == "ask"
+    if verdict == "ask":
+        answer = approver(tool, args)
+        if answer == "a":
+            perms.remember(tool, args)
+        verdict = "allow" if answer in ("y", "a") else "deny"
+        why = "the user declined" if verdict == "deny" else "the user agreed"
+    if verdict == "deny":
+        return ("permission denied: %s. Do not retry it; "
+                "tell the user what you could not do." % why), True, verdict
+    text, bad = run_tool(tool, args)
+    return text, bad, verdict
+
+
+# -------------------------------------------------------------------- context
+def estimate(messages):
+    """Rough token count before we call the API: about 4 characters per token.
+    (Our rule of thumb, not an exact count.)"""
+    return len(json.dumps(messages, default=lambda b: getattr(b, "__dict__", str(b)))) // 4
+
+
+def window_tokens(usage):
+    """The whole window as the API counted it. Cached prefixes still fill the window,
+    so the cache fields count too (the docs say so); input_tokens alone is only the new part."""
+    return sum(getattr(usage, f, 0) or 0 for f in
+               ("input_tokens", "cache_read_input_tokens", "cache_creation_input_tokens"))
+
+
+def clear_old_results(messages, keep=KEEP_RESULTS):
+    """The lightest fix: replace all but the newest `keep` tool results with a
+    short note. The tool calls stay, so every call still has its result."""
+    blocks = [b for m in messages if m["role"] == "user" and isinstance(m["content"], list)
+              for b in m["content"] if isinstance(b, dict) and b.get("type") == "tool_result"]
+    cleared = 0
+    for b in blocks[:-keep] if keep else blocks:
+        if b["content"] != CLEARED:
+            b["content"] = CLEARED
+            cleared += 1
+    return cleared
+
+
+def files_touched(messages):
+    """Paths the agent read or edited, for the summary."""
+    seen = []
+    for m in messages:
+        if m["role"] == "assistant":
+            for b in m["content"]:
+                if getattr(b, "type", "") == "tool_use" and "path" in b.input:
+                    if b.input["path"] not in seen:
+                        seen.append(b.input["path"])
+    return seen
+
+
+SUMMARY_PROMPT = (
+    "Summarize the work so far so that you can continue it after the old messages are "
+    "gone. Keep: the task, decisions made and why, files read or changed, what is "
+    "finished, what is still open (failing tests, bugs), and the next step. "
+    "Keep exact file names, function names and numbers. Leave out raw tool output. "
+    "Be short.")
+
+
+def as_text(messages):
+    """A plain-text transcript of old messages, for the summarizer."""
+    out = []
+    for m in messages:
+        if isinstance(m["content"], str):
+            out.append("%s: %s" % (m["role"], m["content"]))
+            continue
+        for b in m["content"]:
+            t = b.get("type") if isinstance(b, dict) else b.type
+            if t == "text":
+                out.append("assistant: " + (b["text"] if isinstance(b, dict) else b.text))
+            elif t == "tool_use":
+                out.append("assistant called %s %s" % (b.name, json.dumps(b.input)[:200]))
+            elif t == "tool_result":
+                out.append("result: " + str(b["content"])[:600])
+    return "\n".join(out)
+
+
+def split_point(messages, keep_turns=KEEP_TURNS):
+    """Index of the first message to keep whole. It must be an assistant message,
+    so a tool call is never separated from its result."""
+    idx = [i for i, m in enumerate(messages) if m["role"] == "assistant"]
+    if len(idx) <= keep_turns:
+        return 0
+    return idx[-keep_turns]
+
+
+def compact(messages, client, model, notes):
+    """Replace the old turns with a summary. Keep the task, the notes and the recent turns."""
+    cut_at = split_point(messages)
+    if cut_at <= 1:
+        return messages, 0
+    old, recent = messages[1:cut_at], messages[cut_at:]
+    first = messages[0]["content"]
+    resp = client.messages.create(
+        model=model, max_tokens=1024,
+        messages=[{"role": "user", "content":
+                   "Task and notes:\n%s\n\nWork so far:\n%s\n\n%s"
+                   % (first, as_text(old), SUMMARY_PROMPT)}])
+    summary = "".join(b.text for b in resp.content if getattr(b, "type", "") == "text")
+    touched = files_touched(old)
+    note = ("%s\n\n[Earlier turns were compacted. Summary of the work so far:]\n%s\n"
+            "[Files touched so far: %s]"
+            % (first, summary, ", ".join(touched) or "none"))
+    return [{"role": "user", "content": note}] + recent, len(old)
+
+
+TODO_RULES = ("For a task with several steps, call todo_write first with every step "
+              "as pending. Work on one step at a time and keep it in_progress. "
+              "Mark it done only after you checked it (read the file back, or run "
+              "the tests). Pass the whole list each time. Do not give your final "
+              "answer while any item is not done.")
+PLAN_RULES = ("You start in plan mode: you can only read. Look around, then call "
+              "submit_plan with your plan. You cannot edit until the user approves it.")
+
+
+def plan_approver(plan):
+    """Ask the user. Returns "" to approve, or a sentence of feedback."""
+    print("\n  PLAN\n" + "\n".join("  " + l for l in plan.split("\n")))
+    answer = input("  [enter] approve, or type what to change > ").strip()
+    return answer
+
+
+def run(task, client, model, system=None, notes=None, perms=None, approver=None,
+        todo=False, plan=False, plan_ok=None):
+    system = build_system() if system is None else system
+    if todo:
+        system += "\n\n" + TODO_RULES
+    if plan:
+        system += "\n\n" + PLAN_RULES
+    plan_ok = plan_ok or plan_approver
+    TODOS.clear()
+    planning = plan
+    run.plans = []       # every plan the model submitted, and what the user said
+    notes = load_notes() if notes is None else notes
+    perms = perms or Permissions.load()
+    approver = approver or ask_user
+    log = run.log = []   # every decision, for tests and demos
+    run.context = []     # (turn, tokens the API counted, what we did), for the chart
+    messages = [{"role": "user",
+                 "content": first_message(task, notes)}]
+    for turn in range(1, MAX_TURNS + 1):
+        if planning:       # plan mode: read-only tools plus submit_plan
+            tools = [t for t in TOOLS if t["name"] in READ_ONLY_TOOLS] + [PLAN_TOOL]
+        else:
+            tools = TOOLS + ([TODO_TOOL] if todo else [])
+        resp = client.messages.create(
+            model=model, max_tokens=2048,
+            system=system, tools=tools,
+            messages=messages)
+        reply = {"role": "assistant",
+                 "content": resp.content}
+        messages.append(reply)
+        tokens = window_tokens(resp.usage)       # the whole window, as the API counted it
+        action = ""
+        print("turn", turn, resp.stop_reason, "| context", tokens)
+        if resp.stop_reason == "max_tokens":
+            # The reply was cut off (a long plan can do this). A half-written tool call is
+            # not valid, so drop it and ask again, shorter.
+            messages.pop()
+            note = {"type": "text", "text": "Your last reply was cut off because it was too long. "
+                    "Try again and keep it short."}
+            last = messages[-1]
+            if isinstance(last["content"], str):
+                last["content"] = [{"type": "text", "text": last["content"]}, note]
+            else:
+                last["content"] = list(last["content"]) + [note]
+            run.context.append((turn, tokens, "cut off, asked again"))
+            continue
+        if resp.stop_reason != "tool_use":
+            run.context.append((turn, tokens, action))
+            return messages
+        results = []
+        for block in resp.content:
+            if block.type == "tool_use":
+                if block.name == "submit_plan" and planning:
+                    feedback = plan_ok(block.input.get("plan", ""))
+                    run.plans.append((block.input.get("plan", ""), feedback))
+                    if feedback:
+                        out, bad = "The user wants changes: %s. Revise the plan and submit it again." % feedback, False
+                    else:
+                        planning = False
+                        out, bad = "Plan approved. Plan mode is off: you can edit now.", False
+                    verdict = "allow"
+                elif block.name == "todo_write" and todo:
+                    out, bad = run_tool("todo_write", block.input)
+                    verdict = "allow"
+                elif (planning and block.name not in READ_ONLY_TOOLS) or block.name == "todo_write":
+                    # a tool that was not offered: refuse it, as a result the model can read
+                    why = "in plan mode. Submit your plan first." if planning else "in this run."
+                    out, bad, verdict = "%s is not available %s" % (block.name, why), True, "deny"
+                else:
+                    out, bad, verdict = gated(block.name, block.input,
+                                              perms, approver)
+                log.append((block.name, block.input, verdict))
+                print(" ", block.name, json.dumps(block.input)[:96], "->",
+                      verdict + (" (asked)" if perms.last_asked else ""))
+                results.append({
+                    "type": "tool_result",
+                    "tool_use_id": block.id,
+                    "content": out,
+                    "is_error": bad})
+        messages.append(
+            {"role": "user", "content": results})
+        # Manage the context before the next call.
+        if tokens > COMPACT_AT:
+            before = estimate(messages)
+            messages, n = compact(messages, client, model, notes)
+            action = "compact: %d messages -> summary (about %d -> %d tokens)" % (n, before, estimate(messages))
+        elif tokens > CLEAR_AT:
+            n = clear_old_results(messages)
+            action = "cleared %d old tool results" % n if n else ""
+        if action:
+            print("  context:", action)
+        run.context.append((turn, tokens, action))
+    return messages
+
+
+def final_text(messages):
+    last = messages[-1]["content"]
+    if isinstance(last, str):
+        return last
+    return "".join(b.text for b in last if getattr(b, "type", "") == "text")
+
+
+PROVIDERS = {
+    "claude": ("ANTHROPIC_API_KEY", None, "claude-haiku-5-5"),
+    "deepseek": ("DEEPSEEK_API_KEY",
+                 "https://api.deepseek.com/anthropic",
+                 "deepseek-flash"),
+}
+
+
+def make_client():
+    key, url, model = PROVIDERS[os.environ.get("PROVIDER", "claude")]
+    return anthropic.Anthropic(api_key=os.environ[key], base_url=url), model
+
+
+if __name__ == "__main__":
+    if sys.argv[1:] == ["--show-prompt"]:
+        print("--- system ---\n" + build_system())
+        print("--- first message ---\n"
+              + first_message("<your task>", load_notes()))
+        sys.exit()
+    args = sys.argv[1:]
+    if args[:1] == ["--compact-at"]:
+        COMPACT_AT, CLEAR_AT = int(args[1]), int(args[1]) * 2 // 3
+        args = args[2:]
+    todo = plan = False
+    while args[:1] in (["--todo"], ["--plan"]):
+        todo, plan, args = todo or args[0] == "--todo", plan or args[0] == "--plan", args[1:]
+    mode = None
+    if args[:1] == ["--mode"]:
+        mode, args = args[1].replace("_", "-"), args[2:]
+    client, model = make_client()
+    task = " ".join(args) or "What is in this folder?"
+    print(final_text(run(task, client, model, perms=Permissions.load(mode), todo=todo, plan=plan)))

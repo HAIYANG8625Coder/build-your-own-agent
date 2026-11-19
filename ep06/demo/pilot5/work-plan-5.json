@@ -1,0 +1,28 @@
+{
+ "level": "work",
+ "setup": "plan",
+ "run": 5,
+ "turns": 5,
+ "edits": 0,
+ "score": 0,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": false,
+  "F2 link for x-reviewer": false,
+  "F3 voice-video link works": false,
+  "F4 diagrams name matches folder": false,
+  "F5 outlook-email has version": false,
+  "F6 avatar-video has description": false,
+  "F7 marketplace lists diagrams": false,
+  "F8 xhs-post has description": false,
+  "F9 video-scripter has name": false,
+  "F10 README row for youtube-post": false,
+  "F11 README row for video-reviewer": false,
+  "F12 quick-notes moved into a plugin, linked, in README": false
+ },
+ "finished": true,
+ "todos_final": [],
+ "plans": [],
+ "final": ""
+}

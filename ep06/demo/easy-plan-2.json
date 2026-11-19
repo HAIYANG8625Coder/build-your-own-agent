@@ -1,0 +1,36 @@
+{
+ "level": "easy",
+ "setup": "plan",
+ "run": 2,
+ "turns": 15,
+ "edits": 8,
+ "score": 9,
+ "broke": [],
+ "of": 9,
+ "checks": {
+  "1 rename to order_total everywhere": true,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "Looked around: `calc_total` is defined in pricing.py and used in cart.py, report.py, tests/test_pricing.py and README.md. Tax rate lives in config.py (TAX_RATE = 0.07), the version is in config.py, cli.py hardcodes `BANNER = \"shop v1.0.0\"`, and the existing tests assert the 7% values (107.0 / \"total 107.00\"), so they must be updated for 9%.\n\nSteps:\n1. pricing.py: rename `calc_total` -> `order_total`, and add `apply_discount(total, percent)` returning `round(total * (1 - percent / 100), 2)`.\n2. config.py: `TAX_RATE = 0.09`, `VERSION = \"1.1.0\"`.\n3. cart.py + report.py: import/call `order_total`.\n4. tests/test_pricing.py: import `order_total`, update expected totals to 9% (109.0, \"2 items, total 109.00\"), add a test for `apply_discount`.\n5. cli.py: build BANNER from `config.VERSION` so it prints `shop v1.1.0` (no more hardcoded version).\n6. README.md: `order_total`, tax rate 9%, version 1.1.0.\n7. CHANGELOG.md: add a `## 1.1.0` entry describing the changes.\n8. Run `python3 -m unittest discover -s tests` and `python3 cli.py 10 20` to verify, plus grep to confirm no `calc_total`/7%/1.0.0 references remain outside the changelog's history."
+ ],
+ "final": "All eight changes are done and verified.\n\n- pricing.py: `calc_total` → `order_total`; new `apply_discount(total, percent)` = `round(total * (1 - percent/100), 2)`.\n- config.py: `TAX_RATE = 0.09`, `VERSION = \"1.1.0\"`.\n- cart.py / report.py: import and call `order_total`.\n- tests/test_pricing.py: updated to `order_total`, expectations now 109.0 / \"2 items, total 109.00\" (9% tax), plus three `apply_discount` tests (basic, rounding, zero).\n- cli.py: banner is built from `config.VERSION`, so it prints `shop v1.1.0`.\n- README.md: `order_total`, 9% tax, version 1.1.0 (also documents `apply_discount`).\n- CHANGELOG.md: new `## 1.1.0` section above 1.0.0.\n\nVerification: `python3 -m unittest discover -s tests` → 5 tests, OK. `python3 cli.py 10 20` → `shop v1.1.0` / `2 items, total 32.70`. Grep confirms no stale `calc_total`, `7%`, `0.07` or hardcoded `1.0.0` left outside the changelog's historical entries."
+}

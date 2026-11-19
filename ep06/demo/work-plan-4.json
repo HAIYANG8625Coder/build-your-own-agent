@@ -1,0 +1,42 @@
+{
+ "level": "work",
+ "setup": "plan",
+ "run": 4,
+ "turns": 37,
+ "edits": 13,
+ "score": 12,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "in_progress"
+ ],
+ "plans": [
+  "Findings vs CLAUDE.md, and fixes:\n\n1. plugins/diagrams/.claude-plugin/plugin.json: name \"diagram\" ≠ folder → set \"name\": \"diagrams\".\n2. .claude-plugin/marketplace.json: no \"diagrams\" entry → add it.\n3. plugins/avatar-video/.claude-plugin/plugin.json: no description → add one.\n4. plugins/outlook-email/.claude-plugin/plugin.json: no version → add \"0.1.0\".\n5. plugins/x-assistant/skills/xhs-post/SKILL.md: frontmatter lacks description → add one.\n6. plugins/avatar-video/agents/video-scripter.md: frontmatter lacks name → add \"name: video-scripter\".\n7. README.md: missing rows for `plugins/x-assistant/skills/youtube-post/` and `plugins/avatar-video/agents/video-reviewer.md` → add both.\n8. .claude/skills/quick-notes/ is a real directory, not a symlink to a plugin → move it to plugins/notes/skills/quick-notes/ (new plugin: plugin.json + marketplace entry + README row) and replace .claude/skills/quick-notes with the symlink. Say so if you'd rather it live inside an existing plugin (e.g. x-assistant).\n9. .claude/skills/x-image: symlink missing → ln -s ../../plugins/x-assistant/skills/x-image.\n10. .claude/skills/voice-video: broken symlink (points at .../skills/voice_video) → repoint to .../skills/voice-video.\n11. .claude/agents/x-reviewer.md: symlink missing → ln -s ../../plugins/x-assistant/agents/x-reviewer.md.\n12. .claude/agents/x-drafter.md and video-reviewer.md are real copies, not symlinks → replace with the required symlinks (contents are identical to the plugin files).\n\nUntouched: .claude/skills/{heygen-avatar,heygen-video,hyperframes,media-use}.\n\nThen I re-read every changed file and re-check the link targets to confirm all six rules hold."
+ ],
+ "final": "All checks pass (the repo isn't a git checkout, so `git status` isn't available — verification was via a script over the files and links).\n\n| # | What was wrong | What I changed |\n|---|---|---|\n| 1 | `plugins/diagrams/.claude-plugin/plugin.json` had `\"name\": \"diagram\"` ≠ folder name | Set to `\"diagrams\"` |\n| 2 | `plugins/diagrams` had no entry in `.claude-plugin/marketplace.json` | Added a `diagrams` entry |\n| 3 | `plugins/avatar-video/.claude-plugin/plugin.json` had no `description` | Added `\"The avatar-video plugin.\"` |\n| 4 | `plugins/outlook-email/.claude-plugin/plugin.json` had no `version` | Added `\"0.1.0\"` |\n| 5 | `plugins/x-assistant/skills/xhs-post/SKILL.md` frontmatter had no `description` | Added one (kept the `---` fence intact) |\n| 6 | `plugins/avatar-video/agents/video-scripter.md` frontmatter had no `name` | Added `name: video-scripter` |\n| 7 | README.md had no row for `youtube-post` skill or `video-reviewer` subagent | Added both rows |\n| 8 | `.claude/skills/quick-notes` was a real directory, i.e. a skill living directly in `.claude/` | Moved it to `plugins/notes/skills/quick-notes/`, created `plugins/notes/.claude-plugin/plugin.json`, added a `notes` marketplace entry + README row, and replaced it with the symlink `../../plugins/notes/skills/quick-notes` |\n| 9 | `.claude/skills/x-image` was missing | Linked it to `../../plugins/x-assistant/skills/x-image` |\n| 10 | `.claude/skills/voice-video` was a broken symlink (`skills/voice_video`) | Repointed to `../../plugins/avatar-video/skills/voice-video` |\n| 11 | `.claude/agents/x-reviewer.md` was missing | Linked it to `../../plugins/x-assistant/agents/x-reviewer.md` |\n\nOne thing I did *not* change: I first suspected `.claude/agents/x-drafter.md` and `video-reviewer.md` were copies rather than symlinks, but `ls -la` showed they are already correct symlinks. The third-party skills were left untouched."
+}

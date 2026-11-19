@@ -1,0 +1,30 @@
+{
+ "level": "work",
+ "setup": "plan",
+ "run": 4,
+ "turns": 6,
+ "edits": 0,
+ "score": 0,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": false,
+  "F2 link for x-reviewer": false,
+  "F3 voice-video link works": false,
+  "F4 diagrams name matches folder": false,
+  "F5 outlook-email has version": false,
+  "F6 avatar-video has description": false,
+  "F7 marketplace lists diagrams": false,
+  "F8 xhs-post has description": false,
+  "F9 video-scripter has name": false,
+  "F10 README row for youtube-post": false,
+  "F11 README row for video-reviewer": false,
+  "F12 quick-notes moved into a plugin, linked, in README": false
+ },
+ "finished": true,
+ "todos_final": [],
+ "plans": [
+  "## Goal\nAudit the repo against CLAUDE.md and fix every violation before you commit, then report a short table of what was wrong / what changed.\n\n## Blocker note\nPlan mode blocks every read tool (`read_file`, `grep`), so I have not seen CLAUDE.md or any source file yet. The concrete fixes below must be decided after reading. Also note: `todo_write` is described in my instructions but is not actually available as a tool here, so I can't maintain that checklist; I'll track steps in my replies instead.\n\n## Steps\n1. **Read the rules.** Read `CLAUDE.md` in full and turn it into an explicit checklist of rules (naming, file layout, imports, typing, test conventions, commit-message style, forbidden patterns, etc.).\n2. **Scope the audit to the commit.** Inspect what's about to be committed (`git status`, `git diff`/staged diff) so I check changed files plus anything that interacts with them, rather than rewriting unrelated code.\n3. **Audit each file** against the checklist: style, structure, forbidden APIs, dependency/import conventions, docs/test requirements, generated or committed artifacts that shouldn't be there.\n4. **Fix violations** one at a time, reading each file before editing it, keeping changes minimal and behaviour-preserving. If a rule is ambiguous or a \"fix\" would change runtime behaviour, I'll flag it rather than guess.\n5. **Verify.** Run the project's tests/linter as CLAUDE.md specifies (e.g. `npm test`, `pytest`, `make lint`) and re-read edited files to confirm the changes landed.\n6. **Report.** Reply with a short table: rule violated → file → what I changed. Anything I could not fix (ambiguous rule, missing test command, denied action) gets listed explicitly instead of being silently skipped.\n\n## Constraints\n- No scope creep: only fix what CLAUDE.md actually forbids.\n- No commits, no `git add`, no history rewriting — I leave the actual commit to you.\n- If tests fail for reasons unrelated to my edits, I'll report that rather than \"fixing\" unrelated code."
+ ],
+ "final": "Now I have the picture. Let me read the specific files I'll edit in full."
+}

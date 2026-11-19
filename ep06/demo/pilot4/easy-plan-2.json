@@ -1,0 +1,36 @@
+{
+ "level": "easy",
+ "setup": "plan",
+ "run": 2,
+ "turns": 13,
+ "edits": 6,
+ "score": 9,
+ "of": 9,
+ "checks": {
+  "1 rename to order_total everywhere": true,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "Plan (I was unable to read/grep files in plan mode, so step 0 is to inspect first):\n\n0. Inspect: list the project files, read pricing.py, config.py, the CLI entry script, the tests folder, README.md and CHANGELOG.md, and grep for `calc_total`, the tax rate, and the banner/version string so I know every place to touch.\n\n1. Rename `calc_total` -> `order_total` in every occurrence (pricing.py definition, callers in the CLI/other modules, tests, README/docs). Keep behavior identical.\n\n2. Raise the tax rate to 9% in pricing.py (the TAX_RATE constant or equivalent, e.g. 0.08 -> 0.09), and check whether any test asserts the old 8% figure — update expected values so they stay correct, not just green.\n\n3. Update README.md: change the stated tax rate to 9%, and update any code sample that calls `calc_total` so it uses `order_total`.\n\n4. Add `apply_discount(total, percent)` to pricing.py: returns `round(total - total * percent / 100, 2)` (total minus that percent, rounded to 2 decimals). Include a short docstring.\n\n5. Add a test for `apply_discount` in the existing test file, covering a normal case (e.g. 100.0 at 10% -> 90.0) and a rounding case (e.g. 19.99 at 15% -> 16.99) plus a zero-percent case.\n\n6. Bump the version to 1.1.0 in config.py.\n\n7. Add a `1.1.0` entry at the top of CHANGELOG.md describing: renamed calc_total -> order_total, tax rate now 9%, new apply_discount function.\n\n8. Make the CLI banner show the new version — reference the version from config.py rather than hardcoding it, so the banner reads e.g. \"Shop v1.1.0\".\n\n9. Verify: run `python3 -m unittest discover -s tests` and confirm all tests pass; also run the CLI once to confirm the banner shows v1.1.0. Re-read edited files to confirm changes are in place. No third-party packages, Python 3 only."
+ ],
+ "final": "All 8 changes are in and the tests pass (5 tests, OK).\n\nWhat I changed:\n1. **Rename** — `calc_total` → `order_total` in `pricing.py`, `cart.py` (import, call, comment), `report.py`, `tests/test_pricing.py`, and README. The only remaining `calc_total` is in the CHANGELOG line describing the rename, which is intentional.\n2. **Tax rate** — `config.py`: `TAX_RATE = 0.07` → `0.09`. Note: the old rate was 7%, not 8%, so it's now 9% as asked. Test expectations updated from 107.0/`107.00` to 109.0/`109.00`.\n3. **README** — now says \"The tax rate is 9%\", documents `order_total`, and shows version 1.1.0.\n4. **`apply_discount(total, percent)`** in `pricing.py` — returns `total - total * percent/100`, `round(..., 2)`.\n5. **Test** — added `test_apply_discount` (100.0, 10 → 90.0), a rounding case (19.99, 15 → 16.99) and a zero-percent case.\n6. **Version** — `config.py`: `VERSION = \"1.1.0\"`.\n7. **CHANGELOG** — new `## 1.1.0` section above 1.0.0.\n8. **Banner** — `cli.py` now imports `VERSION` from `config.py` and builds `BANNER = \"shop v%s\" % VERSION`, so it can't drift again. Verified: `python3 cli.py 10 20` prints `shop v1.1.0` / `2 items, total 32.70`.\n\nOne thing to flag: I couldn't read or grep any files while in plan mode (both tools were refused), so my plan was written blind; everything was verified by reading the files and running the tests after approval."
+}

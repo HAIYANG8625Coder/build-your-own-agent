@@ -1,0 +1,31 @@
+{
+ "setup": "todo",
+ "run": 3,
+ "turns": 31,
+ "edits": 12,
+ "score": 8,
+ "checks": {
+  "1 rename to order_total everywhere": false,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [],
+ "final": "All 8 changes are done and the tests pass (3 tests, OK).\n\n- **Rename**: `calc_total` → `order_total` in `pricing.py`, `cart.py` (incl. its comment), `report.py`, `tests/test_pricing.py`, `README.md`. No stale references remain (only the CHANGELOG history mentions the old name, intentionally).\n- **Tax rate**: `config.py` `TAX_RATE = 0.09`; test expectations updated to 109.0 / \"2 items, total 109.00\".\n- **README**: now documents `order_total`, the new `apply_discount`, tax rate 9%, version 1.1.0.\n- **`apply_discount(total, percent)`** added to `pricing.py`: returns `round(total * (1 - percent/100), 2)`; e.g. 100/10 → 90.0, 109.99/15 → 93.49.\n- **Tests**: new `test_apply_discount` covering 10%, a rounding case, and 0%.\n- **Version**: `VERSION = \"1.1.0\"`; `CHANGELOG.md` has a 1.1.0 section above 1.0.0.\n- **CLI banner**: `BANNER = \"shop v%s\" % VERSION`, so it reads from config instead of hardcoding — `python3 cli.py 10 20` prints `shop v1.1.0`.\n\nVerified: `python3 -m unittest discover -s tests` → `OK` (exit 0), and `report.report()` still works with the renamed function."
+}

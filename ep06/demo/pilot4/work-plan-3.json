@@ -1,0 +1,38 @@
+{
+ "level": "work",
+ "setup": "plan",
+ "run": 3,
+ "turns": 30,
+ "edits": 11,
+ "score": 12,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "I could not read anything yet: both `read_file` and `grep` are disabled in plan mode, so I have zero knowledge of this repo's contents or of the rules in CLAUDE.md. I won't guess at violations.\n\nPlan once you approve (which unlocks reading):\n\n1. Read CLAUDE.md in full and write out each rule as a concrete checklist item (naming, file layout, imports, commit message format, test commands, forbidden patterns, etc.).\n2. Inventory the repo: list files, read the source files and any config (package.json / pyproject.toml / Makefile), plus git status so I focus on what's about to be committed.\n3. Go through the checklist rule by rule, searching for violations (grep for the specific patterns each rule names).\n4. Fix each violation with the smallest change that satisfies the rule, re-reading each file before editing it.\n5. Verify: run the project's test/lint command, plus any build step, and re-read the edited files to confirm the fixes.\n6. Report a short table: rule broken | what was wrong | what I changed.\n\nIf a rule is ambiguous or the fix would require a design decision (e.g. renaming a public API), I'll flag it rather than silently choose. If tests or lint can't run in this environment, I'll say so explicitly instead of claiming a pass.\n\nOne caveat: the task says \"fix everything,\" but I'll only make changes that CLAUDE.md actually requires — I won't reformat or refactor unrelated code, since that would make your commit harder to review."
+ ],
+ "final": "Checked all six rules from CLAUDE.md with a script that asserts each one; everything now passes (11 skills, 4 agents, 5 plugins).\n\n| Rule | What was wrong | What I changed |\n|---|---|---|\n| Plugin needs `plugin.json` w/ name=folder, version, description | `plugins/diagrams` had `\"name\": \"diagram\"` (≠ folder) | Renamed to `diagrams` |\n| same | `avatar-video/plugin.json` had no `description` | Added `\"description\": \"The avatar-video plugin.\"` |\n| same | `outlook-email/plugin.json` had no `version` | Added `\"version\": \"0.1.0\"` |\n| Plugin needs a `marketplace.json` entry | `diagrams` was never registered | Added entry (source `./plugins/diagrams`) |\n| Skills/subagents live only under `plugins/`, linked from `.claude/` | `quick-notes` existed as a real folder directly in `.claude/skills/` | Moved to `plugins/quick-notes/skills/quick-notes/`, added `plugin.json` + marketplace entry, replaced with a symlink |\n| Frontmatter needs `name` + `description` | `agents/video-scripter.md` had no `name` | Added `name: video-scripter` |\n| same | `skills/xhs-post/SKILL.md` had no `description` | Added a description matching the other skills |\n| Skills/subagents must be symlinked into `.claude/` | `x-image` skill and `x-reviewer.md` agent had no symlink | Created both symlinks |\n| same | `voice-video` symlink pointed at `voice_video` → dangling | Repointed to `skills/voice-video` |\n| README: one row per skill and subagent | Missing rows for `youtube-post`, `video-reviewer` | Added both |\n| — | (follow-on) the moved `quick-notes` skill needed a row | Added `plugins/quick-notes/skills/quick-notes/` |\n\nTwo things to flag:\n\n- **Not a git repo.** `git status` returns `fatal: not a git repository` from this folder, so I couldn't scope the check to your staged changes — I audited every file. If the real repo root is a parent directory, tell me and I'll re-check just the diff.\n- **One judgment call:** `quick-notes` fits no existing plugin, so I gave it its own plugin (`plugins/quick-notes/`) rather than tucking it into an unrelated one. If you'd rather it belonged to an existing plugin, say which and I'll move it.\n\nI left the four third-party skills (`heygen-avatar`, `heygen-video`, `hyperframes`, `media-use`) untouched, as rule 5 requires."
+}

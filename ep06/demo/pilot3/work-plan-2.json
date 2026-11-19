@@ -1,0 +1,42 @@
+{
+ "level": "work",
+ "setup": "plan",
+ "run": 2,
+ "turns": 28,
+ "edits": 14,
+ "score": 11,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": false
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "Heads-up: in plan mode every read tool is blocked, so I could not open CLAUDE.md or any project file yet. The plan below is therefore about *how* I'll check, not findings — I won't guess at what's wrong.\n\n1. Read CLAUDE.md in full and turn each rule into a concrete checklist item (naming, formatting, file layout, allowed dependencies, test expectations, commit/scope rules, etc.).\n2. Inventory the repo: list all tracked/modified files (including anything to be committed) and note tech stack, test command, and lint/format config.\n3. Go through the codebase rule by rule and record every violation with file path + line number, so the fix list is verifiable rather than impressionistic.\n4. Fix violations one at a time, reading each file before editing it and staying minimal — no opportunistic refactors, no behavior changes beyond what a rule requires.\n5. Verify: run the test suite and any lint/format/typecheck script, and read back each edited file to confirm it matches the rule.\n6. Report a short two-column table — \"what was wrong\" (with location) vs \"what I changed\" — plus a note on anything I could not verify or chose not to touch.\n\nTwo things I'll flag rather than silently decide:\n- If a rule is ambiguous or conflicts with existing code, I'll pick the reading closest to the rule's obvious intent and call it out in the report instead of rewriting large areas.\n- If a violation looks deliberate (e.g. a generated file, vendored code, or a documented exception), I'll mention it and leave it alone.\n\nPlease approve and I'll start with step 1."
+ ],
+ "final": "All 5 rules from CLAUDE.md now pass a repo-wide check (0 violations). Note: this folder isn't a git repo, so nothing was actually staged — the fixes are just in the working tree.\n\n| What was wrong | What I changed |\n|---|---|\n| `plugins/diagrams/plugin.json` had `\"name\": \"diagram\"`, not the folder name | → `\"diagrams\"` |\n| `diagrams` plugin missing from `.claude-plugin/marketplace.json` | Added its marketplace entry |\n| `plugins/outlook-email/plugin.json` missing `version` | Added `\"version\": \"0.1.0\"` |\n| `plugins/avatar-video/plugin.json` missing `description` | Added `\"description\": \"The avatar-video plugin.\"` |\n| `xhs-post/SKILL.md` frontmatter missing `description` | Added a description line |\n| `video-scripter.md` frontmatter missing `name` | Added `name: video-scripter` |\n| `.claude/skills/voice-video` pointed at `skills/voice_video` — broken symlink | Repointed to `skills/voice-video` |\n| `x-reviewer.md` subagent never linked into `.claude/agents/` | Added the symlink |\n| `x-image` skill never linked into `.claude/skills/` | Added the symlink |\n| `quick-notes` skill lived as a real dir directly in `.claude/skills/` (rule 1) | Moved to `plugins/quick-notes/skills/quick-notes/`, added `plugin.json`, marketplace entry, symlink back |\n| README had no rows for `youtube-post`, `video-reviewer`, `quick-notes` | Added the three rows, keeping the per-plugin grouping |\n\nTwo judgement calls worth your review before you commit:\n\n- **I created a new `plugins/quick-notes/` plugin** for the stray skill, since rule 1 gives every skill a plugin home. It mirrors the single-skill `plugins/diagrams` and `plugins/outlook-email` layout. If `quick-notes` was meant to belong to an existing plugin, that's a one-line move instead.\n- **The four third-party skills** (`heygen-avatar`, `heygen-video`, `hyperframes`, `media-use`) were left untouched per rule 9 — I only confirmed their frontmatter still parses."
+}

@@ -1,0 +1,32 @@
+{
+ "level": "hard",
+ "setup": "plain",
+ "run": 5,
+ "turns": 7,
+ "edits": 0,
+ "score": 17,
+ "of": 17,
+ "checks": {
+  "1 rename to order_total everywhere": true,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true,
+  "10 SHIPPING_FEE = 5.0 in config": true,
+  "11 shipping_cost(): free over 100": true,
+  "12 cart summary shows shipping": true,
+  "13 report has version header": true,
+  "14 test for shipping_cost": true,
+  "15 README documents shipping": true,
+  "16 CHANGELOG has 5+ bullets for 1.1.0": true,
+  "17 cli --version prints version": true
+ },
+ "finished": true,
+ "todos_final": [],
+ "plans": [],
+ "final": "All 15 changes are done and the 6 tests pass.\n\nWhat I changed:\n- **`pricing.py`** — renamed `calc_total` → `order_total`; added `apply_discount(total, percent)` returning `round(total * (1 - percent/100), 2)`.\n- **`config.py`** — `VERSION = \"1.1.0\"`, `TAX_RATE = 0.09`, added `SHIPPING_FEE = 5.0`.\n- **`shipping.py`** (new) — `shipping_cost(total)`: 0 if total > 100, else `SHIPPING_FEE`.\n- **`cart.py`** — uses `order_total`, summary now `\"2 items, total 32.70, shipping 5.00\"`.\n- **`report.py`** — first line is `Sales report v1.1.0`, then the per-order lines.\n- **`cli.py`** — banner built from `VERSION` (`shop v1.1.0`); `--version` prints only `1.1.0` and exits.\n- **`tests/test_pricing.py`** — updated expectations for the 9% rate (100 → 109.00) and new summary string; added tests for `apply_discount`, `shipping_cost` (including the >100 boundary), the shipping-in-summary case, and the report version line.\n- **`README.md`** — documents `order_total`, `apply_discount`, the 9% tax rate, the shipping rule, `--version`, and version 1.1.0.\n- **`CHANGELOG.md`** — new 1.1.0 section with 8 bullets.\n\nVerified: `python3 cli.py --version` → `1.1.0` only; `python3 cli.py 10 20` → banner `shop v1.1.0` + `2 items, total 32.70, shipping 5.00`; `python3 -m unittest discover -s tests` → OK (6 tests).\n\nOne note: the string `calc_total` appears once in `CHANGELOG.md` (\"Renamed `calc_total` to `order_total`\") — that's the rename note itself, not a code reference. Say the word if you'd rather it not be mentioned at all."
+}

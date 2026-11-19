@@ -1,0 +1,46 @@
+{
+ "level": "hard",
+ "setup": "plan",
+ "run": 5,
+ "turns": 24,
+ "edits": 2,
+ "score": 17,
+ "broke": [],
+ "of": 17,
+ "checks": {
+  "1 rename to order_total everywhere": true,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true,
+  "10 SHIPPING_FEE = 5.0 in config": true,
+  "11 shipping_cost(): free over 100": true,
+  "12 cart summary shows shipping": true,
+  "13 report has version header": true,
+  "14 test for shipping_cost": true,
+  "15 README documents shipping": true,
+  "16 CHANGELOG has 5+ bullets for 1.1.0": true,
+  "17 cli --version prints version": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "## Plan\n\nFiles read: `pricing.py`, `cart.py`, `report.py`, `config.py`, `cli.py`, `README.md`, `CHANGELOG.md`, `tests/test_pricing.py` (the only test file). Only Python 3 stdlib, no third-party deps.\n\n1. **`config.py`** — set `VERSION = \"1.1.0\"`, `TAX_RATE = 0.09`, add `SHIPPING_FEE = 5.0`.\n2. **`pricing.py`** — rename `calc_total` → `order_total` (update docstring); add `apply_discount(total, percent)` returning `round(total * (1 - percent/100), 2)`.\n3. **`shipping.py`** (new) — `shipping_cost(total)`: returns `0` when `total > 100`, otherwise `SHIPPING_FEE` (imported from config).\n4. **`cart.py`** — import `order_total` and `shipping_cost`; summary becomes `\"%d items, total %.2f, shipping %.2f\"`.\n5. **`report.py`** — import `order_total` and `VERSION`; first line is `\"Sales report v\" + VERSION`, then the per-order lines.\n6. **`cli.py`** — banner uses `VERSION` (`\"shop v1.1.0\"`); `--version` (if it is the only/first arg) prints just `VERSION` and exits before any banner/summary output.\n7. **`tests/test_pricing.py`** — update imports/calls to `order_total`, fix the now-wrong expected values (tax 9% → `order_total([100]) == 109.0`; cart summary `\"2 items, total 109.00, shipping 5.00\"`), add `test_apply_discount` and `test_shipping_cost` (over-100 → 0, at/below 100 → 5.0). Optionally add small tests for the report header and `cli --version` output.\n8. **`README.md`** — mention `order_total`, tax rate 9%, document the shipping rule (free over 100, otherwise 5.00), version 1.1.0.\n9. **`CHANGELOG.md`** — add a `## 1.1.0` section with at least 5 separate bullets (rename, tax increase, apply_discount, shipping fee + shipping_cost, cart summary shipping, report version line, cli --version).\n10. **Verify** — run `python3 -m unittest discover -s tests`, plus `python3 cli.py --version` output check; re-read each edited file."
+ ],
+ "final": "All 16 changes are done and the tests pass (`Ran 8 tests ... OK`).\n\nWhat changed:\n- **config.py**: `VERSION = \"1.1.0\"`, `TAX_RATE = 0.09`, `SHIPPING_FEE = 5.0`.\n- **pricing.py**: `calc_total` → `order_total`; new `apply_discount(total, percent)` returning `round(total - total*percent/100, 2)`.\n- **shipping.py** (new): `shipping_cost(total)` → `0` when total > 100, else `SHIPPING_FEE`.\n- **cart.py**: uses `order_total`; summary is now `\"2 items, total 32.70, shipping 5.00\"`.\n- **report.py**: first line `\"Sales report v1.1.0\"`.\n- **cli.py**: banner built from `VERSION` (`shop v1.1.0`); `--version` prints only `1.1.0` (verified with `od -c`: just `1.1.0\\n`).\n- **tests**: renamed calls, fixed the 9%-tax expectations, added tests for `apply_discount`, `shipping_cost`, the report header, the banner and `--version` (8 tests).\n- **README.md**: `order_total`, 9% tax, shipping rule, version 1.1.0.\n- **CHANGELOG.md**: `## 1.1.0` with 9 bullets.\n\nOne note: with a 9% tax, a 50+50 cart totals 109.00, which is over 100, so its shipping is free (`shipping 0.00`). I kept that behaviour as specified and used a smaller cart (10+20 → `total 32.70, shipping 5.00`) for the 5.00 example."
+}

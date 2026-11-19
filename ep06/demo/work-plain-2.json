@@ -1,0 +1,28 @@
+{
+ "level": "work",
+ "setup": "plain",
+ "run": 2,
+ "turns": 15,
+ "edits": 5,
+ "score": 12,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": true
+ },
+ "finished": true,
+ "todos_final": [],
+ "plans": [],
+ "final": "Everything now passes. Verification: no broken symlinks, only the 4 third-party skills are real dirs in `.claude/skills`, all 5 `plugin.json` files valid, marketplace ↔ plugins match exactly, all frontmatter has `name`+`description`, README rows ↔ actual paths match in both directions, and every plugin skill/agent is correctly linked.\n\n| What was wrong | What I changed |\n|---|---|\n| `.claude/skills/voice-video` symlinked to `.../skills/voice_video` (underscore) → broken link, rule 1 | Recreated as `../../plugins/avatar-video/skills/voice-video` |\n| `quick-notes` was a real skill directory living directly in `.claude/skills/` — no plugin, rule 1 | Moved to `plugins/quick-notes/skills/quick-notes/SKILL.md`, added `.claude-plugin/plugin.json`, replaced with symlink |\n| `plugins/diagrams/.claude-plugin/plugin.json` had `\"name\": \"diagram\"` ≠ folder name, rule 2 | Changed to `\"diagrams\"` |\n| `plugins/outlook-email/plugin.json` had no `version`, rule 2 | Added `\"version\": \"0.1.0\"` |\n| `plugins/avatar-video/plugin.json` had no `description`, rule 2 | Added `\"description\"` |\n| `diagrams` (and new `quick-notes`) had no entry in `.claude-plugin/marketplace.json`, rule 2 | Added both entries |\n| `plugins/x-assistant/skills/xhs-post/SKILL.md` frontmatter had no `description`, rule 3 | Added `description` |\n| `plugins/avatar-video/agents/video-scripter.md` frontmatter had no `name`, rule 3 | Added `name: video-scripter` |\n| `x-image` skill and `x-reviewer` agent existed in plugins but had no `.claude` symlink, rule 1 | Added both symlinks |\n| README missing rows for `youtube-post`, `video-reviewer`, and `quick-notes`, rule 4 | Added the three table rows |\n\nNote: I did not touch `heygen-avatar`, `heygen-video`, `hyperframes`, `media-use` (rule 5 — installer-managed)."
+}

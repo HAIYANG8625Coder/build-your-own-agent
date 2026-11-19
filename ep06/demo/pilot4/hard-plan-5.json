@@ -1,0 +1,45 @@
+{
+ "level": "hard",
+ "setup": "plan",
+ "run": 5,
+ "turns": 12,
+ "edits": 0,
+ "score": 17,
+ "of": 17,
+ "checks": {
+  "1 rename to order_total everywhere": true,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true,
+  "10 SHIPPING_FEE = 5.0 in config": true,
+  "11 shipping_cost(): free over 100": true,
+  "12 cart summary shows shipping": true,
+  "13 report has version header": true,
+  "14 test for shipping_cost": true,
+  "15 README documents shipping": true,
+  "16 CHANGELOG has 5+ bullets for 1.1.0": true,
+  "17 cli --version prints version": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "## Plan: shop project changes for v1.1.0\n\nSince I can't read files in plan mode, step 1 is exploration; the rest is the intended changes (I'll adjust to actual file contents/layout once I can read them).\n\n**Explore**\n1. List the repo (pricing.py, config.py, cli.py, README.md, CHANGELOG.md, tests/, maybe reports/summary modules) and read each file to find `calc_total`, the tax rate, the banner, the cart summary, and the report header.\n\n**Code changes**\n2. `pricing.py`\n   - Rename `calc_total` → `order_total` (keep behavior otherwise).\n   - Raise `TAX_RATE` to 0.09 / 9% (wherever it lives — config.py or pricing.py; keep a single source of truth).\n   - Add `apply_discount(total, percent)` returning `round(total - total * percent / 100, 2)`.\n3. `config.py`\n   - `VERSION = \"1.1.0\"`\n   - `SHIPPING_FEE = 5.0`\n   - Tax rate 9% if defined here.\n4. `shipping.py` (new)\n   - `shipping_cost(total)`: return `0` if `total > 100`, else `SHIPPING_FEE` (imported from config).\n5. `cli.py`\n   - Banner uses `VERSION` (show 1.1.0).\n   - `--version` prints **only** the version (e.g. `1.1.0`) to stdout and exits 0 — suppress any banner/extra output.\n   - Cart summary line gains `, shipping 5.00` (2-decimal format, using `shipping_cost`).\n6. Report: first line becomes `Sales report v1.1.0` (using `config.VERSION`).\n7. Grep the whole repo for `calc_total` (code, tests, README/docs) and update every occurrence; fix any test that references old tax amounts, old totals, or the old function name.\n\n**Docs**\n8. `README.md`: new tax rate (9%) in the tax description/examples, document `order_total`/`apply_discount`, and document the shipping rule (free over 100, otherwise 5.00).\n9. `CHANGELOG.md`: new `## [1.1.0]` entry with at least five separate bullets (rename, tax rate, apply_discount, version bump, shipping fee/rule, CLI banner/--version, report header).\n\n**Tests**\n10. Add a test for `apply_discount` (e.g. 100 @ 10% → 90.0; rounding case; 0%).\n11. Add a test for `shipping_cost` (100 → 5.0, 100.01/150 → 0, 0 → 5.0) and update/add tests for the summary line and report header.\n12. Run `python3 -m unittest discover -s tests` until green; also verify `python3 cli.py --version` output is exactly the version, and spot-check the summary/report output.\n\n**Verify**\n13. Re-read changed files, confirm no `calc_total` remains, tests pass — then report results."
+ ],
+ "final": "All 16 items are done and the suite is green (14 tests, OK).\n\n**Code**\n- `config.py`: `VERSION = \"1.1.0\"`, `TAX_RATE = 0.09`, `CURRENCY = \"SGD\"`, `SHIPPING_FEE = 5.0`\n- `pricing.py`: `calc_total` → `order_total`; new `apply_discount(total, percent)` = `round(total - total*percent/100, 2)`\n- `shipping.py` (new): `shipping_cost(total)` → `0` if `total > 100`, else `SHIPPING_FEE` (exactly 100 still pays)\n- `cart.py`: summary now `\"2 items, total 32.70, shipping 5.00\"`\n- `report.py`: first line `\"Sales report v1.1.0\"`\n- `cli.py`: banner `shop v1.1.0`; `--version` prints only `1.1.0` (verified with `od -c` → `1 . 1 . 0 \\n`)\n\n**Docs**\n- `README.md`: 9% tax, documents `order_total`, `apply_discount`, the shipping rule and the version\n- `CHANGELOG.md`: `## 1.1.0` with 9 bullets, `1.0.0` kept below\n\n**Tests**\n- Updated `tests/test_pricing.py` (new totals, cart summary) and added `apply_discount` tests\n- Added `tests/test_shipping.py`, `tests/test_report.py`, `tests/test_cli.py` (version-only output, banner, summary)\n\nOnly remaining `calc_total` mention is the intentional changelog line describing the rename."
+}

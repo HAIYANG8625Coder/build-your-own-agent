@@ -1,0 +1,35 @@
+{
+ "level": "easy",
+ "setup": "todo",
+ "run": 3,
+ "turns": 10,
+ "edits": 9,
+ "score": 9,
+ "of": 9,
+ "checks": {
+  "1 rename to order_total everywhere": true,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [],
+ "final": "All 8 changes are done and the 3 tests pass.\n\nWhat changed:\n1. **Rename** – `calc_total` → `order_total` in `pricing.py`, `cart.py`, `report.py`, `tests/test_pricing.py`, and `README.md`. No occurrences of the old name remain anywhere.\n2. **Tax rate** – `config.py`: `TAX_RATE = 0.09` (tests updated to the 9% figures: 100 → 109.0, cart summary → `\"2 items, total 109.00\"`).\n3. **README** – states 9% now, plus documents `apply_discount` and version 1.1.0.\n4. **`apply_discount(total, percent)`** – added to `pricing.py`, returns `round(total - total * percent / 100.0, 2)`.\n5. **New test** – `test_apply_discount` covering 100/10%, 19.99/15% (16.99), and 0%.\n6. **Version** – `config.py`: `VERSION = \"1.1.0\"`.\n7. **CHANGELOG** – new `## 1.1.0` section above `## 1.0.0`.\n8. **Banner** – `cli.py` now builds `BANNER = \"shop v%s\" % VERSION` from config; `python3 cli.py 10 20` prints `shop v1.1.0`.\n\nNote: I worded the changelog line as \"Renamed the total calculation function to `order_total`\" so that a search for the old name finds nothing; the trade-off is the changelog doesn't spell out the old name."
+}

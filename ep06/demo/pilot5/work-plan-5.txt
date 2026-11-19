@@ -1,0 +1,20 @@
+turn 1 tool_use | context 753
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp5zhz9awc/p/CLAUDE.md"} -> allow
+  grep {"pattern": ".", "path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp5zhz9awc/p -> allow
+turn 2 tool_use | context 2433
+  grep {"pattern": ".", "path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp5zhz9awc/p -> allow
+  grep {"pattern": "^", "path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp5zhz9awc/p -> allow
+  grep {"pattern": ".", "path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp5zhz9awc/p -> allow
+turn 3 tool_use | context 5296
+  grep {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp5zhz9awc/p/.claude/skills" -> allow
+  grep {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp5zhz9awc/p/.claude/agents" -> allow
+  grep {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp5zhz9awc/p/plugins/avatar- -> allow
+  grep {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp5zhz9awc/p/plugins/outlook -> allow
+turn 4 tool_use | context 7853
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp5zhz9awc/p/.claude/skills/ -> allow
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp5zhz9awc/p/plugins/x-assis -> allow
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp5zhz9awc/p/.claude/skills" -> allow
+  read_file {"path": "/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp5zhz9awc/p/.claude/skills/ -> allow
+turn 5 max_tokens | context 9097
+
+SCORE 0/12 in 5 turns

@@ -1,0 +1,37 @@
+{
+ "level": "work",
+ "setup": "todo",
+ "run": 2,
+ "turns": 40,
+ "edits": 10,
+ "score": 12,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [],
+ "final": "I found 9 rule breaks and fixed them all. Re-checked the whole repo against every CLAUDE.md rule afterwards: 0 violations.\n\n| What was wrong | What I changed |\n|---|---|\n| `plugins/avatar-video/.claude-plugin/plugin.json` had no `description` | Added `\"description\": \"The avatar-video plugin.\"` |\n| `plugins/diagrams/.claude-plugin/plugin.json` had `name: \"diagram\"`, not matching its folder | Changed to `\"name\": \"diagrams\"` |\n| `plugins/outlook-email/.claude-plugin/plugin.json` had no `version` | Added `\"version\": \"0.1.0\"` |\n| `plugins/diagrams` was missing from `.claude-plugin/marketplace.json` | Added its entry (`source: ./plugins/diagrams`) |\n| `.claude/skills/quick-notes` was a real skill directory living in `.claude/` (rule 1) | Moved it to `plugins/quick-notes/skills/quick-notes/`, added `plugins/quick-notes/.claude-plugin/plugin.json`, registered the plugin in `marketplace.json`, and replaced it with a symlink |\n| `.claude/skills/voice-video` symlink pointed at `.../skills/voice_video` (underscore) and was dangling | Re-pointed to `../../plugins/avatar-video/skills/voice-video` |\n| `x-image` skill had no symlink in `.claude/skills/` | Created `ln -s ../../plugins/x-assistant/skills/x-image` |\n| `x-reviewer` agent had no symlink in `.claude/agents/` | Created `ln -s ../../plugins/x-assistant/agents/x-reviewer.md` |\n| `video-scripter.md` frontmatter lacked `name`; `xhs-post/SKILL.md` frontmatter lacked `description` | Added `name: video-scripter` and a `description:` line for xhs-post |\n| README table had no rows for `youtube-post`, `video-reviewer`, `quick-notes` | Added those three rows (now 15 rows for 15 skills/agents) |\n\nNotes: the four third-party skills (`heygen-avatar`, `heygen-video`, `hyperframes`, `media-use`) were left untouched. `quick-notes` wasn't in the third-party list and matched the author's own style, so I made it its own plugin — rename it into another plugin if you'd prefer. Also, this folder has no `.git` directory, so I couldn't stage or diff anything; the changes are on disk only."
+}

@@ -1,0 +1,39 @@
+{
+ "level": "work",
+ "setup": "plan",
+ "run": 5,
+ "turns": 27,
+ "edits": 8,
+ "score": 12,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "Audit of the repo against CLAUDE.md turned up 9 rule violations. Here is what I found and what I plan to change.\n\n**Found**\n1. `plugins/diagrams/.claude-plugin/plugin.json`: `\"name\": \"diagram\"` ≠ folder name `diagrams` (rule 2).\n2. `plugins/avatar-video/.claude-plugin/plugin.json`: no `description` (rule 2).\n3. `plugins/outlook-email/.claude-plugin/plugin.json`: no `version` (rule 2).\n4. `.claude-plugin/marketplace.json`: no entry for the `diagrams` plugin (rule 2).\n5. `plugins/x-assistant/skills/xhs-post/SKILL.md`: frontmatter has `name` but no `description` (rule 3).\n6. `plugins/avatar-video/agents/video-scripter.md`: frontmatter has `description` but no `name` (rule 3).\n7. `.claude/skills/quick-notes/SKILL.md`: a real skill created directly in `.claude/`, not in any plugin (rule 1). The other four dirs there are the third-party ones.\n8. `.claude/agents/{x-drafter,video-reviewer,video-scripter}.md` look like real files, not symlinks into `plugins/`, and `x-reviewer` has no link at all (rule 1). Same question for the plugin skills, which have no `.claude/skills/<name>` links.\n9. `README.md` has no row for `plugins/x-assistant/skills/youtube-post/` or `plugins/avatar-video/agents/video-reviewer.md` (rule 4).\n\n**Changes**\n- Fix items 1–6 in place (rename name to `diagrams`, add the missing `version`/`description`/frontmatter field, add the `diagrams` marketplace entry).\n- quick-notes: move the skill to `plugins/quick-notes/skills/quick-notes/SKILL.md` with a new `plugins/quick-notes/.claude-plugin/plugin.json`, add a marketplace entry and a README row, and turn `.claude/skills/quick-notes` into the symlink `../../plugins/quick-notes/skills/quick-notes`. (Tell me if you'd rather it live inside an existing plugin instead of getting its own.)\n- Replace the duplicated files in `.claude/agents/` with symlinks to their `plugins/...` originals, add the missing `x-reviewer` link, and add `.claude/skills/<name>` symlinks for every plugin skill (never touching `heygen-avatar`, `heygen-video`, `hyperframes`, `media-use`).\n- Add README rows for youtube-post, video-reviewer and quick-notes.\n- Verify by re-reading every edited file, re-grepping the inventory (plugins vs `.claude` links vs README rows), and checking each `plugin.json`/`marketplace.json` parses. No test suite exists in this repo.\n\nOne caveat: my current toolset has no shell, so writing files may be possible but `ln -s` may not be. If I can't create symlinks, I'll still fix all the file contents and tell you exactly which `ln -s` commands are left for you to run rather than faking it with copies."
+ ],
+ "final": "Done — a scripted audit now reports **ALL RULES PASS** against every rule in CLAUDE.md.\n\n| What was wrong | What I changed |\n|---|---|\n| `plugins/diagrams/.claude-plugin/plugin.json` had `\"name\": \"diagram\"` ≠ folder `diagrams` | Renamed to `\"diagrams\"` |\n| `plugins/avatar-video/.claude-plugin/plugin.json` had no `description` | Added `\"description\": \"The avatar-video plugin.\"` |\n| `plugins/outlook-email/.claude-plugin/plugin.json` had no `version` | Added `\"version\": \"0.1.0\"` |\n| `diagrams` plugin had no entry in `.claude-plugin/marketplace.json` | Added entry (source `./plugins/diagrams`) |\n| `plugins/x-assistant/skills/xhs-post/SKILL.md` frontmatter had no `description` | Added `description:` line |\n| `plugins/avatar-video/agents/video-scripter.md` frontmatter had no `name` | Added `name: video-scripter` |\n| `quick-notes` was a real skill living directly in `.claude/skills/` (rule 1) | Moved to `plugins/quick-notes/skills/quick-notes/SKILL.md`, added `plugin.json` + marketplace entry, replaced the dir with symlink `../../plugins/quick-notes/skills/quick-notes` |\n| `.claude/skills/voice-video` pointed at `skills/voice_video` (broken symlink) | Re-linked to `../../plugins/avatar-video/skills/voice-video` |\n| `.claude/skills/x-image` link missing | Created |\n| `.claude/agents/x-reviewer.md` link missing | Created |\n| README had no rows for `youtube-post`, `video-reviewer`, or `quick-notes` | Added rows |\n\nVerified: all 4 `plugin.json` files parse and match their folder names, `marketplace.json` lists all 5 plugins, all 15 `.claude` entries are valid symlinks into `plugins/`, and the four third-party skills are untouched (mtimes unchanged).\n\nTwo notes: this folder isn't a git repo (`git status` → *not a git repository*), so I couldn't review an actual diff/staging area; and I gave `quick-notes` its own plugin since it had no obvious existing home — say the word if you'd rather it fold into one of the current plugins."
+}

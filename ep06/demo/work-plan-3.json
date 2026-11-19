@@ -1,0 +1,38 @@
+{
+ "level": "work",
+ "setup": "plan",
+ "run": 3,
+ "turns": 27,
+ "edits": 12,
+ "score": 12,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "Violations found vs CLAUDE.md:\n\n1. `plugins/diagrams/.claude-plugin/plugin.json` → name \"diagram\" ≠ folder \"diagrams\".\n2. `marketplace.json` has no entry for `diagrams`.\n3. `plugins/outlook-email/.../plugin.json` → missing `version`.\n4. `plugins/avatar-video/.../plugin.json` → missing `description`.\n5. `xhs-post/SKILL.md` → frontmatter lacks `description`.\n6. `avatar-video/agents/video-scripter.md` → frontmatter lacks `name`.\n7. `.claude/skills/quick-notes/` is a real skill created directly in `.claude/` (not in any plugin).\n8. Missing links: `.claude/skills/x-image`, `.claude/agents/x-reviewer`.\n9. Broken link: `.claude/skills/voice-video` → `voice_video` (underscore typo).\n10. `.claude/agents/{x-drafter,video-scripter,video-reviewer}.md` are real copies, not symlinks.\n11. README.md missing rows for `youtube-post` skill and `video-reviewer` subagent.\n\nChanges:\n- Fix plugin.json name/version/description; add `diagrams` to marketplace.json.\n- Add `description:` to xhs-post SKILL.md; add `name:` to video-scripter.md.\n- Move quick-notes to `plugins/quick-notes/` (new plugin + plugin.json + marketplace entry + README row) then link it back, since no existing plugin fits. Say if you'd rather it live in an existing plugin.\n- Fix/repair symlinks: add x-image + x-reviewer, repoint voice-video, replace the 3 real agent copies with symlinks.\n- Add the 2 missing README rows (+ quick-notes).\n- Leave third-party skills untouched; verify all links resolve and every SKILL.md/agent has name+description."
+ ],
+ "final": "All rules now pass (verified: JSON valid, no broken symlinks, frontmatter complete, README covers every skill/agent).\n\n| What was wrong | What I changed |\n|---|---|\n| `plugins/diagrams/.claude-plugin/plugin.json` had `\"name\": \"diagram\"`, but rule 6 requires name = folder name | Changed to `\"diagrams\"` |\n| `plugins/diagrams` had no entry in `.claude-plugin/marketplace.json` | Added a `diagrams` entry |\n| `plugins/outlook-email/.../plugin.json` had no `version` | Added `\"version\": \"0.1.0\"` |\n| `plugins/avatar-video/.../plugin.json` had no `description` | Added `\"description\": \"The avatar-video plugin.\"` |\n| `xhs-post/SKILL.md` frontmatter had `name` but no `description` | Added the description |\n| `avatar-video/agents/video-scripter.md` frontmatter had no `name` | Added `name: video-scripter` |\n| `quick-notes` was a real skill created directly in `.claude/skills/` (rule 1) | Moved to `plugins/quick-notes/skills/quick-notes/`, added `plugin.json` + marketplace entry + README row, relinked as a symlink |\n| `.claude/skills/x-image` had no symlink | Created `ln -s ../../plugins/x-assistant/skills/x-image` |\n| `.claude/agents/x-reviewer.md` had no symlink | Created `ln -s ../../plugins/x-assistant/agents/x-reviewer.md` |\n| `.claude/skills/voice-video` was a broken link to `.../skills/voice_video` (underscore typo) | Repointed to `.../skills/voice-video` |\n| README.md had no rows for `youtube-post`, `video-reviewer`, and `quick-notes` | Added the three rows |\n\nTwo notes: the third-party skills (`heygen-avatar`, `heygen-video`, `hyperframes`, `media-use`) were left untouched as rule 9 requires. Creating a new `quick-notes` plugin was a judgment call since no existing plugin fit it — if you'd rather it lived inside an existing plugin, say which and I'll move it."
+}

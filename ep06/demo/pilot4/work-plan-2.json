@@ -1,0 +1,39 @@
+{
+ "level": "work",
+ "setup": "plan",
+ "run": 2,
+ "turns": 19,
+ "edits": 11,
+ "score": 12,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "I could not look at the repo yet: in plan mode my read tools (read_file, grep) are disabled, so I have not seen CLAUDE.md or any source files. So this plan is written before inspection, and I cannot promise a specific list of fixes.\n\nPlan once you approve:\n\n1. Read CLAUDE.md in full and turn each rule into an explicit checklist item (naming, file layout, style/format, imports, tests, commit/PR conventions, \"do not\" rules).\n2. Inventory the repo (all files, not just the ones you touched), so I can judge the whole tree against the rules and see what is new/changed for this commit.\n3. Go rule by rule and record every violation with file:line. Any rule that is ambiguous I will interpret narrowly and flag rather than guess.\n4. Fix the violations, reading each file before editing it, and keeping edits minimal and in the existing style so nothing unrelated is rewritten.\n5. Check the work: run whatever tests/lint/format commands CLAUDE.md or the repo defines, plus read changed files back.\n6. Report a short table: what was wrong (file:line + rule) | what I changed. Anything I chose not to or could not fix (e.g. a rule that conflicts with something, or a command that is missing/denied) will be listed separately as not done, with the reason, instead of being silently skipped.\n\nIf CLAUDE.md turns out to have no rules I can act on, or a rule would require large unrelated changes to files outside this commit, I will stop and ask before editing."
+ ],
+ "final": "Checked every rule in CLAUDE.md and fixed all violations.\n\n| # | What was wrong (rule) | What I changed |\n|---|---|---|\n| 1 | `plugins/avatar-video/.claude-plugin/plugin.json` had no `description` (rule 2) | Added `\"description\": \"The avatar-video plugin.\"` |\n| 2 | `plugins/outlook-email/.claude-plugin/plugin.json` had no `version` (rule 2) | Added `\"version\": \"0.1.0\"` |\n| 3 | `plugins/diagrams/…/plugin.json` had `\"name\": \"diagram\"` ≠ folder `diagrams` (rule 2) | Renamed to `\"diagrams\"` |\n| 4 | `diagrams` had no entry in `.claude-plugin/marketplace.json` (rule 2) | Added entry `./plugins/diagrams` |\n| 5 | `.claude/skills/quick-notes/` was a real skill dir with no plugin (rule 1, \"never create one directly in `.claude/`\") | Created `plugins/quick-notes/` with `plugin.json` (name/version/description) and moved the skill to `skills/quick-notes/SKILL.md`; replaced the dir with the proper symlink; added a marketplace entry |\n| 6 | `.claude/skills/voice-video` was a **broken** symlink → `…/skills/voice_video` (rule 1) | Re-pointed to `../../plugins/avatar-video/skills/voice-video` |\n| 7 | `x-reviewer` subagent and `x-image` skill had no symlink in `.claude/` (rule 1) | Added `.claude/agents/x-reviewer.md` and `.claude/skills/x-image` |\n| 8 | `plugins/avatar-video/agents/video-scripter.md` missing `name` in frontmatter (rule 3) | Added `name: video-scripter` |\n| 9 | `plugins/x-assistant/skills/xhs-post/SKILL.md` missing `description` in frontmatter (rule 3) | Added the description line |\n| 10 | README missing rows: `video-reviewer`, `youtube-post`, `quick-notes` (rule 4) | Added all three rows |\n\nVerification (no test suite exists, so I wrote checks): all JSON parses; all 5 plugin.json `name` == folder with version+description; marketplace ↔ plugins match both ways; 15/15 skill/agent files have `name`+`description`; 15/15 symlinks match the exact `ln -s ../../plugins/...` form and resolve; 15/15 README rows, no missing/stale/duplicate; `.claude/skills` holds only symlinks plus the four third-party dirs.\n\nTwo things to flag rather than silently decide:\n- **Not a git repo** (`git status` → \"not a git repository\"), so I could not diff your change set or verify third-party skills via git. I instead confirmed the four third-party `SKILL.md` files still have the original checkout mtime — untouched, as rule 9 requires.\n- The four third-party skills are skills without README rows. Rule 4 read literally would want rows for them, but rule 9 says their installer owns them/\"My skills and subagents\" is this repo's own. I left them out — tell me if you want them listed."
+}

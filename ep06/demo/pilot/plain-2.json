@@ -1,0 +1,22 @@
+{
+ "setup": "plain",
+ "run": 2,
+ "turns": 7,
+ "edits": 10,
+ "score": 8,
+ "checks": {
+  "1 rename to order_total everywhere": false,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true
+ },
+ "finished": true,
+ "todos_final": [],
+ "plans": [],
+ "final": "All 8 changes are done and all 3 tests pass.\n\nChanges:\n1. **`pricing.py`** — `calc_total` → `order_total`; added `apply_discount(total, percent)` returning `round(total * (1 - percent/100), 2)`.\n2. **`config.py`** — `TAX_RATE = 0.09`, `VERSION = \"1.1.0\"`.\n3. **`cart.py` / `report.py`** — updated import and call to `order_total` (comment too).\n4. **`cli.py`** — banner now built from `config.VERSION` (`shop v1.1.0`), so it can't drift again.\n5. **`README.md`** — documents `order_total`, 9% tax rate, version 1.1.0.\n6. **`CHANGELOG.md`** — new `## 1.1.0` entry (rename, discount function, 9% tax).\n7. **`tests/test_pricing.py`** — renamed usage, updated expectations to 109.0 / \"2 items, total 109.00\", added `test_apply_discount`.\n\nVerification: `python3 -m unittest discover -s tests -v` → 3 tests OK; `python3 cli.py 10 20` prints the v1.1.0 banner and `2 items, total 32.70`. The only remaining `calc_total` string is the intentional mention in the changelog describing the rename."
+}

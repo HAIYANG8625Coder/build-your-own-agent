@@ -1,0 +1,32 @@
+{
+ "level": "hard",
+ "setup": "plain",
+ "run": 2,
+ "turns": 8,
+ "edits": 1,
+ "score": 17,
+ "of": 17,
+ "checks": {
+  "1 rename to order_total everywhere": true,
+  "2 tax rate 0.09": true,
+  "3 README says 9%": true,
+  "4 apply_discount exists": true,
+  "5 test for apply_discount": true,
+  "6 version 1.1.0 in config": true,
+  "7 CHANGELOG has 1.1.0": true,
+  "8 CLI banner not 1.0.0": true,
+  "9 tests pass": true,
+  "10 SHIPPING_FEE = 5.0 in config": true,
+  "11 shipping_cost(): free over 100": true,
+  "12 cart summary shows shipping": true,
+  "13 report has version header": true,
+  "14 test for shipping_cost": true,
+  "15 README documents shipping": true,
+  "16 CHANGELOG has 5+ bullets for 1.1.0": true,
+  "17 cli --version prints version": true
+ },
+ "finished": true,
+ "todos_final": [],
+ "plans": [],
+ "final": "All 16 changes are done and the tests pass (7 tests, OK).\n\n**What changed**\n- `pricing.py`: `calc_total` → `order_total` (renamed in `cart.py`, `report.py`, tests, README); added `apply_discount(total, percent)` rounding to 2 decimals.\n- `config.py`: tax rate `0.09`, `VERSION = \"1.1.0\"`, `SHIPPING_FEE = 5.0`.\n- `shipping.py` (new): `shipping_cost(total)` → 0 if total > 100, else `SHIPPING_FEE`.\n- `cart.py`: summary now `\"2 items, total 43.60, shipping 5.00\"`.\n- `report.py`: first line `Sales report v1.1.0`.\n- `cli.py`: banner uses `config.VERSION` (`shop v1.1.0`); `--version` prints only `1.1.0`.\n- `README.md`: 9% tax, discount helper, shipping rule, new version.\n- `CHANGELOG.md`: 1.1.0 entry with 7 bullets.\n- `tests/test_pricing.py`: added tests for `apply_discount` and `shipping_cost`.\n\n**One issue found while testing:** the cart test used 50+50, which with 9% tax totals 109.00 — over 100, so shipping is free (`0.00`), not `5.00`. I split it into a paid-shipping case (20+20) and a free-shipping case (50+50) so both branches are covered."
+}

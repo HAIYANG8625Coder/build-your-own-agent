@@ -1,0 +1,38 @@
+{
+ "level": "work",
+ "setup": "plan",
+ "run": 1,
+ "turns": 24,
+ "edits": 9,
+ "score": 12,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "Findings vs CLAUDE.md (7 issues):\n\n1. `plugins/diagrams/.claude-plugin/plugin.json` — name `\"diagram\"` ≠ folder `diagrams` → set to `diagrams`.\n2. `.claude-plugin/marketplace.json` — no entry for the `diagrams` plugin → add one.\n3. `plugins/avatar-video/.claude-plugin/plugin.json` — missing `description` → add.\n4. `plugins/outlook-email/.claude-plugin/plugin.json` — missing `version` → add `0.1.0`.\n5. `plugins/avatar-video/agents/video-scripter.md` — frontmatter has no `name` → add `name: video-scripter`.\n6. `README.md` — no row for `plugins/x-assistant/skills/youtube-post/` or `plugins/avatar-video/agents/video-reviewer.md` → add both.\n7. `quick-notes` skill lives only in `.claude/skills/quick-notes/` (no plugin copy) → move it to `plugins/quick-notes/skills/quick-notes/SKILL.md`, add `plugins/quick-notes/.claude-plugin/plugin.json`, a marketplace entry, a README row, and make `.claude/skills/quick-notes` a symlink to it.\n\nAlso to check with a shell if available: `.claude/agents/{x-drafter,video-scripter,video-reviewer}.md` look like real copies rather than symlinks, and `.claude/agents/x-reviewer.md` is missing — I'd replace/add those with `ln -s ../../plugins/<plugin>/agents/<name>.md`. If no shell/ln tool is available I'll report that instead of faking it. No files in `.claude/skills/{heygen-avatar,heygen-video,hyperframes,media-use}` will be touched."
+ ],
+ "final": "All rules now hold (verified with a script that checks plugin.json fields, marketplace entries, frontmatter name/description, `.claude` symlinks, dangling links, and README rows).\n\n| Wrong | Changed |\n|---|---|\n| `plugins/avatar-video/agents/video-scripter.md` frontmatter had no `name` | added `name: video-scripter` |\n| `plugins/x-assistant/skills/xhs-post/SKILL.md` frontmatter had no `description` | added a description |\n| `plugins/diagrams/.claude-plugin/plugin.json` name was `diagram` ≠ folder | set to `diagrams` |\n| `plugins/avatar-video/.claude-plugin/plugin.json` had no `description` | added it |\n| `plugins/outlook-email/.claude-plugin/plugin.json` had no `version` | added `0.1.0` |\n| `diagrams` plugin had no `.claude-plugin/marketplace.json` entry | added entry with source `./plugins/diagrams` |\n| `quick-notes` skill existed only in `.claude/skills/` (no plugin) | moved to `plugins/quick-notes/skills/quick-notes/`, added plugin.json + marketplace entry, replaced with symlink |\n| `.claude/agents/x-reviewer.md` link missing | created symlink to `plugins/x-assistant/agents/x-reviewer.md` |\n| `.claude/skills/x-image` link missing | created symlink |\n| `.claude/skills/voice-video` symlink pointed at non-existent `.../skills/voice_video` (dangling) | repointed to `.../skills/voice-video` |\n| README missing rows for `youtube-post`, `video-reviewer`, `quick-notes` | added all three rows |\n\nThird-party skills in `.claude/skills/` (`heygen-avatar`, `heygen-video`, `hyperframes`, `media-use`) untouched. Note: this folder isn't a git repo (`git status` fails), so nothing was committed."
+}

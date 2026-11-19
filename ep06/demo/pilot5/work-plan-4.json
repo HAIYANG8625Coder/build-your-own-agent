@@ -1,0 +1,38 @@
+{
+ "level": "work",
+ "setup": "plan",
+ "run": 4,
+ "turns": 30,
+ "edits": 11,
+ "score": 12,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "I audited the repo against CLAUDE.md. Here is everything that currently breaks a rule, and what I intend to change. Note: I have no write/shell tool in plan mode, so I can only read until you approve; and `ln -s`/file edits will need a shell/write tool to be enabled.\n\n**Rule 1 — skills/agents live in `plugins/`, linked into `.claude/`**\n1. `.claude/skills/quick-notes/` is a real skill with no plugin behind it. Needs a home under `plugins/`, then a symlink.\n2. `.claude/skills/x-image` link is missing entirely (plugin skill exists at `plugins/x-assistant/skills/x-image/`).\n3. `.claude/skills/voice-video` is a **broken** symlink: it points at `../../plugins/avatar-video/skills/voice_video` (underscore) instead of `voice-video` (hyphen).\n4. `.claude/agents/x-reviewer.md` link is missing.\n\n**Rule 6 — `plugin.json` (name = folder, version, description) + marketplace entry**\n5. `plugins/diagrams/.claude-plugin/plugin.json`: `\"name\": \"diagram\"` ≠ folder `diagrams`.\n6. `plugins/diagrams` is absent from `.claude-plugin/marketplace.json`.\n7. `plugins/avatar-video/.claude-plugin/plugin.json`: no `description`.\n8. `plugins/outlook-email/.claude-plugin/plugin.json`: no `version`.\n\n**Rule 7 — frontmatter needs `name` + `description`**\n9. `plugins/x-assistant/skills/xhs-post/SKILL.md`: no `description`.\n10. `plugins/avatar-video/agents/video-scripter.md`: no `name`.\n\n**Rule 8 — README row per skill/subagent**\n11. Missing row for `plugins/x-assistant/skills/youtube-post/`.\n12. Missing row for `plugins/avatar-video/agents/video-reviewer.md`.\n\n**Rule 9** — I will not touch `heygen-avatar`, `heygen-video`, `hyperframes`, `media-use`.\n\nPlanned edits: fix the two plugin.json gaps + diagrams name; add the diagrams marketplace entry; add the missing frontmatter fields; add the two README rows; create the missing `.claude` links and repoint `voice-video`; move `quick-notes` into a plugin and symlink it. Then read every touched file back to confirm.\n\nOne decision I need from you: **where should `quick-notes` live?** Its content is generic note-taking, so it fits no existing plugin (x-assistant, avatar-video, outlook-email, diagrams). My default is to create `plugins/quick-notes/` — a new plugin with `plugin.json`, `skills/quick-notes/SKILL.md`, a marketplace entry and a README row — but tell me if you'd rather it go under an existing plugin (e.g. `x-assistant`).\n\nI also cannot verify whether the *working* `.claude/skills/*` links are true symlinks or plain copies (reading resolves either way); if any are copies, regenerating all of them with `ln -s` would be included."
+ ],
+ "final": "12 rule violations found, all fixed and verified.\n\n| # | What was wrong | Rule | What I changed |\n|---|---|---|---|\n| 1 | `.claude/skills/quick-notes/` was a real skill with no plugin behind it | 1 | Moved to `plugins/quick-notes/skills/quick-notes/`, added new plugin `plugins/quick-notes/` (plugin.json + marketplace entry), replaced with a symlink |\n| 2 | `voice-video` symlink was **broken** — pointed at `.../skills/voice_video` (underscore) | 1 | Relinked to `../../plugins/avatar-video/skills/voice-video` |\n| 3 | `.claude/skills/x-image` link missing | 1 | Created `ln -s ../../plugins/x-assistant/skills/x-image` |\n| 4 | `.claude/agents/x-reviewer.md` link missing | 1 | Created `ln -s ../../plugins/x-assistant/agents/x-reviewer.md` |\n| 5 | `plugins/diagrams/.../plugin.json` had `\"name\": \"diagram\"` ≠ folder | 6 | Changed to `\"diagrams\"` |\n| 6 | `plugins/diagrams` absent from `marketplace.json` | 6 | Added marketplace entry |\n| 7 | `avatar-video` plugin.json had no `description` | 6 | Added `\"The avatar-video plugin.\"` |\n| 8 | `outlook-email` plugin.json had no `version` | 6 | Added `\"version\": \"0.1.0\"` |\n| 9 | `xhs-post/SKILL.md` frontmatter had no `description` | 7 | Added it |\n| 10 | `avatar-video/agents/video-scripter.md` frontmatter had no `name` | 7 | Added `name: video-scripter` |\n| 11 | README had no row for `youtube-post` skill or `video-reviewer` subagent | 8 | Added both rows |\n| 12 | New `quick-notes` skill had no README row | 8 | Added `plugins/quick-notes/skills/quick-notes/` |\n\nVerification: all 6 JSON files parse; every plugin.json `name` matches its folder and is in the marketplace; all 15 skills/subagents have `name` + `description` frontmatter; README rows ↔ real files match exactly (no missing, no stale); zero broken symlinks; every plugin skill/agent has a working `.claude` link. Third-party skills (`heygen-avatar`, `heygen-video`, `hyperframes`, `media-use`) were left untouched, per rule 9.\n\nTwo things to note: I created `plugins/quick-notes/` as its own plugin since that skill fit no existing one — say the word if you'd rather it live under e.g. `x-assistant`. Also, this folder is not a git repo, so I couldn't show a `git diff`."
+}

@@ -1,0 +1,41 @@
+{
+ "level": "work",
+ "setup": "plan",
+ "run": 1,
+ "turns": 23,
+ "edits": 9,
+ "score": 12,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": true
+ },
+ "finished": true,
+ "todos_final": [
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done",
+  "done"
+ ],
+ "plans": [
+  "Fixes for the CLAUDE.md rule breaks (each verified by reading the file back afterwards):\n\n1. `plugins/diagrams/.claude-plugin/plugin.json`: `\"name\": \"diagram\"` → `\"diagrams\"` (must equal folder name).\n2. `.claude-plugin/marketplace.json`: add a `diagrams` entry (`source: ./plugins/diagrams` + description), since the plugin has none.\n3. `plugins/avatar-video/.claude-plugin/plugin.json`: add the missing `\"description\"`.\n4. `plugins/outlook-email/.claude-plugin/plugin.json`: add the missing `\"version\": \"0.1.0\"` (matching the other plugins).\n5. `plugins/x-assistant/skills/xhs-post/SKILL.md`: add the missing `description:` frontmatter line.\n6. `plugins/avatar-video/agents/video-scripter.md`: add the missing `name: video-scripter` frontmatter line.\n7. `README.md`: add the two missing table rows — `plugins/x-assistant/skills/youtube-post/` and `plugins/avatar-video/agents/video-reviewer.md`.\n8. `quick-notes` lives directly in `.claude/skills/`, which rule 1 forbids. Plan: create `plugins/notes/skills/quick-notes/SKILL.md` (moved content), a `plugins/notes/.claude-plugin/plugin.json`, a `notes` entry in marketplace.json, a README row, and replace `.claude/skills/quick-notes` with a symlink. Say now if you want it to land in an existing plugin instead.\n9. Symlinks: rule 1 says every skill/subagent is linked via `ln -s`. I'll check whether `.claude/agents/{x-drafter,video-reviewer,video-scripter}.md` are real symlinks or copies (copies would be a violation), add the missing `.claude/agents/x-reviewer.md` link, and add links for the plugin skills that have none. This needs a shell (`ln -s`); if I only get file-write tools I can't create symlinks and will report that as the one thing I could not do instead of faking it with copies.\n10. Leave `.claude/skills/{heygen-avatar,heygen-video,hyperframes,media-use}` untouched.\n\nI'll re-read every changed file at the end and confirm the table/marketplace no longer drift from disk."
+ ],
+ "final": "Everything CLAUDE.md requires now holds — a script checks plugin.json fields vs folder names, marketplace coverage, frontmatter `name`+`description` on every SKILL.md/subagent, one README row per skill/subagent, and that `.claude/` entries are working symlinks; it reports `ALL RULES OK`.\n\n| What was wrong | What I changed |\n|---|---|\n| `plugins/diagrams/.claude-plugin/plugin.json` had `\"name\": \"diagram\"` (folder is `diagrams`) | Changed to `\"diagrams\"` |\n| `diagrams` plugin had no `.claude-plugin/marketplace.json` entry | Added entry (`source: ./plugins/diagrams`) |\n| `plugins/avatar-video/.claude-plugin/plugin.json` had no `description` | Added `\"The avatar-video plugin.\"` |\n| `plugins/outlook-email/.claude-plugin/plugin.json` had no `version` | Added `\"version\": \"0.1.0\"` |\n| `plugins/x-assistant/skills/xhs-post/SKILL.md` frontmatter had no `description` | Added `description:` line |\n| `plugins/avatar-video/agents/video-scripter.md` frontmatter had no `name` | Added `name: video-scripter` |\n| `quick-notes` skill lived directly in `.claude/skills/` | Moved to `plugins/notes/skills/quick-notes/`, created `plugins/notes/.claude-plugin/plugin.json`, added a `notes` marketplace entry, replaced with a symlink |\n| `.claude/agents/x-reviewer.md` symlink missing; `.claude/skills/x-image` symlink missing | Created both links |\n| `.claude/skills/voice-video` was a broken symlink (pointed at `skills/voice_video`) | Repointed to `skills/voice-video` |\n| README had no rows for `youtube-post`, `video-reviewer`, `quick-notes` | Added the three rows |\n\nThird-party skills (`heygen-avatar`, `heygen-video`, `hyperframes`, `media-use`) were left untouched. One thing I deliberately did not change: `.claude/skills/media-use/SKILL.md` looks like its frontmatter is never closed (no second `---`), but it's installer-owned, so fixing it is not mine to do — worth telling the installer's maintainer."
+}

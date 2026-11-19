@@ -1,0 +1,28 @@
+{
+ "level": "work",
+ "setup": "plain",
+ "run": 3,
+ "turns": 14,
+ "edits": 12,
+ "score": 12,
+ "broke": [],
+ "of": 12,
+ "checks": {
+  "F1 link for x-image": true,
+  "F2 link for x-reviewer": true,
+  "F3 voice-video link works": true,
+  "F4 diagrams name matches folder": true,
+  "F5 outlook-email has version": true,
+  "F6 avatar-video has description": true,
+  "F7 marketplace lists diagrams": true,
+  "F8 xhs-post has description": true,
+  "F9 video-scripter has name": true,
+  "F10 README row for youtube-post": true,
+  "F11 README row for video-reviewer": true,
+  "F12 quick-notes moved into a plugin, linked, in README": true
+ },
+ "finished": true,
+ "todos_final": [],
+ "plans": [],
+ "final": "All rules verify clean. Summary of what I found and fixed:\n\n| What was wrong | What I changed |\n|---|---|\n| `.claude/skills/voice-video` symlink was broken (`skills/voice_video`, underscore) | Re-pointed it to `../../plugins/avatar-video/skills/voice-video` |\n| `x-image` skill had no link in `.claude/skills/` | Added `ln -s ../../plugins/x-assistant/skills/x-image` |\n| `x-reviewer` agent had no link in `.claude/agents/` | Added `ln -s ../../plugins/x-assistant/agents/x-reviewer.md` |\n| `quick-notes` skill lived directly in `.claude/skills/` (forbidden) and belonged to no plugin | Moved it to `plugins/quick-notes/skills/quick-notes/`, added `plugins/quick-notes/.claude-plugin/plugin.json` (`name`, `version`, `description`), and linked it back into `.claude/skills/` |\n| `plugins/diagrams` absent from `.claude-plugin/marketplace.json` | Added a `diagrams` entry (also added one for the new `quick-notes` plugin) |\n| `plugins/diagrams` plugin.json had `\"name\": \"diagram\"` ≠ folder name | Changed to `\"diagrams\"` |\n| `plugins/avatar-video` plugin.json had no `description` | Added `\"description\": \"The avatar-video plugin.\"` |\n| `plugins/outlook-email` plugin.json had no `version` | Added `\"version\": \"0.1.0\"` |\n| `plugins/x-assistant/skills/xhs-post/SKILL.md` frontmatter had no `description` | Added a description line |\n| `plugins/avatar-video/agents/video-scripter.md` frontmatter had no `name` | Added `name: video-scripter` |\n| README.md was missing rows for `youtube-post`, `video-reviewer`, and `quick-notes` | Added those three rows (now 15 rows = 15 skills/agents) |\n\nNotes: the four third-party skills (`heygen-avatar`, `heygen-video`, `hyperframes`, `media-use`) were left untouched. There is no git repo or test suite in this folder, so I validated the rules with a script instead — plugin.json ↔ folder ↔ marketplace consistency, frontmatter `name`/`description` (and name matching its folder/file), symlink targets in both directions, no non-third-party real dirs under `.claude/`, and one README row per skill/agent. All pass.\n\nOne judgement call to flag: `quick-notes` had no home, so I created a `quick-notes` plugin for it rather than delete it — tell me if you'd rather it live inside an existing plugin or be dropped."
+}
