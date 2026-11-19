@@ -1,0 +1,29 @@
+{
+ "title": 18,
+ "body": 991,
+ "fits": true,
+ "numbers_kept": 32,
+ "numbers_of": 32,
+ "missing_numbers": [],
+ "topics_kept": 5,
+ "log_edited": false,
+ "setup": "hooks",
+ "run": 5,
+ "turns": 6,
+ "tries_on_log": 0,
+ "blocked_on_log": 0,
+ "ran_check_itself": 2,
+ "hook_calls": 6,
+ "tools": [
+  "read_file",
+  "read_file",
+  "read_file",
+  "run_bash",
+  "edit_file",
+  "edit_file",
+  "read_file",
+  "run_bash"
+ ],
+ "finished": true,
+ "final": "Draft now fits. What I changed in `x-assistant/xhs-ep7-draft.md`:\n\n1. **Title** — `从零做Agent第7集：子Agent是什么、为什么需要、有没有用` (32) → `第7集：子Agent是什么、有没有用` (18/20). Keeps the series number and the two main questions.\n2. **Body** — removed the `📌 这次的一个真实的坑` block near the end, which repeated the bullet already in `🔍 视频里还有` word for word (same numbers). Body+topics went 1092 → **991/1000**.\n\nNothing else was touched: every number (11 月 13–19 日, 21 条, 21/21/20, 34/40/75, 21/20/21, 26/28/33, 1.6 万, 4 倍, 15 倍, 35 次, 4 次, 60, 100, all chapter timestamps) is still there, and all five topics are still on the last line.\n\n`python3 tools/check_post.py x-assistant/xhs-ep7-draft.md` → title 18/20 OK, body+topics 991/1000 OK.\n\n**What I did not do:** I did not add a line to `x-assistant/posts.md`. Project notes say that file is the publishing log, written only by the publish step, and never edited by hand — and this note is still a draft in the drafts folder, not a published post, so a log entry would also record something that hasn't happened. If you want the log updated, that needs to go through the publish step (or you can tell me the entry is wanted anyway and I'll ask before writing it)."
+}

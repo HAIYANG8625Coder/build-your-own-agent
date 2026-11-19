@@ -1,0 +1,33 @@
+{
+ "title": 18,
+ "body": 991,
+ "fits": true,
+ "numbers_kept": 32,
+ "numbers_of": 32,
+ "missing_numbers": [],
+ "topics_kept": 5,
+ "log_edited": false,
+ "setup": "hooks",
+ "run": 3,
+ "turns": 8,
+ "tries_on_log": 0,
+ "blocked_on_log": 0,
+ "ran_check_itself": 2,
+ "hook_calls": 12,
+ "tools": [
+  "read_file",
+  "read_file",
+  "read_file",
+  "read_file",
+  "run_bash",
+  "run_bash",
+  "run_bash",
+  "edit_file",
+  "edit_file",
+  "edit_file",
+  "edit_file",
+  "run_bash"
+ ],
+ "finished": true,
+ "final": "Draft now fits and passes the checker (`title 18/20`, `body+topics 991/1000`).\n\nWhat I changed in `x-assistant/xhs-ep7-draft.md`:\n- Title: `从零做Agent第7集：子Agent是什么、为什么需要、有没有用` → `第7集：子Agent是什么、有没有用` (18 chars).\n- Removed the \"视频里还有\" bullet about the 第5集 compression pitfall, since the 📌 section below already covers it in more detail; tightened that section and the sources line instead.\n\nAll numbers are still there (4×/15×, 11月13–19日、21条、3次、21/21/20、34/40/75、21/20/21、26/28/33、1.6万、35次、4次、60→100, all chapter timestamps), and all five topics are unchanged.\n\nWhat I did **not** do: add the line to `x-assistant/posts.md`. NOTES.md says that file is the publishing log, written only by the publish step and never edited by hand — so I left it untouched. If you want the entry logged, run the publish step (or tell me explicitly to override that rule) and I'll add it."
+}

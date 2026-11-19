@@ -1,0 +1,4 @@
+{"hooks": [
+  {"event": "PreToolUse", "matcher": "edit_file|run_bash", "command": "python3 .agent/hooks/guard_log.py"},
+  {"event": "PostToolUse", "matcher": "edit_file", "command": "python3 .agent/hooks/check_after_edit.py"}
+]}

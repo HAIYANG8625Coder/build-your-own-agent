@@ -1,0 +1,30 @@
+{
+ "title": 18,
+ "body": 991,
+ "fits": true,
+ "numbers_kept": 32,
+ "numbers_of": 32,
+ "missing_numbers": [],
+ "topics_kept": 5,
+ "log_edited": false,
+ "setup": "rules",
+ "run": 5,
+ "turns": 7,
+ "tries_on_log": 0,
+ "blocked_on_log": 0,
+ "ran_check_itself": 2,
+ "hook_calls": 0,
+ "tools": [
+  "read_file",
+  "read_file",
+  "read_file",
+  "run_bash",
+  "run_bash",
+  "run_bash",
+  "edit_file",
+  "edit_file",
+  "run_bash"
+ ],
+ "finished": true,
+ "final": "**Draft now fits** (`tools/check_post.py`: title 18/20 OK, body+topics 991/1000 OK).\n\nWhat I changed in `x-assistant/xhs-ep7-draft.md`:\n1. **Title** shortened from 32 to 18 chars: `从零做Agent第7集：子Agent` (keeps series + episode).\n2. **Removed the duplicated \"📌 这次的一个真实的坑\" block** — it repeated the same gap bullet already in \"🔍 视频里还有\" (35 calls → under 4, 60 → 100 rounds, not tested separately). That alone saved ~99 chars.\n\nEverything else is untouched: every number (4×/15×, 11/13–19, 21, 3 runs, 21/21/20 & 34/40/75, 21/20/21 & 26/28/33, 1.6万 token, 35/4/60/100, all timestamps) and all five topics are still there.\n\n**What I did not do:** I did not add a line to `x-assistant/posts.md`. Your project notes say that file is written only by the publish step and must never be edited by hand, so I left it alone. When the note is actually published, the publish step should append something like:\n\n`## 2026-11-19 (Xiaohongshu) — 从零做Agent第7集：子Agent` + `Post file: x-assistant/xhs-ep7-draft.md`"
+}

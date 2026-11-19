@@ -1,0 +1,28 @@
+{
+ "title": 18,
+ "body": 991,
+ "fits": true,
+ "numbers_kept": 32,
+ "numbers_of": 32,
+ "missing_numbers": [],
+ "topics_kept": 5,
+ "log_edited": false,
+ "setup": "hooks",
+ "run": 4,
+ "turns": 6,
+ "tries_on_log": 0,
+ "blocked_on_log": 0,
+ "ran_check_itself": 3,
+ "hook_calls": 3,
+ "tools": [
+  "read_file",
+  "read_file",
+  "read_file",
+  "run_bash",
+  "run_bash",
+  "run_bash",
+  "read_file"
+ ],
+ "finished": true,
+ "final": "Draft now fits:\n\n- **Title** 18/20 OK → `第7集：子Agent 是什么、有用吗`\n- **Body+topics** 991/1000 OK (was 1092)\n\nWhat I cut: only the `📌 这次的一个真实的坑` block, which duplicated the 「一个真实的坑」bullet above it. All numbers (4/15 倍, 11月13–19日, 21 条, 3 次, 21/21/20, 34/40/75, 21/20/21, 26/28/33, 1.6 万, 35, 4, 60, 100, chapter times) and all five topics are unchanged.\n\nI did **not** add the line to `x-assistant/posts.md`: NOTES.md says that file is written only by the publish step and must never be edited by hand, and there is no publish step/tool in this folder (`tools/` only has `check_post.py`). So the log entry is still missing — if you want, tell me to override that rule and I'll add the row."
+}
