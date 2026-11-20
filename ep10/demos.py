@@ -67,7 +67,8 @@ def t1(setup, n):
     final = open(work + "/counter.txt").read().strip()
     rec = {"setup": setup, "run": n, "runs": len(runs), "final_counter": final, "correct": final == "count: 2", "deliveries": 3,
            "turns": [r["turns"] for r in runs], "errors": [r["error"] for r in runs if r["error"]], "messages": messages(work),
-           "edits": sum(1 for r in runs for t, a, v in r["log"] if t == "edit_file" and v == "allow")}
+           "edits": sum(1 for r in runs for t, a, v in r["log"] if t == "edit_file" and v == "allow"),
+           "steps": [[t, json.dumps(a, ensure_ascii=False)[:90], v] for r in runs for t, a, v in r["log"]]}
     json.dump(rec, open(os.path.join(OUT, "t1-%s-%d.json" % (setup, n)), "w"), indent=1, ensure_ascii=False)
     print("T1 %s run %d: %s" % (setup, n, {k: rec[k] for k in ("runs", "final_counter", "correct", "turns", "edits")}))
 
