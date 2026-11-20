@@ -61,7 +61,7 @@ Goal: run your own code at fixed points. Build: before-tool and after-tool hook 
 **Ep 9 · Memory** (published) `ep09`
 Goal: remember what is worth remembering. Build: a notes folder, write only what cannot be looked up again, load an index at the start (Claude Code loads the first 200 lines or 25 KB of its memory index), an optional offline cleanup pass that checks notes against the transcript. Pairs with the "Components of agent memory" video. Pitfalls: remembering everything, wrong notes believed forever.
 
-**Ep 10 · Always on** `ep10`
+**Ep 10 · Always on** (published) `ep10`
 Goal: an agent that works while you are away. Build: an inbox queue, a timer, the loop as a daemon, an outbox to a chat app, and what the agent may do when nobody can approve. Pairs with the "always-on agents" video. Pitfalls: two events at once, secrets within reach.
 
 **Ep 11 · Extending with MCP and skills** `ep11`

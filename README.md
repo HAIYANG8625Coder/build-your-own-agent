@@ -79,6 +79,7 @@ Each episode also has a full written article, so you can learn everything in it 
 | 7 · Subagents | [articles/ep07-subagents.md](articles/ep07-subagents.md) |
 | 8 · Hooks | [articles/ep08-hooks.md](articles/ep08-hooks.md) |
 | 9 · Memory between sessions | [articles/ep09-memory.md](articles/ep09-memory.md) |
+| 10 · Always on | [articles/ep10-always-on.md](articles/ep10-always-on.md) |
 
 ## Progress
 
@@ -93,7 +94,8 @@ Each episode also has a full written article, so you can learn everything in it 
 | 7 | Subagents | published | [ep07](ep07/) |
 | 8 | Hooks | published | [ep08](ep08/) |
 | 9 | Memory between sessions | published | [ep09](ep09/) |
-| 10 to 13 | see the syllabus | planned | added with each episode |
+| 10 | Always on | published | [ep10](ep10/) |
+| 11 to 13 | see the syllabus | planned | added with each episode |
 
 ## Ground rules
 
