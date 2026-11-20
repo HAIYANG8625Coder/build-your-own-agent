@@ -1,0 +1,3 @@
+VERSION = "1.0.0"
+TAX_RATE = 0.07
+CURRENCY = "SGD"

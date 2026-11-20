@@ -1,0 +1,1 @@
+T1 direct run 5: {'runs': 3, 'final_counter': 'count: 1', 'correct': False, 'turns': [6, 8, 15], 'edits': 2}

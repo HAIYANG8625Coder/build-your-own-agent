@@ -1,0 +1,16 @@
+{
+ "setup": "inbox",
+ "run": 5,
+ "runs": 1,
+ "final_counter": "count: 2",
+ "correct": true,
+ "deliveries": 3,
+ "turns": [
+  13
+ ],
+ "errors": [],
+ "messages": [
+  "Both orders counted: counter.txt is now \"count: 2\" (was 0; +1 for o1 #1001, +1 for o2 #1002). Verified by reading the file back.\n\nI could NOT run the test suite (python3 -m unittest discover -s tests): the shell command needs approval and nobody was available to approve it. No code was changed (data-file edit only), but tests remain unverified — please run them yourself."
+ ],
+ "edits": 1
+}

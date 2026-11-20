@@ -1,0 +1,16 @@
+{
+ "setup": "inbox",
+ "run": 3,
+ "runs": 1,
+ "final_counter": "count: 2",
+ "correct": true,
+ "deliveries": 3,
+ "turns": [
+  13
+ ],
+ "errors": [],
+ "messages": [
+  "Both orders counted: counter.txt now reads \"count: 2\" (was 0; o1 +1 and o2 +1 applied as a single update so neither increment was lost to a stale read).\n\nCould not run the tests — the shell command `python3 -m unittest discover -s tests` was denied (no approver available this run), and I did not look for a way around it. Nothing else in the repo was changed, so the existing tests are unaffected."
+ ],
+ "edits": 1
+}

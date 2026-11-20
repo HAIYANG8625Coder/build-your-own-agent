@@ -1,0 +1,16 @@
+{
+ "setup": "inbox",
+ "run": 3,
+ "runs": 1,
+ "final_counter": "count: 2",
+ "correct": true,
+ "deliveries": 3,
+ "turns": [
+  17
+ ],
+ "errors": [],
+ "messages": [
+  "counter.txt is now \"count: 2\" (was \"count: 0\"). Both events applied one after the other (o1 first, then o2), so neither increment overwrote the other — a naive concurrent read-modify-write would have left it at 1.\n\nCould not run the tests: `python3 -m unittest discover -s tests` was denied (needs approval, nobody available in this run). The counter change is a data file, so the unrelated pricing/cart tests shouldn't be affected, but the suite is unverified."
+ ],
+ "edits": 2
+}

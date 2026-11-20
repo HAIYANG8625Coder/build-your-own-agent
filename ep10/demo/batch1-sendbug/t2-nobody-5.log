@@ -1,0 +1,1 @@
+T2 nobody run 5: {'stalled': False, 'n_messages': 1, 'bash_tries': 1, 'denied_bash': 1, 'distinct_denied': 1, 'turns': 9}

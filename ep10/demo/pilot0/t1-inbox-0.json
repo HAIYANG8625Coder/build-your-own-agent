@@ -1,0 +1,16 @@
+{
+ "setup": "inbox",
+ "run": 0,
+ "runs": 1,
+ "final_counter": "count: 2",
+ "correct": true,
+ "deliveries": 3,
+ "turns": [
+  10
+ ],
+ "errors": [],
+ "messages": [
+  "Done: both orders counted. counter.txt is now \"count: 2\" (was 0; +1 for o1/#1001 and +1 for o2/#1002, applied once each). No tests/ directory exists in this project, so I verified by reading the file back instead of running the test command."
+ ],
+ "edits": 1
+}
