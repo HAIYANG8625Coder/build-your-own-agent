@@ -48,17 +48,17 @@ Goal: let it act without letting it run wild. Build: a gate between "the model a
 Goal: keep long sessions working. Build: a token counter, output trimming, compaction (summarize old turns, keep recent ones and the task list), a chart of context size over a long run. Claude Code: automatic compaction and what is re-loaded afterwards. Pitfalls: summaries that lose decisions, compacting too late.
 
 ## Part C. Working at scale
-**Ep 6 · Plans and task lists** `ep06`
+**Ep 6 · Plans and task lists** (published) `ep06`
 Goal: make long tasks visible. Build: a plan-only mode (read-only tools) and a task list tool the model updates. Claude Code: plan mode and its task list. Pitfalls: plans that are never checked off, tasks too big to verify.
 
-**Ep 7 · Subagents** `ep07`
+**Ep 7 · Subagents** (published) `ep07`
 Goal: protect the main context. Build: `run_subagent(task)` starting a fresh loop with its own messages and fewer tools, returning only the final text. Claude Code: subagents with their own context window; the parent sees only the result. Pitfalls: a vague brief (the subagent cannot see your chat), too many tools, no turn limit.
 
-**Ep 8 · Hooks** `ep08`
+**Ep 8 · Hooks** (published) `ep08`
 Goal: run your own code at fixed points. Build: before-tool and after-tool hook points that can allow, block or log. Claude Code: its hook events (for example before and after a tool call) and where hooks are configured. Pitfalls: hooks that slow every call, a blocking hook with no message.
 
 ## Part D. Beyond one session
-**Ep 9 · Memory** `ep09`
+**Ep 9 · Memory** (published) `ep09`
 Goal: remember what is worth remembering. Build: a notes folder, write only what cannot be looked up again, load an index at the start (Claude Code loads the first 200 lines or 25 KB of its memory index), an optional offline cleanup pass that checks notes against the transcript. Pairs with the "Components of agent memory" video. Pitfalls: remembering everything, wrong notes believed forever.
 
 **Ep 10 · Always on** `ep10`

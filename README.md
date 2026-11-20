@@ -75,6 +75,10 @@ Each episode also has a full written article, so you can learn everything in it 
 | 3 · The system prompt and the notes file | [articles/ep03-system-prompt-and-notes.md](articles/ep03-system-prompt-and-notes.md) |
 | 4 · Permissions | [articles/ep04-permissions.md](articles/ep04-permissions.md) |
 | 5 · Context | [articles/ep05-context.md](articles/ep05-context.md) |
+| 6 · Plan mode and the task list | [articles/ep06-plan-and-tasks.md](articles/ep06-plan-and-tasks.md) |
+| 7 · Subagents | [articles/ep07-subagents.md](articles/ep07-subagents.md) |
+| 8 · Hooks | [articles/ep08-hooks.md](articles/ep08-hooks.md) |
+| 9 · Memory between sessions | [articles/ep09-memory.md](articles/ep09-memory.md) |
 
 ## Progress
 
@@ -85,8 +89,11 @@ Each episode also has a full written article, so you can learn everything in it 
 | 3 | The system prompt and the notes file | published | [ep03](ep03/) |
 | 4 | Permissions | published | [ep04](ep04/) |
 | 5 | Context | published | [ep05](ep05/) |
-| 6 | Plan mode and the task list | published (code only; the article is not written yet) | [ep06](ep06/) |
-| 7 to 13 | see the syllabus | planned | added with each episode |
+| 6 | Plan mode and the task list | published | [ep06](ep06/) |
+| 7 | Subagents | published | [ep07](ep07/) |
+| 8 | Hooks | published | [ep08](ep08/) |
+| 9 | Memory between sessions | published | [ep09](ep09/) |
+| 10 to 13 | see the syllabus | planned | added with each episode |
 
 ## Ground rules
 
