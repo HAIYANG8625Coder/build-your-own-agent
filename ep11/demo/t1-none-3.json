@@ -1,0 +1,100 @@
+{
+ "setup": "none",
+ "run": 3,
+ "format_ok": false,
+ "items_ok": false,
+ "n_items": 0,
+ "correct": false,
+ "turns": 14,
+ "tokens_read": 56039,
+ "first_message_chars": 240,
+ "skills_loaded": [],
+ "loaded_right": false,
+ "loaded_others": [],
+ "file": "# Release notes — Shop 1.4\n\nReleased 2026-11-20.\n\n## New\n\n- Gift wrapping can now be added at checkout (#44).\n- Your cart is saved between visits, so it is still there when you come back (#46).\n\n## Fixes\n\n- Coupon codes are no longer case sensitive (#41).\n- The total is now correct for empty carts (#42).\n\n## Improvements\n\n- Prices are shown with two decimals everywhere (#43).\n- The product list is loaded in a single query, so pages with many products load faster (#45).\n\n## Under the hood\n\n- Bumped the test timeout.\n- Removed an unused import.\n\n",
+ "outbox": [
+  "RELEASE_NOTES.md now has the Shop 1.4 notes (released 2026-11-20), built from CHANGES.txt and grouped into New / Fixes / Improvements / Under the hood, with issue numbers kept. I read the file back to confirm it.\n\nI could not run the tests: the command `python3 -m unittest discover -s tests` was declined, so I have no test result. Nothing else in the project was changed — README.md and config.py still say 1.0.0; tell me if you want those bumped."
+ ],
+ "tools": [
+  [
+   "read_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjl8eoswo/p\"}",
+   "allow"
+  ],
+  [
+   "read_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjl8eoswo/p/CHANGES.t",
+   "allow"
+  ],
+  [
+   "grep",
+   "{\"pattern\": \".\", \"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjl8e",
+   "allow"
+  ],
+  [
+   "grep",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjl8eoswo/p\", \"patter",
+   "allow"
+  ],
+  [
+   "read_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjl8eoswo/p/RELEASE_N",
+   "allow"
+  ],
+  [
+   "submit_plan",
+   "{\"plan\": \"Write RELEASE_NOTES.md for version 1.4, based on the commit list in CHANGES.txt.",
+   "allow"
+  ],
+  [
+   "todo_write",
+   "{\"items\": [{\"task\": \"Read CHANGES.txt, RELEASE_NOTES.md, CHANGELOG.md for content and styl",
+   "allow"
+  ],
+  [
+   "read_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjl8eoswo/p/CHANGELOG",
+   "allow"
+  ],
+  [
+   "todo_write",
+   "{\"items\": [{\"status\": \"done\", \"task\": \"Read CHANGES.txt, RELEASE_NOTES.md, CHANGELOG.md fo",
+   "allow"
+  ],
+  [
+   "edit_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjl8eoswo/p/RELEASE_N",
+   "allow"
+  ],
+  [
+   "read_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjl8eoswo/p/RELEASE_N",
+   "allow"
+  ],
+  [
+   "run_bash",
+   "{\"command\": \"cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjl8eoswo/p && ",
+   "deny"
+  ],
+  [
+   "edit_file",
+   "{\"new_text\": \"- Coupon codes are no longer case sensitive (#41).\", \"old_text\": \"- Coupon c",
+   "allow"
+  ],
+  [
+   "read_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpjl8eoswo/p/RELEASE_N",
+   "allow"
+  ],
+  [
+   "todo_write",
+   "{\"items\": [{\"status\": \"done\", \"task\": \"Read CHANGES.txt, RELEASE_NOTES.md, CHANGELOG.md fo",
+   "allow"
+  ],
+  [
+   "send_message",
+   "{\"text\": \"RELEASE_NOTES.md now has the Shop 1.4 notes (released 2026-11-20), built from CH",
+   "allow"
+  ]
+ ]
+}

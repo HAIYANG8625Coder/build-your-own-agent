@@ -1,0 +1,1 @@
+{"hooks": [{"event": "PostToolUse", "matcher": ".*", "command": "python3 .agent/hooks/log_calls.py"}]}

@@ -1,0 +1,92 @@
+{
+ "setup": "lazy",
+ "run": 2,
+ "format_ok": true,
+ "items_ok": true,
+ "n_items": 6,
+ "correct": true,
+ "turns": 13,
+ "tokens_read": 56777,
+ "first_message_chars": 1007,
+ "skills_loaded": [
+  "release-notes"
+ ],
+ "loaded_right": true,
+ "loaded_others": [],
+ "file": "RELEASE 1.4 (2026-11-20)\n\n* [FIX] Coupon code was case sensitive (#41)\n* [FIX] Total was wrong for empty carts (#42)\n* [NEW] Add gift wrapping at checkout (#44)\n* [NEW] Save the cart between visits (#46)\n* [CHG] Show prices with two decimals everywhere (#43)\n* [CHG] Load the product list in one query (#45)\n\n-- end of release --\n",
+ "outbox": [
+  "Release notes for 1.4 are written to RELEASE_NOTES.md (verified by reading it back).\n\nHeader: RELEASE 1.4 (2026-11-20), from the first line of CHANGES.txt. 6 items, sorted FIX -> NEW -> CHG (CHANGES.txt order kept inside each tag):\n\n* [FIX] Coupon code was case sensitive (#41)\n* [FIX] Total was wrong for empty carts (#42)\n* [NEW] Add gift wrapping at checkout (#44)\n* [NEW] Save the cart between visits (#46)\n* [CHG] Show prices with two decimals everywhere (#43)\n* [CHG] Load the product list in one query (#45)\n\nEnds with \"-- end of release --\". The two \"chore:\" commits (test timeout bump, unused import removal) were left out; the \"perf:\" one is filed under [CHG]. No code was touched, so no tests were run."
+ ],
+ "tools": [
+  [
+   "read_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpp4tu8pp_/p/CHANGES.t",
+   "allow"
+  ],
+  [
+   "read_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpp4tu8pp_/p/RELEASE_N",
+   "allow"
+  ],
+  [
+   "load_skill",
+   "{\"name\": \"release-notes\"}",
+   "allow"
+  ],
+  [
+   "grep",
+   "{\"pattern\": \".\", \"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpp4tu",
+   "allow"
+  ],
+  [
+   "submit_plan",
+   "{\"plan\": \"Write RELEASE_NOTES.md for version 1.4, following the release-notes skill format",
+   "allow"
+  ],
+  [
+   "todo_write",
+   "{\"items\": [{\"task\": \"Write RELEASE_NOTES.md for 1.4 per the format\", \"status\": \"in_progres",
+   "allow"
+  ],
+  [
+   "edit_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpp4tu8pp_/p/RELEASE_N",
+   "allow"
+  ],
+  [
+   "read_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpp4tu8pp_/p/RELEASE_N",
+   "allow"
+  ],
+  [
+   "run_bash",
+   "{\"command\": \"cd /private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpp4tu8pp_/p && ",
+   "deny"
+  ],
+  [
+   "grep",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpp4tu8pp_/p/RELEASE_N",
+   "allow"
+  ],
+  [
+   "edit_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpp4tu8pp_/p/RELEASE_N",
+   "allow"
+  ],
+  [
+   "read_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmpp4tu8pp_/p/RELEASE_N",
+   "allow"
+  ],
+  [
+   "todo_write",
+   "{\"items\": [{\"status\": \"done\", \"task\": \"Write RELEASE_NOTES.md for 1.4 per the format\"}, {\"",
+   "allow"
+  ],
+  [
+   "send_message",
+   "{\"text\": \"Release notes for 1.4 are written to RELEASE_NOTES.md (verified by reading it ba",
+   "allow"
+  ]
+ ]
+}

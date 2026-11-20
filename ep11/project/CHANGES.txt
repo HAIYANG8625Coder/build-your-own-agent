@@ -1,0 +1,9 @@
+Shop 1.4 · Release date: 2026-11-20
+fix: coupon code was case sensitive (#41)
+feat: add gift wrapping at checkout (#44)
+chore: bump the test timeout
+change: show prices with two decimals everywhere (#43)
+fix: total was wrong for empty carts (#42)
+feat: save the cart between visits (#46)
+perf: load the product list in one query (#45)
+chore: remove an unused import

@@ -1,0 +1,77 @@
+{
+ "setup": "lazy",
+ "run": 3,
+ "format_ok": true,
+ "items_ok": true,
+ "n_items": 6,
+ "correct": true,
+ "turns": 10,
+ "tokens_read": 39088,
+ "first_message_chars": 1007,
+ "skills_loaded": [
+  "release-notes"
+ ],
+ "loaded_right": true,
+ "loaded_others": [],
+ "file": "RELEASE 1.4 (2026-11-20)\n\n* [FIX] Coupon code was case sensitive (#41)\n* [FIX] Total was wrong for empty carts (#42)\n* [NEW] Add gift wrapping at checkout (#44)\n* [NEW] Save the cart between visits (#46)\n* [CHG] Show prices with two decimals everywhere (#43)\n* [CHG] Load the product list in one query (#45)\n\n-- end of release --\n",
+ "outbox": [
+  "RELEASE_NOTES.md now holds the 1.4 notes. 6 items: 2 FIX, 2 NEW, 2 CHG. The two chore commits were skipped; checks passed (header \"RELEASE 1.4 (2026-11-20)\", items sorted FIX→NEW→CHG, wording capitalised, no full stops, issue numbers kept, \"-- end of release --\" last)."
+ ],
+ "tools": [
+  [
+   "read_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp0c14un8q/p\"}",
+   "allow"
+  ],
+  [
+   "read_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp0c14un8q/p/CHANGES.t",
+   "allow"
+  ],
+  [
+   "load_skill",
+   "{\"name\": \"release-notes\"}",
+   "allow"
+  ],
+  [
+   "grep",
+   "{\"pattern\": \".\", \"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp0c14",
+   "allow"
+  ],
+  [
+   "submit_plan",
+   "{\"plan\": \"Write RELEASE_NOTES.md for 1.4 following the release-notes skill format.\\n\\nFrom",
+   "allow"
+  ],
+  [
+   "todo_write",
+   "{\"items\": [{\"task\": \"Write RELEASE_NOTES.md for 1.4\", \"status\": \"in_progress\"}, {\"task\": \"",
+   "allow"
+  ],
+  [
+   "read_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp0c14un8q/p/RELEASE_N",
+   "allow"
+  ],
+  [
+   "edit_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp0c14un8q/p/RELEASE_N",
+   "allow"
+  ],
+  [
+   "read_file",
+   "{\"path\": \"/private/var/folders/g1/qh38bt0d4m7bgb6l7pl9vgc80000gn/T/tmp0c14un8q/p/RELEASE_N",
+   "allow"
+  ],
+  [
+   "todo_write",
+   "{\"items\": [{\"status\": \"done\", \"task\": \"Write RELEASE_NOTES.md for 1.4\"}, {\"status\": \"done\"",
+   "allow"
+  ],
+  [
+   "send_message",
+   "{\"text\": \"RELEASE_NOTES.md now holds the 1.4 notes. 6 items: 2 FIX, 2 NEW, 2 CHG. The two ",
+   "allow"
+  ]
+ ]
+}
