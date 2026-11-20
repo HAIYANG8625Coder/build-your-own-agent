@@ -129,6 +129,6 @@ Two stall runs waited four minutes (our limit was 240 seconds), sent nothing, an
 
 ## References
 
-- Anthropic, Building always-on agents (the five parts, dedupe, one worker, outbox): https://www.anthropic.com/engineering/building-always-on-agents
+- Anthropic, Building always-on agents (the five parts, dedupe, one worker, outbox): https://claude.com/resources/articles/building-always-on-agents
 - Claude Code docs: scheduled tasks, headless mode, channels, GitHub Actions, permission modes: https://code.claude.com/docs/en/
 - Code and real runs: [`ep10/always_on.py`](../ep10/always_on.py), [`ep10/agent.py`](../ep10/agent.py), [`ep10/test_always_on.py`](../ep10/test_always_on.py), [`ep10/demos.py`](../ep10/demos.py), [`ep10/demo/`](../ep10/demo/)
