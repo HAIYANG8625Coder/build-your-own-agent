@@ -1,0 +1,1 @@
+T3 control run 5: stopped at ['read_file'], next prompt ok=False BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'messages.2: `tool_use` ids were found without `tool_result` blocks immediately after: call_00_qsP5CxJ35XlLeh8

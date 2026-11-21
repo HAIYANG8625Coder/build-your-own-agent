@@ -1,0 +1,8 @@
+{
+ "mode": "plain",
+ "run": 5,
+ "first_text_s": 7.61,
+ "total_s": 7.61,
+ "chars": 1115,
+ "text": "Here's the four-sentence explanation, based on `cart.py`, `pricing.py` and `config.py`:\n\n1. `Cart.add()` appends each item's price to a list on the cart, so the cart total always reflects everything added so far.\n2. `calc_total(prices)` adds those prices together and multiplies the sum by `1 + TAX_RATE`, where `TAX_RATE = 0.07` (7%) comes from `config.py`.\n3. The result is passed through `round(..., 2)` to give two decimal places, so the tax is applied to the whole-cart sum in one step rather than item by item.\n4. `Cart.summary()` then renders it as `\"%d items, total %.2f\"`, e.g. two items of 50 give `\"2 items, total 107.00\"`.\n\nOne caveat worth knowing: this code does not actually follow the project's money rules in `pricing-rules` — it works in floats rather than integer cents, and Python's `round()` is banker's rounding, not half-up. So the explanation above describes how the current code behaves, not how the rules say it should behave. If you want, I can fix `pricing.py` to use integer cents and half-up rounding, plus add the edge-case tests (zero, threshold, very large order) the rules require."
+}

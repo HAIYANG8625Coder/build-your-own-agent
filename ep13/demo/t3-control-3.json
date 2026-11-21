@@ -1,0 +1,14 @@
+{
+ "mode": "control",
+ "run": 3,
+ "stopped_at": [
+  "run_bash"
+ ],
+ "ended_with": [
+  "user",
+  "assistant"
+ ],
+ "answer": "",
+ "error": "BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'messages.2: `tool_use` ids were found without `tool_result` blocks immediately after: call_00_ET_sOZrq7I3S1Cp",
+ "ok": false
+}

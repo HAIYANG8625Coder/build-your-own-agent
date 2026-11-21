@@ -44,6 +44,17 @@ python3 ep01/agent.py "What is in this folder?"
 
 Want to see the flow without spending anything? `python3 ep01/test_loop.py` runs the whole loop with a fake model and needs no key.
 
+### The finished agent (episode 13)
+
+```bash
+cd ep13/project                       # a throwaway folder: the agent really runs commands
+python3 ../repl.py                    # a chat: the conversation is kept, the text streams, Ctrl+C stops a turn
+python3 ../repl.py --continue         # the latest saved chat of this folder
+python3 ../test_repl.py               # 38 checks, no key needed
+```
+
+Slash commands: `/help`, `/clear`, `/context`, `/compact`, `/plan`, `/todo`, `/perms`, `/memory`, `/features`, `/sessions`, `/usage`, `/exit`. Chats are saved in `~/.agent/sessions/`.
+
 ### Use DeepSeek instead
 
 DeepSeek offers an endpoint that speaks Anthropic's message format, so the same code runs unchanged:
@@ -95,7 +106,9 @@ Each episode also has a full written article, so you can learn everything in it 
 | 8 | Hooks | published | [ep08](ep08/) |
 | 9 | Memory between sessions | published | [ep09](ep09/) |
 | 10 | Always on | published | [ep10](ep10/) |
-| 11 to 13 | see the syllabus | planned | added with each episode |
+| 11 | MCP and skills | published | [ep11](ep11/) |
+| 12 | Testing and debugging an agent | published | [ep12](ep12/) |
+| 13 | Putting it together | in progress | [ep13](ep13/) |
 
 ## Ground rules
 

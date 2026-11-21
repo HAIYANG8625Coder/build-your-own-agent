@@ -1,0 +1,8 @@
+{
+ "mode": "plain",
+ "run": 4,
+ "first_text_s": 6.0,
+ "total_s": 6.0,
+ "chars": 1101,
+ "text": "Here's how a cart total with tax works in this project:\n\n1. When items are added to a `Cart` (cart.py), each price is appended to the `prices` list, one plain amount per item, with no rounding or tax applied per line.\n2. `Cart.summary()` hands that whole list to `calc_total(prices)` in pricing.py, so the cart itself never does its own arithmetic.\n3. `calc_total` adds the prices together and multiplies the sum by `1 + TAX_RATE`, where `TAX_RATE = 0.07` (7%) comes from config.py, so the tax is applied once to the order subtotal rather than to each item.\n4. The result is rounded to cents (`round(..., 2)`) once at the very end and returned, and the cart formats it as `\"N items, total X.XX\"` — in SGD, per the `CURRENCY` setting.\n\nOne thing worth flagging: the pricing-rules skill says amounts must be integers in cents and rounded half up, but the code currently uses floats with Python's `round`, which is banker's rounding — so `calc_total([10.005])`-style edge cases won't behave as the rules require. Say the word and I'll fix it, with the zero/threshold/large-order tests the skill asks for."
+}

@@ -1,0 +1,14 @@
+{
+ "mode": "repair",
+ "run": 5,
+ "stopped_at": [
+  "run_bash"
+ ],
+ "ended_with": [
+  "user",
+  "assistant"
+ ],
+ "answer": "Tax rate is `TAX_RATE = 0.07` (7%), defined in config.py and used by pricing.calc_total.",
+ "error": null,
+ "ok": true
+}

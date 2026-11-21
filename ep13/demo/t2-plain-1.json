@@ -1,0 +1,8 @@
+{
+ "mode": "plain",
+ "run": 1,
+ "first_text_s": 7.58,
+ "total_s": 7.58,
+ "chars": 1000,
+ "text": "Four sentences (grounded in `pricing.py`, `cart.py`, `config.py`, and the pricing-rules skill):\n\n1. Each item's price is added to the cart, and `calc_total` sums them into a subtotal.\n2. Tax at `TAX_RATE` from `config.py` (currently 0.07, i.e. 7%) is applied to that amount, after any discount, while shipping is added afterwards and is not taxed.\n3. Rounding is half up, applied once at the very end of the calculation rather than per line, and a discount can never push the total below 0.\n4. `Cart.summary()` then prints `\"N items, total X.XX\"`, dividing by 100 only at display time so the stored amounts stay whole cents.\n\nOne caveat worth flagging: the code as written does not yet follow rule 1 of the pricing rules — `calc_total` works in floats (`round(sum(prices) * (1 + TAX_RATE), 2)`) and prices are passed as plain numbers, not integers in cents. Tell me if you'd like that fixed. I could not run the tests to confirm current behaviour: running shell commands was declined in this session."
+}

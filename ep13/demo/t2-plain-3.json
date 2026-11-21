@@ -1,0 +1,8 @@
+{
+ "mode": "plain",
+ "run": 3,
+ "first_text_s": 6.72,
+ "total_s": 6.72,
+ "chars": 1016,
+ "text": "`pricing.py` has the whole calculation:\n\n```python\ndef calc_total(prices):\n    return round(sum(prices) * (1 + TAX_RATE), 2)\n```\n\nwith `TAX_RATE = 0.07` in `config.py`.\n\n**How a cart total with tax is worked out:**\n\n1. `calc_total` takes a list of item prices and adds them all up into one subtotal.\n2. It then multiplies that subtotal by `1 + TAX_RATE`, i.e. by 1.07, so the 7% tax configured in `config.py` is added on top of the subtotal.\n3. The result is rounded once, at the very end, to two decimals, so the tax and rounding are applied to the order as a whole rather than line by line.\n4. Callers just use the returned number: `cart.py` formats it as `\"N items, total X.XX\"` and `report.py` prints it with the currency from the config.\n\nOne thing worth flagging: the project's money rule says amounts should be integers in cents with only the display layer dividing by 100, but this code works in floats and passes prices straight into `round(..., 2)`. I only wrote the explanation — I didn't change any code."
+}

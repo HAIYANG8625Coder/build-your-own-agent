@@ -1,0 +1,8 @@
+{
+ "mode": "stream",
+ "run": 3,
+ "first_text_s": 7.3,
+ "total_s": 8.42,
+ "chars": 889,
+ "text": "Read `pricing.py`, `cart.py`, `config.py` and the tests (no files changed).\n\n**How the cart total with tax is worked out**\n\n1. `Cart.add` in `cart.py` just appends each item's price to a list, with no arithmetic at the time of adding.\n2. `Cart.summary()` hands that list to `pricing.calc_total`, which sums the prices and multiplies the sum by `(1 + TAX_RATE)`, where `TAX_RATE = 0.07` (7%) comes from `config.py`.\n3. `calc_total` rounds the result to two decimals, and `summary()` prints it as `\"<n> items, total <amount>\"` formatted with `%.2f`.\n4. One caveat: the project's pricing rules say amounts should be integer cents with half-up rounding applied once at the end, but the current code uses floats and Python's `round()`, so the implementation doesn't follow those rules yet — e.g. `calc_total([100])` returns `107.0`.\n\nSo a 2-item cart of 50 + 50 shows `\"2 items, total 107.00\"`."
+}

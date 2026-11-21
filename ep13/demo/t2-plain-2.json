@@ -1,0 +1,8 @@
+{
+ "mode": "plain",
+ "run": 2,
+ "first_text_s": 7.28,
+ "total_s": 7.28,
+ "chars": 941,
+ "text": "**How a cart total with tax is worked out**\n\n1. Every line price is added up as an integer number of cents, never as a float, so no rounding error creeps in while summing.\n2. Before tax, any discount is taken off the sum — coupons never stack, so if two apply only the larger one is used, and the running total is floored at 0 so a discount can never make it negative.\n3. Tax is then applied to the discounted amount at the flat 7% rate in `config.TAX_RATE`, and shipping, if any, is added only afterwards and is not taxed.\n4. Finally the result is rounded half up exactly once, at the end, and only the display layer divides by 100 to show it as dollars and cents.\n\nOne thing worth flagging: `pricing.py` currently does `round(sum(prices) * (1 + TAX_RATE), 2)` on floats, with no discounts and no shipping step, so it does not yet follow rules 1, 2 or 4 — that's fine as an explanation of intent, but the code doesn't match the explanation."
+}

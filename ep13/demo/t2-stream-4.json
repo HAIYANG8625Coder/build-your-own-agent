@@ -1,0 +1,8 @@
+{
+ "mode": "stream",
+ "run": 4,
+ "first_text_s": 4.41,
+ "total_s": 5.61,
+ "chars": 964,
+ "text": "I read `cart.py`, `pricing.py`, `config.py` and the tests.\n\n**How a cart total with tax is worked out**\n\n1. Every call to `Cart.add(price)` appends that item's price to a list in `cart.py`; nothing is summed at that point.\n2. When the total is needed, `Cart.summary()` calls `calc_total(self.prices)` from `pricing.py`, so the tax is always included in what is shown.\n3. `calc_total` adds up all the prices in the list and multiplies the sum by `1 + TAX_RATE`, where `TAX_RATE` is `0.07` (7%) in `config.py`.\n4. The product is passed through `round(..., 2)` to get a two-decimal amount, which `summary()` then prints, e.g. `calc_total([50, 50])` gives `107.00`, formatted as `\"2 items, total 107.00\"`.\n\nOne thing worth flagging against the project's own pricing rules: the code works in floats (dollars) rather than integer cents, and rounds once at the end. There is also currently no discount or shipping step in the total — tax is simply applied to the raw sum."
+}

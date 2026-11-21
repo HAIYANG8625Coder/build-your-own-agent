@@ -1,0 +1,8 @@
+{
+ "mode": "stream",
+ "run": 1,
+ "first_text_s": 6.46,
+ "total_s": 7.9,
+ "chars": 1166,
+ "text": "The tests could not be run (the command was declined), but no code was changed — this is only an explanation of what the existing code does.\n\n**How a cart total with tax is worked out (`pricing.calc_total`, `cart.Cart.summary`):**\n\n1. `Cart.add(p)` appends each item's price to a list, so the cart just holds the raw prices of the items in it.\n2. `calc_total(prices)` adds all those prices together into one sum with `sum(prices)`.\n3. That sum is multiplied by `(1 + TAX_RATE)`, where `TAX_RATE` is `0.07` in `config.py`, so 7% tax is added on top of the items.\n4. The product is rounded to two decimals with `round(..., 2)` and returned, and `Cart.summary()` prints it as `\"N items, total X.XX\"` (currency SGD) so the displayed total always includes tax.\n\nOne thing worth flagging: the project's pricing rules say amounts should be integer cents, that rounding should happen once half-up, and that discounts are applied before tax. The current code works in decimals, has no discount step, and uses `round()`'s banker's rounding, so it doesn't fully match those rules — say the word if you want that fixed (it would need tests for zero, threshold and large orders)."
+}

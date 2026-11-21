@@ -1,0 +1,14 @@
+{
+ "mode": "repair",
+ "run": 2,
+ "stopped_at": [
+  "read_file"
+ ],
+ "ended_with": [
+  "user",
+  "assistant"
+ ],
+ "answer": "7% (`TAX_RATE = 0.07` in `config.py`, used by `calc_total` in `pricing.py`).",
+ "error": null,
+ "ok": true
+}

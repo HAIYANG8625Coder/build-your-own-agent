@@ -1,0 +1,14 @@
+{
+ "mode": "control",
+ "run": 2,
+ "stopped_at": [
+  "read_file"
+ ],
+ "ended_with": [
+  "user",
+  "assistant"
+ ],
+ "answer": "",
+ "error": "BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'messages.2: `tool_use` ids were found without `tool_result` blocks immediately after: call_00_4KqimKEc36ktgQa",
+ "ok": false
+}

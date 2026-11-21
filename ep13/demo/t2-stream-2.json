@@ -1,0 +1,8 @@
+{
+ "mode": "stream",
+ "run": 2,
+ "first_text_s": 0.69,
+ "total_s": 7.52,
+ "chars": 1245,
+ "text": "Read `cart.py`, `config.py`, `pricing.py`, `tests/test_pricing.py`, and the pricing rules. Here is the explanation:\n\nA cart just collects the price of each item added to it in a list, and its `summary()` hands that whole list to `pricing.calc_total` so tax is never skipped. `calc_total` adds all the prices together into one subtotal, then multiplies that subtotal by `1 + TAX_RATE`, where `TAX_RATE` is `0.07` (7%) from `config.py`. The result is rounded to two decimals once, at the very end, using Python's `round()`, so rounding is not done per item or per line. The summary therefore prints the number of items and that taxed total formatted to two places, e.g. `c.add(50); c.add(50)` gives `\"2 items, total 107.00\"`.\n\nOne thing worth flagging against the project's pricing rules: the rules say amounts must be integer cents and rounding must be half-up, but `pricing.py` currently works in floats and uses `round()`, which is half-to-even (so `calc_total([0.125])`-style values can round the \"wrong\" way). Also note that everything above assumes prices are plain amounts — there is no discount or shipping step implemented yet, so despite the rules about tax-after-discount and shipping-after-tax, the code simply taxes the full subtotal."
+}

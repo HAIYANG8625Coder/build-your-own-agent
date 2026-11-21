@@ -1,0 +1,8 @@
+{
+ "mode": "stream",
+ "run": 5,
+ "first_text_s": 6.64,
+ "total_s": 7.74,
+ "chars": 945,
+ "text": "I read the code (`pricing.py`, `cart.py`, `config.py`, `tests/test_pricing.py`) to base this on what it actually does:\n\n1. `Cart.add` appends each item's price to a plain list, so the cart just keeps the raw prices in the order they were added.\n2. `Cart.summary` hands that list to `pricing.calc_total`, which is why every summary always has tax included.\n3. `calc_total` sums the prices, multiplies that single sum by `1 + TAX_RATE` (0.07, from `config.py`), and rounds the result to two decimal places, so tax is applied once to the whole cart rather than line by line.\n4. The result comes back as a float and `summary` formats it with `%.2f`, producing text like `\"2 items, total 107.00\"` for a cart of 50 + 50.\n\nOne thing worth flagging: the pricing rules say amounts should be integer cents and rounding should happen in cents, but this code works in floats and rounds the tax-inclusive total, so it diverges from that rule for some values."
+}
