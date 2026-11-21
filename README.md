@@ -6,7 +6,7 @@ A video series and a code repo that build a Claude Code-style command-line agent
 
 Many people use tools like Claude Code without knowing how they work. This series rebuilds the core ideas in the smallest amount of code: no framework, just Python and an API key. Claude Code behavior in the videos comes from its official documentation, never from its source code.
 
-At the end you have an agent of about 500 lines that reads and writes files, runs commands with your permission, manages its own context, hands tasks to subagents and remembers things between sessions.
+At the end you have an agent of about 1,500 lines that reads and writes files, runs commands with your permission, manages its own context, hands tasks to subagents and remembers things between sessions.
 
 ## Architecture of the finished agent
 

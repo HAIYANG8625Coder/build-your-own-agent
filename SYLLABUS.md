@@ -4,7 +4,7 @@ One agent, built a piece at a time. Every episode is one video (about 7 to 8 min
 
 **You need:** Python 3.9+, a terminal, and an API key for a model that speaks Anthropic's message format (Claude, or DeepSeek through its Anthropic-compatible endpoint). A Claude Pro subscription does not include an API key.
 **You do not need:** any framework. The whole agent is plain Python plus one SDK.
-**By the end:** a working command-line coding agent of about 500 lines that reads and edits files, runs commands with your permission, manages its own context, delegates to subagents and remembers things between sessions.
+**By the end:** a working command-line coding agent of about 1,500 lines that reads and edits files, runs commands with your permission, manages its own context, delegates to subagents and remembers things between sessions.
 
 Every published episode has a full article with the code, real run output, diagrams and inline citations: see the **Articles** table in the [README](README.md).
 

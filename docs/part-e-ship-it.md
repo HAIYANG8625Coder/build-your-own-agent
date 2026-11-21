@@ -17,6 +17,6 @@ The last two episodes answer: how do you know a change helped, and how do you tu
 
 ## What you have afterwards
 
-A complete command-line agent of about 500 lines, plus a test set you can run again and again.
+A complete command-line agent of about 1,500 lines, plus a test set you can run again and again.
 
 Back to the [syllabus](../SYLLABUS.md) or the [project home](../README.md).
