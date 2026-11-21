@@ -64,14 +64,14 @@ Goal: remember what is worth remembering. Build: a notes folder, write only what
 **Ep 10 · Always on** (published) `ep10`
 Goal: an agent that works while you are away. Build: an inbox queue, a timer, the loop as a daemon, an outbox to a chat app, and what the agent may do when nobody can approve. Pairs with the "always-on agents" video. Pitfalls: two events at once, secrets within reach.
 
-**Ep 11 · Extending with MCP and skills** `ep11`
+**Ep 11 · Extending with MCP and skills** (published) `ep11`
 Goal: add tools you did not write. Build: a minimal client that lists and calls tools from an MCP server, and a folder of skill files loaded on demand. Claude Code: MCP servers and skills as documented. Pitfalls: trusting a tool's description, loading every skill up front.
 
 ## Part E. Ship it
-**Ep 12 · Testing and debugging an agent** `ep12`
+**Ep 12 · Testing and debugging an agent** (published) `ep12`
 Goal: know when a change helped. Build: 3 to 5 fixed tasks, a saved trace of every message, turns and tokens per task, one change at a time. Pitfalls: judging by one run, reading only the final answer.
 
-**Ep 13 · Putting it together** `ep13`
+**Ep 13 · Putting it together** (published) `ep13`
 Goal: one finished command-line agent. Build: a chat loop (REPL) with streaming output, all earlier parts wired in, a README with the architecture diagram. Closing: what Claude Code has that ours does not, and where to go next.
 
 ## Rules for every episode

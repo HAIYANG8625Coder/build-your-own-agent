@@ -91,6 +91,9 @@ Each episode also has a full written article, so you can learn everything in it 
 | 8 · Hooks | [articles/ep08-hooks.md](articles/ep08-hooks.md) |
 | 9 · Memory between sessions | [articles/ep09-memory.md](articles/ep09-memory.md) |
 | 10 · Always on | [articles/ep10-always-on.md](articles/ep10-always-on.md) |
+| 11 · MCP and skills | [articles/ep11-mcp-and-skills.md](articles/ep11-mcp-and-skills.md) |
+| 12 · Testing and debugging | [articles/ep12-testing-and-debugging.md](articles/ep12-testing-and-debugging.md) |
+| 13 · Putting it together | [articles/ep13-putting-it-together.md](articles/ep13-putting-it-together.md) |
 
 ## Progress
 
@@ -108,7 +111,7 @@ Each episode also has a full written article, so you can learn everything in it 
 | 10 | Always on | published | [ep10](ep10/) |
 | 11 | MCP and skills | published | [ep11](ep11/) |
 | 12 | Testing and debugging an agent | published | [ep12](ep12/) |
-| 13 | Putting it together | in progress | [ep13](ep13/) |
+| 13 | Putting it together | published | [ep13](ep13/) |
 
 ## Ground rules
 
