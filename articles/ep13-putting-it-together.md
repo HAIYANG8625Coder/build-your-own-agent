@@ -2,6 +2,10 @@
 
 *Part E · Ship it. The last episode. Video: "Build your own agent · 13: putting it together". Code: [`ep13/`](../ep13/).*
 
+**Series:** [← README](../README.md) · [← Ep 12: Testing and debugging](ep12-testing-and-debugging.md)
+
+**Key idea:** A finished agent is the loop plus a chat wrapper: a kept conversation, streaming, saved sessions, and a repaired half turn after Ctrl+C.
+
 This article is the whole of episode 13 in writing, so you can follow it without the video. The Claude Code facts come from its docs (interactive mode, how it works, sessions, checkpointing, commands, security, sandboxing, sub-agents, headless mode) and the streaming facts from Anthropic's Messages API documentation. Where the docs are silent, I say "our version does it this way".
 
 **What you will be able to do afterwards**
@@ -29,21 +33,21 @@ For twelve episodes, our agent took one task and quit. A tool you use for an hou
 
 ## 3. What Claude Code and the API do (official docs)
 
-**The loop and the keys** (interactive mode, how Claude Code works):
+**The loop and the keys** ([interactive mode](https://code.claude.com/docs/en/interactive-mode), [how Claude Code works](https://code.claude.com/docs/en/how-claude-code-works)):
 
 - The loop has three phases that blend into one another: "gather context, take action, verify results". You can interrupt at any point.
 - `Esc` stops the current response or tool call and keeps the work done so far. When nothing is running, the first `Ctrl+C` clears the prompt and a second one exits. `Ctrl+D` exits when pressed twice within 800 ms.
 - Input can span several lines (a backslash then Enter, or Ctrl+J). The history is kept per working directory.
 
-**Sessions** (sessions page):
+**Sessions** ([sessions page](https://code.claude.com/docs/en/sessions)):
 
 - Every message, tool call and result is written to a plain-text file under `~/.claude/projects/`. The docs warn that the format is internal and changes between versions.
 - `claude --continue` reopens the latest session of this folder, and `claude --resume` lets you pick one. A resumed session gets its history, model and permission mode back. A tool call that was interrupted is not run again.
 - `/clear` starts a new conversation, `/compact` summarizes, `/context` shows what fills the window.
 
-**Checkpoints** (checkpointing page): every prompt that starts a turn creates a checkpoint, and `/rewind` can restore the files, the conversation, or both. Only changes made by the file-edit tools are tracked, not changes made by shell commands. The docs say it is not a replacement for git.
+**Checkpoints** ([checkpointing page](https://code.claude.com/docs/en/checkpointing)): every prompt that starts a turn creates a checkpoint, and `/rewind` can restore the files, the conversation, or both. Only changes made by the file-edit tools are tracked, not changes made by shell commands. The docs say it is not a replacement for git.
 
-**Streaming** (Anthropic's streaming documentation): the events come in order: a message starts, each content block starts, sends zero or more *delta* events and stops, and the message ends. Text arrives as `text_delta`. A tool call arrives as `input_json_delta` pieces of JSON that you collect and parse when the block ends. The Python SDK has a helper for this: `client.messages.stream(...)` gives `text_stream` (the text pieces) and `get_final_message()` (the same object a normal call returns). For scripts, Claude Code offers `--output-format stream-json` with `--include-partial-messages`.
+**Streaming** ([Anthropic's streaming documentation](https://platform.claude.com/docs/en/build-with-claude/streaming)): the events come in order: a message starts, each content block starts, sends zero or more *delta* events and stops, and the message ends. Text arrives as `text_delta`. A tool call arrives as `input_json_delta` pieces of JSON that you collect and parse when the block ends. The Python SDK has a helper for this: `client.messages.stream(...)` gives `text_stream` (the text pieces) and `get_final_message()` (the same object a normal call returns). For scripts, Claude Code offers `--output-format stream-json` with `--include-partial-messages`.
 
 ## 4. Our version
 
@@ -68,7 +72,28 @@ There are 38 checks in `test_repl.py`. They need no API key because they use a s
 
 ## 5. A real session
 
-We recorded one real session in a terminal, with the real model (DeepSeek, `deepseek-flash`). `screen/record_demo.py` types the user's side and presses a real Ctrl+C (the byte 0x03). Everything else is printed by the program. The recording and its recorder are in [`ep13/screen/`](../ep13/screen/). What happens:
+We recorded one real session in a terminal, with the real model (DeepSeek, `deepseek-flash`). `screen/record_demo.py` types the user's side and presses a real Ctrl+C (the byte 0x03). Everything else is printed by the program. The recording and its recorder are in [`ep13/screen/`](../ep13/screen/). Here is the part with the interrupt and the resume (lines cut with `…`):
+
+```text
+> Read every .py file in this folder and describe each one in two sentences.
+  Allow run_bash {"command": "find . -name \"*.py\" -not -path \"./.git/*\" | sort"} ?
+  [y] once  [a] always this session  [n] no > a
+  . run_bash {"command": "find . -name \"*.py\" -not -path \"./.git/*\" | sort"} -> allow
+^C[stopped]
+> What is the tax rate now? One short answer.
+8% (`TAX_RATE = 0.08` in `config.py`).
+> /context
+36 messages, about 6053 tokens (last call: 7152)
+> /exit
+bye
+
+$ python3 repl.py --continue
+agent chat …  (model deepseek-flash, resumed)  /help for commands, Ctrl+D to leave
+> Which file did you read first in this chat? Answer with the path only.
+cart.py
+```
+
+What happens, step by step:
 
 1. "What does cart.py do?" The answer streams in. Two tool calls: list the folder, read a file.
 2. "Which file holds the tax rate?" It remembers the chat and finds the config file.
@@ -113,9 +138,9 @@ Model: DeepSeek, every earlier part on, 5 runs per setup, 30 runs.
 
 From the official docs, each with its page:
 
-- **A sandbox for commands** (sandboxing page). It is off by default. When on, it limits writes to the working directory and sends network traffic through a proxy with an allowed-domain list. Our permission gate only decides whether a command runs, not what it can touch once it runs.
-- **An automatic permission mode** where a separate model reviews actions, a trust dialog for new folders, and approval for project MCP servers (security page).
-- **Sub-agents as files** with their own tools, model, permission mode and memory, plus built-in read-only helpers (sub-agents page).
+- **A sandbox for commands** ([sandboxing page](https://code.claude.com/docs/en/sandboxing)). It is off by default. When on, it limits writes to the working directory and sends network traffic through a proxy with an allowed-domain list. Our permission gate only decides whether a command runs, not what it can touch once it runs.
+- **An automatic permission mode** where a separate model reviews actions, a trust dialog for new folders, and approval for project MCP servers ([security page](https://code.claude.com/docs/en/security)).
+- **Subagents as files** with their own tools, model, permission mode and memory, plus built-in read-only helpers (sub-agents page).
 - **Checkpoints and `/rewind`** (checkpointing page), a **session picker** and **branching** (sessions page).
 - **Richer input**: line-editing keys, history search, image paste (interactive mode page).
 - **Many more commands**, **managed (company-wide) settings** and **cloud sessions** (commands, security and sandboxing pages).
@@ -130,7 +155,7 @@ From the official docs, each with its page:
 
 **The series is finished.** In thirteen episodes you built an agent of about 1,500 lines that reads and writes files, asks before it acts, manages its context, plans, delegates, uses hooks, remembers, takes outside tools and skills, can be tested, and now chats.
 
-**What comes next (a plan, not done).** The next series is planned as an enterprise-class agent: what changes when many people use it, who is who, what it may touch, what happened and what it cost. The plan is a draft and will change. If you read this and have a request for what should come first, tell us in the comments.
+**What comes next (a plan, not done).** The next series is planned as an enterprise-class agent: what changes when many people use it, who is who, what it may touch, what happened and what it cost. The plan is a draft and will change. If you read this and have a request for what should come first, say so in the comments on the video.
 
 **Try it:** `python3 test_repl.py` in `ep13/` (38 checks, no key). Then, in a throwaway folder, `python3 ../repl.py` with `PROVIDER=deepseek` and `DEEPSEEK_API_KEY` set, and ask it something.
 

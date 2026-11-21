@@ -1,6 +1,10 @@
 # Episode 1 · The agent loop
 
-*Part A · Core. Video: "Build your own agent· 001：Loop". Code: [`ep01/`](../ep01/).*
+*Part A · Core. Video: "Build your own agent · 01: the loop". Code: [`ep01/`](../ep01/).*
+
+**Series:** [← README](../README.md) · [Ep 2: Tools →](ep02-tools.md)
+
+**Key idea:** An agent is a loop: call the model, run the tools it asks for, send the results back, and repeat until it stops asking.
 
 This article is the whole of episode 1 in writing. You do not need the video to follow it: every idea, every line of code and every number used in the video is here, with the page it came from linked inline.
 

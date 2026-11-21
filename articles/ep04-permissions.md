@@ -2,6 +2,10 @@
 
 *Part B · Trust and limits. Video: "Build your own agent · 04: permissions". Code: [`ep04/`](../ep04/).*
 
+**Series:** [← README](../README.md) · [← Ep 3: System prompt and notes](ep03-system-prompt-and-notes.md) · [Ep 5: Context →](ep05-context.md)
+
+**Key idea:** Put a gate in your own code between the model's request and the tool run, with rules checked in the order deny, ask, allow.
+
 This article is the whole of episode 4 in writing, so you can follow it without the video. Every claim about Claude Code is taken from the official pages linked inline. Where the docs are silent, I say "our version does it this way".
 
 **What you will be able to do afterwards**
@@ -151,7 +155,7 @@ On top of the defaults we have four **modes**:
 | `read-only` | allow | allow | deny | deny |
 | `dont-ask` | allow | allow | deny | deny |
 
-Rules still come first in every mode: in `dont-ask`, a command that an allow rule covers still runs, and anything that would have asked is denied.
+In our code the `read-only` and `dont-ask` rows behave the same; they differ only in the message the model reads ("no edits and no commands" against "nothing that needs approval runs"). Rules still come first in every mode: in `dont-ask`, a command that an allow rule covers still runs, and anything that would have asked is denied.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="../docs/img/ep04-modes-dark.svg">

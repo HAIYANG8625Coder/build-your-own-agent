@@ -17,6 +17,6 @@ Once an agent can run commands, two questions matter: what is it allowed to do, 
 
 ## What you have afterwards
 
-An agent you can leave running on your machine without worrying, and that survives long sessions.
+An agent that asks before it acts, with rules you can read, and that survives long sessions. (It has no sandbox: see the end of episode 4.)
 
 Back to the [syllabus](../SYLLABUS.md) or the [project home](../README.md).

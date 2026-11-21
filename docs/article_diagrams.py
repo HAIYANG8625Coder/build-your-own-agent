@@ -211,7 +211,7 @@ d = Diagram(1200, 620)
 d.title(40, 52, "Repository layout")
 d.panel(40, 90, 1120, 480)
 rows = [("README.md · SYLLABUS.md · LICENSE", "start here"), ("articles/", "one full written article per episode"), ("docs/", "part introductions and the diagrams (img/)"),
-        ("ep01/", "agent.py · test_loop.py · demo/"), ("ep02/", "agent.py · test_tools.py · sandbox/ · demo/"), ("ep03/ … ep13/", "one folder per episode, added as the series grows")]
+        ("ep01/", "agent.py · test_loop.py · demo/"), ("ep02/", "agent.py · test_tools.py · sandbox/ · demo/"), ("ep03/ … ep13/", "one folder per episode, 13 in all")]
 for k, (a, b) in enumerate(rows):
     y = 120 + k * 72
     d.box(70, y, 420, 58, a, None, kind="accent" if k == 3 else "plain", title_size=17)

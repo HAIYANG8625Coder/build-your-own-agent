@@ -12,8 +12,8 @@ What does the agent remember after a session ends, can it work while you are awa
 
 ## Episodes in this part
 
-- **Episode 9 · Memory** (code: `ep09/`): A notes folder that stores only what can't be looked up again, an index loaded at the start, and an optional offline cleanup.
-- **Episode 10 · Always on** (code: `ep10/`): An inbox, timers, the loop running as a daemon, an outbox, and what the agent may do when nobody can approve.
+- **Episode 9 · Memory** (code: `ep09/`): A notes folder that stores only what can't be looked up again, an index loaded at the start (an offline cleanup was planned and is not built).
+- **Episode 10 · Always on** (code: `ep10/`): An inbox, timers, a worker that runs the agent once per batch of events, an outbox, and what the agent may do when nobody can approve.
 - **Episode 11 · MCP and skills** (code: `ep11/`): Connect to an MCP server's tools and load skill files on demand; these tools still go through the permission gate.
 
 ## What you have afterwards

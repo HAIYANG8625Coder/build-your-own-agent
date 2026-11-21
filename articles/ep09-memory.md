@@ -2,6 +2,10 @@
 
 *Part D · Beyond one session. Video: "Build your own agent · 09: memory". Code: [`ep09/`](../ep09/).*
 
+**Series:** [← README](../README.md) · [← Ep 8: Hooks](ep08-hooks.md) · [Ep 10: Always on →](ep10-always-on.md)
+
+**Key idea:** Memory is a folder of short notes plus an index, written by the agent, so the next session starts knowing what you said once.
+
 This article is the whole of episode 9 in writing, so you can follow it without the video. Every claim about Claude Code is taken from the official [Memory page](https://code.claude.com/docs/en/memory), which I read in full. Where the docs are silent, I say "our version does it this way".
 
 **What you will be able to do afterwards**

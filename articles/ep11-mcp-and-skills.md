@@ -2,6 +2,10 @@
 
 *Part D · Beyond one session. Video: "Build your own agent · 11: MCP and skills". Code: [`ep11/`](../ep11/).*
 
+**Series:** [← README](../README.md) · [← Ep 10: Always on](ep10-always-on.md) · [Ep 12: Testing and debugging →](ep12-testing-and-debugging.md)
+
+**Key idea:** MCP adds tools you did not write and skills add ways of working loaded on demand; treat both as input from outside.
+
 This article is the whole of episode 11 in writing, so you can follow it without the video. The Claude Code facts come from its docs pages on MCP and on skills (both read in full) and from the MCP specification. Where the docs are silent, I say "our version does it this way".
 
 **What you will be able to do afterwards**
@@ -39,7 +43,7 @@ So: MCP adds *tools*. A skill adds a *way of doing things*.
 
 ## 3. What Claude Code does (official docs)
 
-**MCP** (the MCP page of the docs):
+**MCP** ([the MCP page of the docs](https://code.claude.com/docs/en/mcp)):
 
 - It calls MCP "an open source standard for AI-tool integrations". A server can be local (it runs on your machine over standard input and output) or remote (HTTP is "the recommended option").
 - You add one with `claude mcp add`. Three scopes decide who sees it: only you in this project (local), everyone on the project through a `.mcp.json` file in version control (project), or all your projects (user).
@@ -49,7 +53,7 @@ So: MCP adds *tools*. A skill adds a *way of doing things*.
 - Output is limited: a warning above 10,000 tokens, and a default limit of 25,000.
 - The safety advice is plain: verify that you trust each server. A server that fetches outside content can expose you to *prompt injection*, which means a hidden instruction in content that the model then follows.
 
-**Skills** (the skills page of the docs):
+**Skills** ([the skills page of the docs](https://code.claude.com/docs/en/skills)):
 
 - Skills follow the open Agent Skills standard. A skill is a folder with `SKILL.md`, and it can hold extra files and scripts.
 - "Skill descriptions are loaded into context so Claude knows what's available, but full skill content only loads when invoked."
@@ -57,7 +61,7 @@ So: MCP adds *tools*. A skill adds a *way of doing things*.
 - Advice from the docs: keep `SKILL.md` under 500 lines, and put the key use case first in the description.
 - A safety note: a skill can grant itself tool access, so review the `allowed-tools` of skills in a repository.
 
-**The MCP specification** (stdio transport, tools):
+**The [MCP specification](https://modelcontextprotocol.io/specification/latest)** (stdio transport, tools):
 
 - Messages are JSON, one per line. A server must not write anything else to its output, because the client reads every line as a message.
 - Two kinds of failure are separate. If a *tool* fails, the result comes back normally with an error flag, so the model can read it and try again. If the *protocol* fails (an unknown tool, a broken message), that is an error of the connection.

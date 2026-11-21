@@ -1,6 +1,10 @@
 # Episode 6 · Plan mode and the task list
 
-*Part B · Trust and limits. Video: "Build your own agent · 06: plan mode and the task list". Code: [`ep06/`](../ep06/).*
+*Part C · Working at scale. Video: "Build your own agent · 06: plan mode and the task list". Code: [`ep06/`](../ep06/).*
+
+**Series:** [← README](../README.md) · [← Ep 5: Context](ep05-context.md) · [Ep 7: Subagents →](ep07-subagents.md)
+
+**Key idea:** Plan mode lets you review the plan before anything changes, and a task list tracks progress, at the cost of roughly double the turns in our test.
 
 This article is the whole of episode 6 in writing, so you can follow it without the video. Every claim about Claude Code is taken from the official pages linked inline. Where the docs are silent, I say "our version does it this way".
 

@@ -13,7 +13,7 @@ The last two episodes answer: how do you know a change helped, and how do you tu
 ## Episodes in this part
 
 - **Episode 12 · Testing and debugging** (code: `ep12/`): Three to five fixed tasks, a saved trace of every message, turns and tokens counted, one change at a time.
-- **Episode 13 · Put it together** (code: `ep13/`): A command-line REPL with streaming output, every part wired in, and the final architecture diagram.
+- **Episode 13 · Putting it together** (code: `ep13/`): A command-line REPL with streaming output, every part wired in, and the final architecture diagram.
 
 ## What you have afterwards
 

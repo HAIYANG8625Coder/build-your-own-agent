@@ -2,7 +2,11 @@
 
 *Part D · Beyond one session. Video: "Build your own agent · 10: always on". Code: [`ep10/`](../ep10/).*
 
-This article is the whole of episode 10 in writing, so you can follow it without the video. The idea of the five parts comes from Anthropic's article "Building always-on agents". The Claude Code facts come from its docs pages on scheduled tasks, headless mode, channels, GitHub Actions and permission modes. Where the docs are silent, I say "our version does it this way".
+**Series:** [← README](../README.md) · [← Ep 9: Memory](ep09-memory.md) · [Ep 11: MCP and skills →](ep11-mcp-and-skills.md)
+
+**Key idea:** Always on means waking for each event: an inbox, timers and an outbox, one worker, and a refusal when nobody can approve.
+
+This article is the whole of episode 10 in writing, so you can follow it without the video. The idea of the five parts comes from Anthropic's article ["Building always-on agents"](https://claude.com/resources/articles/building-always-on-agents). The Claude Code facts come from its docs pages on scheduled tasks, headless mode, channels, GitHub Actions and permission modes. Where the docs are silent, I say "our version does it this way".
 
 **What you will be able to do afterwards**
 
@@ -32,11 +36,11 @@ Anthropic's article says it is not really "always running". Most of the time the
 
 | Part | What it is | Episode |
 |---|---|---|
-| Inbox | a place where events wait, so none is lost | today |
-| Timers | a clock that puts an event in the inbox at a set time | today |
+| Inbox | a place where events wait, so none is lost | this episode |
+| Timers | a clock that puts an event in the inbox at a set time | this episode |
 | Memory | what the agent keeps between runs | [9](ep09-memory.md) |
-| Permissions | what it may do without asking | [4](ep04-permissions.md), and today |
-| Outbox | where the agent leaves messages for you | today |
+| Permissions | what it may do without asking | [4](ep04-permissions.md), and this episode |
+| Outbox | where the agent leaves messages for you | this episode |
 
 ## 3. What Claude Code does (official docs)
 
@@ -112,13 +116,13 @@ Two stall runs waited four minutes (our limit was 240 seconds), sent nothing, an
 
 - Five runs, one model, three small tasks.
 - Not built: a real daemon that stays in the background, sending to a real chat app, a scheduler that restarts itself, and "stop, wait for your answer, then continue".
-- Today the agent still needs someone to start a run. It does collect events and can leave you a message.
+- As built here, the agent still needs someone to start a run. It does collect events and can leave you a message.
 - The outbox here prints to the screen. Sending to a real chat app is a separate step.
 
 ## 9. Recap
 
 1. "Always on" means: wake on an event, do one run, save, sleep.
-2. Five parts: inbox, timers, memory, permissions, outbox. Today you added three.
+2. Five parts: inbox, timers, memory, permissions, outbox. In this episode you added three.
 3. One worker, deduplicate by the sender's id, take all waiting events at once.
 4. When nobody can approve: refuse, say so, do not retry, leave a message.
 5. A finished run is not proof that the work is done.

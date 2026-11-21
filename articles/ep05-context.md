@@ -2,6 +2,10 @@
 
 *Part B · Trust and limits. Video: "Build your own agent · 05: context". Code: [`ep05/`](../ep05/).*
 
+**Series:** [← README](../README.md) · [← Ep 4: Permissions](ep04-permissions.md) · [Ep 6: Plan mode and task list →](ep06-plan-and-tasks.md)
+
+**Key idea:** Long sessions fill the context window: count it correctly, clear old tool results first, then compact old turns into a summary.
+
 This article is the whole of episode 5 in writing, so you can follow it without the video. Every claim about Claude Code or the API is taken from the official pages linked inline. Where the docs are silent, I say "our version does it this way".
 
 **What you will be able to do afterwards**
@@ -126,7 +130,11 @@ Read this honestly:
 3. Compact when that is not enough, and keep the task, decisions, files and next step.
 4. Tell the model to write what it finds in its own replies, because tool results can disappear.
 
-For an unrelated new task, the docs recommend `/clear` over a long session ([Context window](https://code.claude.com/docs/en/context-window)). **Next:** episode 6 adds plans and a task list.
+For an unrelated new task, the docs recommend `/clear` over a long session ([Context window](https://code.claude.com/docs/en/context-window)).
+
+**Known flaw:** the context manager in this episode compacts more often than it should, because the fixed parts (system prompt, tools, notes) already sit near the trigger line. [Episode 7](ep07-subagents.md) adds the fix: after a compaction, wait until the context has grown by another 3,000 tokens.
+
+**Next:** episode 6 adds plans and a task list.
 
 **Try it:** run `python3 test_context.py` in `ep05/` (no API key needed), then change `CLEAR_AT` and `COMPACT_AT` in `demos.py` and watch the saw-tooth change.
 

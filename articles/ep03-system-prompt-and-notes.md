@@ -2,6 +2,10 @@
 
 *Part A · Core. Video: "Build your own agent · 03: system prompt". Code: [`ep03/`](../ep03/).*
 
+**Series:** [← README](../README.md) · [← Ep 2: Tools](ep02-tools.md) · [Ep 4: Permissions →](ep04-permissions.md)
+
+**Key idea:** A short system prompt plus a project notes file steers the agent, and a fixed set of code-checked tasks shows whether a change helped.
+
 This article is the whole of episode 3 in writing, so you can follow it without the video. Every claim about Claude Code is taken from the official pages linked inline. Where the docs are silent, I say "our version does it this way".
 
 **What you will be able to do afterwards**
@@ -103,7 +107,7 @@ def load_notes():
 
 ### See what the model sees
 
-When a prompt misbehaves, the first step is to look at what was really sent. `python3 agent.py --show-prompt` prints it (this is real output from `ep03/sandbox`):
+When a prompt misbehaves, the first step is to look at what was really sent. `python3 ../agent.py --show-prompt`, run inside `ep03/sandbox`, prints it (this is real output):
 
 ```text
 --- system ---
@@ -261,7 +265,7 @@ Two lessons: a check is code too and needs testing, and one rule can change beha
 
 **Next:** episode 4 adds a permission gate between "the model asked" and "we run it".
 
-**Try it:** run `python3 agent.py --show-prompt` in the sandbox, then change one line of `NOTES.md` and run `python3 evals.py 1`. Which check changes?
+**Try it:** inside `ep03/sandbox`, run `python3 ../agent.py --show-prompt`, then change one line of `NOTES.md` and run `python3 ../evals.py 1`. Which check changes?
 
 ## References
 

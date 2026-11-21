@@ -2,6 +2,10 @@
 
 *Part E · Ship it. Video: "Build your own agent · 12: testing and debugging". Code: [`ep12/`](../ep12/).*
 
+**Series:** [← README](../README.md) · [← Ep 11: MCP and skills](ep11-mcp-and-skills.md) · [Ep 13: Putting it together →](ep13-putting-it-together.md)
+
+**Key idea:** One run proves nothing: run fixed tasks several times, grade the outcome, save the trace, change one thing at a time, and read failed traces.
+
 This article is the whole of episode 12 in writing, so you can follow it without the video. The ideas about evaluation come from Anthropic's engineering article "Demystifying evals for AI agents" (published 2026-01-09). The Claude Code facts come from its docs (headless mode, the command-line reference, costs, troubleshooting, sessions). Where the docs are silent, I say "our version does it this way".
 
 **What you will be able to do afterwards**
@@ -33,7 +37,7 @@ Two numbers per task are useful when you run it five times: how many runs passed
 
 ## 3. What Anthropic and Claude Code say
 
-**The article "Demystifying evals for AI agents"** (2026-01-09):
+**The article ["Demystifying evals for AI agents"](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents)** (2026-01-09):
 
 - It uses the same words: task, trial, grader, transcript, outcome, and "evaluation harness" for the program that runs tasks, records every step, grades, and adds up.
 - Grade "what the agent produced, not the path it took". Do not check an exact order of tool calls.
@@ -43,7 +47,7 @@ Two numbers per task are useful when you run it five times: how many runs passed
 - Each trial should start from a clean environment. Leftover files and shared state cause failures that depend on each other.
 - A test that is at 100% "tracks regressions but provides no signal for improvement". This is called *saturation*.
 
-**Claude Code** (docs):
+**Claude Code** ([headless mode](https://code.claude.com/docs/en/headless), [command-line reference](https://code.claude.com/docs/en/cli-reference), [costs](https://code.claude.com/docs/en/costs), [sessions](https://code.claude.com/docs/en/sessions)):
 
 - `claude -p` runs once without a screen. `--output-format json` returns the result, a session ID and an estimated cost. `stream-json` gives one event per line.
 - `--max-turns` and `--max-budget-usd` are caps (the cost is an estimate computed from token counts, so it can overshoot).

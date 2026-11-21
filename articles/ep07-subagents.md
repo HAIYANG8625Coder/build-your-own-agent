@@ -1,6 +1,10 @@
 # Episode 7 · Subagents
 
-*Part C · Scale. Video: "Build your own agent · 07: subagents". Code: [`ep07/`](../ep07/).*
+*Part C · Working at scale. Video: "Build your own agent · 07: subagents". Code: [`ep07/`](../ep07/).*
+
+**Series:** [← README](../README.md) · [← Ep 6: Plan mode and task list](ep06-plan-and-tasks.md) · [Ep 8: Hooks →](ep08-hooks.md)
+
+**Key idea:** A subagent runs in a fresh conversation and returns one short answer, which keeps the main context clean but costs tokens and can miss details.
 
 This article is the whole of episode 7 in writing, so you can follow it without the video. Every claim about Claude Code is taken from the official [Subagents page](https://code.claude.com/docs/en/sub-agents) (the page is long; I read about 40,000 of 116,000 characters verbatim, so a few points rest on a summary and are marked), and every claim about multi-agent systems from Anthropic's engineering post [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system) (June 2025). Where the docs are silent, I say "our version does it this way".
 

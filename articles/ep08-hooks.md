@@ -1,6 +1,10 @@
 # Episode 8 · Hooks
 
-*Part C · Scale. Video: "Build your own agent · 08: hooks". Code: [`ep08/`](../ep08/).*
+*Part C · Working at scale. Video: "Build your own agent · 08: hooks". Code: [`ep08/`](../ep08/).*
+
+**Series:** [← README](../README.md) · [← Ep 7: Subagents](ep07-subagents.md) · [Ep 9: Memory →](ep09-memory.md)
+
+**Key idea:** A rule in the notes is only a request; a hook is a check your code runs every time, whatever the model remembers.
 
 This article is the whole of episode 8 in writing, so you can follow it without the video. Every claim about Claude Code is taken from the official [Hooks guide](https://code.claude.com/docs/en/hooks-guide) and [Hooks reference](https://code.claude.com/docs/en/hooks). Both pages are very long; I read about 40,000 characters of each verbatim and a model-written summary of the rest, so points I could only confirm from a summary are marked. Where the docs are silent, I say "our version does it this way".
 

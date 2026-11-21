@@ -21,5 +21,5 @@
   <text x="520" y="444" font-size="19" font-weight="400" fill="#aca69d">agent.py · test_tools.py · sandbox/ · demo/</text>
   <rect x="70" y="480" width="420" height="58" rx="9" fill="#2a2723" stroke="#4a4640" stroke-width="1.5"/>
   <text x="280" y="514.1" font-size="17" font-weight="700" fill="#f0883e" text-anchor="middle">ep03/ … ep13/</text>
-  <text x="520" y="516" font-size="19" font-weight="400" fill="#aca69d">one folder per episode, added as the series grows</text>
+  <text x="520" y="516" font-size="19" font-weight="400" fill="#aca69d">one folder per episode, 13 in all</text>
 </svg>

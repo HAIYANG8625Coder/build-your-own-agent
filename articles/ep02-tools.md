@@ -1,6 +1,10 @@
 # Episode 2 · Tools
 
-*Part A · Core. Video: "Build your own agent · o2：Tools". Code: [`ep02/`](../ep02/).*
+*Part A · Core. Video: "Build your own agent · 02: tools". Code: [`ep02/`](../ep02/).*
+
+**Series:** [← README](../README.md) · [← Ep 1: The loop](ep01-the-loop.md) · [Ep 3: System prompt and notes →](ep03-system-prompt-and-notes.md)
+
+**Key idea:** Tools are what the agent can do: write their descriptions for the model, edit by exact replacement, return errors as results, keep outputs short.
 
 This article is the whole of episode 2 in writing, so you can follow it without the video. Every claim about Claude Code is taken from the official pages linked inline.
 
