@@ -1,0 +1,8 @@
+version   base   {'n': 5, 'passed': 5, 'all_pass': True, 'any_pass': True, 'turns': 7.4, 'tokens': 13918, 'tokens_min': 12005, 'tokens_max': 17072}
+version   check  {'n': 5, 'passed': 4, 'all_pass': False, 'any_pass': True, 'turns': 8.4, 'tokens': 18040, 'tokens_min': 12472, 'tokens_max': 23424}
+tax       base   {'n': 5, 'passed': 5, 'all_pass': True, 'any_pass': True, 'turns': 6.8, 'tokens': 13822, 'tokens_min': 10747, 'tokens_max': 17697}
+tax       check  {'n': 5, 'passed': 5, 'all_pass': True, 'any_pass': True, 'turns': 8, 'tokens': 19240, 'tokens_min': 12991, 'tokens_max': 27770}
+discount  base   {'n': 5, 'passed': 5, 'all_pass': True, 'any_pass': True, 'turns': 9.6, 'tokens': 22137, 'tokens_min': 13436, 'tokens_max': 35040}
+discount  check  {'n': 5, 'passed': 4, 'all_pass': False, 'any_pass': True, 'turns': 8.8, 'tokens': 22464, 'tokens_min': 1775, 'tokens_max': 33458}
+readonly  base   {'n': 5, 'passed': 5, 'all_pass': True, 'any_pass': True, 'turns': 3.2, 'tokens': 3625, 'tokens_min': 2676, 'tokens_max': 5390}
+readonly  check  {'n': 5, 'passed': 5, 'all_pass': True, 'any_pass': True, 'turns': 3, 'tokens': 3506, 'tokens_min': 3414, 'tokens_max': 3671}

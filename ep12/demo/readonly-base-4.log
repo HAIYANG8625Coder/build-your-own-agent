@@ -1,0 +1,7 @@
+turn 1 tool_use | context 767
+  run_bash {"command": "ls -la; find . -name \"orders.csv\""} -> deny (asked)
+turn 2 tool_use | context 860
+  run_bash {"command": "cat orders.csv"} -> allow
+  grep {"pattern": "1042", "path": "."} -> allow
+turn 3 end_turn | context 1049
+readonly base run 4: pass=True turns=3 tokens=2676 []

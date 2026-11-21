@@ -1,0 +1,8 @@
+turn 1 tool_use | context 783
+  run_bash {"command": "ls -la"} -> allow
+  grep {"pattern": "1042", "path": "."} -> allow
+turn 2 tool_use | context 1276
+  read_file {"path": "orders.csv"} -> allow
+  run_bash {"command": "ls -la data docs tests"} -> allow
+turn 3 end_turn | context 1612
+readonly check run 4: pass=True turns=3 tokens=3671 []
